@@ -47,7 +47,10 @@
 	<!--<bean id = "spellChecker" class = "com.journaldev.autowired.SpellChecker"/>-->
 
 
-	<bean id = "entityFacotry" class = "com.journaldev.other.EntityFactoryImpl"/>
+
+	<!--ADAPTER-->
+		<bean id="ProductTypeSettingAdapter" class="com.journaldev.adapter.ProductTypeSettingAdapterImpl" />
+	<!--/ADAPTER-->
 
 	<!--DAOS-->
 		<bean id="personDAO" class="com.journaldev.dao.PersonDAOImpl">
@@ -61,8 +64,14 @@
 		<bean id="productTypeSettingDAO" class="com.journaldev.dao.ProductTypeSettingDAOImpl"/>
 		<bean id="productSettingDAO" class="com.journaldev.dao.ProductSettingDAOImpl"/>
 		<bean id="settingTypeDAO" class="com.journaldev.dao.SettingTypeDAOImpl"/>
-
 	<!--/DAOS-->
+
+	<!--ENTITY-->
+		<bean id = "entityFacotry" class = "com.journaldev.factory.EntityFactoryImpl"/>
+	<!--/ENTITY-->
+
+	<!--FACTORY-->
+	<!--/FACTORY-->
 
 	<!--MANAGER-->
 		<bean id="productManager" class="com.journaldev.manager.ProductManagerImpl"/>
@@ -77,6 +86,7 @@
 
 	<!--OTHER-->
 		<bean id= "decisionSystem" class="com.journaldev.other.DecisionSystemImpl" />
+		<bean id= "loanTransformer" class="com.journaldev.other.LoanTransformerImpl" />
 	<!--/OTHER-->
 
 

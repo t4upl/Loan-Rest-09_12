@@ -3,15 +3,13 @@ package com.journaldev.dao;
 import com.journaldev.entity.ProductSetting;
 import com.journaldev.entity.ProductSettingPK;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 
-public class ProductSettingDAOImpl extends AbstractDAO implements ProductSettingDAO {
+public class ProductSettingDAOImpl extends AbstractDAOImpl<ProductSetting> implements ProductSettingDAO {
 
     public ProductSettingDAOImpl() {
         super(ProductSetting.class);
@@ -44,20 +42,19 @@ public class ProductSettingDAOImpl extends AbstractDAO implements ProductSetting
     @Transactional
     public ProductSetting insert(ProductSetting productSetting) {
         SessionObject sessionObject = getSesionTransactionObject();
-        System.out.println(productSetting);
         sessionObject.getSession().save(productSetting);
         sessionObject.commitTransactionAndCloseSession();
         return productSetting;
     }
-
-    @Override
-    public Long getCount() {
-        SessionObject sessionObject = getSesionTransactionObject();
-        Criteria criteria = sessionObject.getSession().createCriteria(entityClass)
-                .setProjection(Projections.rowCount());
-
-        Long rowCount = processCriteria(criteria);
-        sessionObject.commitTransactionAndCloseSession();
-        return rowCount;
-    }
+//
+//    @Override
+//    public Long getCount() {
+//        SessionObject sessionObject = getSesionTransactionObject();
+//        Criteria criteria = sessionObject.getSession().createCriteria(entityClass)
+//                .setProjection(Projections.rowCount());
+//
+//        Long rowCount = processCriteria(criteria);
+//        sessionObject.commitTransactionAndCloseSession();
+//        return rowCount;
+//    }
 }

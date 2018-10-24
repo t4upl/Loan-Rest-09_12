@@ -5,53 +5,53 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
 
         -- CREATE TABLES
 
-        -- tbale contains customers/users of application
-	CREATE TABLE customer (
-	  id integer,
-	  name text,
-	  PRIMARY KEY (id)
-	);
+        -- table contains customers/users of application
+        CREATE TABLE customer (
+          id integer,
+          name text,
+          PRIMARY KEY (id)
+        );
 
-	-- debt attached to customer
-	CREATE TABLE product (
-	  id integer,
-	  customer_id integer,
-	  product_type_id integer,
-	  PRIMARY KEY (id)
-	);
+        -- debt attached to customer
+        CREATE TABLE product (
+          id integer,
+          customer_id integer NOT NULL,
+          product_type_id integer NOT NULL,
+          PRIMARY KEY (id)
+        );
 
         --types of debts that customer can buy
-	CREATE TABLE product_type (
-	  id integer,
-	  PRIMARY KEY (id)
-	);
+        CREATE TABLE product_type (
+          id integer,
+          PRIMARY KEY (id)
+        );
 
-        --setting of debts that customer can buy
-	CREATE TABLE product_type_setting (
-	  id integer,
-	  product_type_id integer,
-	  setting_type_id integer,
-	  value text,
-	  PRIMARY KEY (id),
-	  UNIQUE (product_type_id, setting_type_id)
-	);
+            --setting of debts that customer can buy
+        CREATE TABLE product_type_setting (
+          id integer,
+          product_type_id integer NOT NULL,
+          setting_type_id integer NOT NULL,
+          value text,
+          PRIMARY KEY (id),
+          UNIQUE (product_type_id, setting_type_id)
+        );
 
-        --setting of debts that customer has bought
-	CREATE TABLE IF NOT EXISTS setting_type (
-	  id integer,
-	  name text,
-	  PRIMARY KEY (id)
-	);
+            --setting of debts that customer has bought
+        CREATE TABLE IF NOT EXISTS setting_type (
+          id integer,
+          name text,
+          PRIMARY KEY (id)
+        );
 
-        -- describes details about product owned by customer
-	CREATE TABLE IF NOT EXISTS product_setting (
-	  id integer,
-	  product_id integer,
-	  setting_type_id integer,
-	  value text,
-	  PRIMARY KEY (id),
-	  UNIQUE (product_id, setting_type_id)
-	);
+            -- describes details about product owned by customer
+        CREATE TABLE IF NOT EXISTS product_setting (
+          id integer,
+          product_id integer NOT NULL,
+          setting_type_id integer NOT NULL,
+          value text,
+          PRIMARY KEY (id),
+          UNIQUE (product_id, setting_type_id)
+        );
 
         -- CREATE FOREIGN KEYS
 
@@ -95,6 +95,7 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO setting_type (id, name) VALUES (9, 'due date');
         INSERT INTO setting_type (id, name) VALUES (10, 'extension term');
         INSERT INTO setting_type (id, name) VALUES (11, 'amount');
+        INSERT INTO setting_type (id, name) VALUES (12, 'application date');
 
 
         --insert settings describing a debt with id = 1
@@ -109,6 +110,7 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (9, 1, 9, '');
         INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (10, 1, 10, '7');
         INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (11, 1, 11, '');
+        INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (12, 1, 12, '');
 
 
         RAISE NOTICE 'insertTestData - end';

@@ -3,7 +3,7 @@ package com;
 import com.journaldev.entity.ProductSetting;
 import com.journaldev.entity.ProductSettingPK;
 import com.journaldev.other.ClientDataWrapper;
-import com.journaldev.other.EntityFactory;
+import com.journaldev.factory.EntityFactory;
 import com.journaldev.test.ManagerTestDependencies;
 import com.journaldev.util.AppUtil;
 import org.junit.jupiter.api.Assertions;
@@ -62,7 +62,7 @@ public class ManagerTest {
     }
 
     @Test
-    public void productManagerTakeLoanTest() {
+    public void productManagerTakeLoanPassTest() {
         int productTypeId = 1;
 
         ClientDataWrapper clientDataWrapper = ClientDataWrapper.builder()
@@ -76,15 +76,17 @@ public class ManagerTest {
 
         long productCountBeforeLoan = managerTestDependencies.getProductDAO().getCount();
         long productSettingCountBeforeLoan = managerTestDependencies.getProductSettingDAO().getCount();
-        long settingTypeCount = managerTestDependencies.getProductTypeSettingDAO().getCount(entityFactory.
-                                        getProductTypeSetting(null, productTypeId, null, null));
-
-        Assertions.assertEquals(11, settingTypeCount, "Failed on  ProductTypeSettingDAO.getCount()");
+        long settingTypeCountForProjectType = managerTestDependencies.getProductTypeSettingDAO()
+                .getCount(entityFactory.getProductTypeSetting(null, productTypeId, null, null));
 
         managerTestDependencies.getProductManager().takeLoan(clientDataWrapper);
 
         long productCountAfterLoan = managerTestDependencies.getProductDAO().getCount();
         long productSettingCountAfterLoan = managerTestDependencies.getProductSettingDAO().getCount();
+
+        Assertions.assertEquals(productCountBeforeLoan + 1, productCountAfterLoan);
+        Assertions.assertEquals(productSettingCountBeforeLoan + settingTypeCountForProjectType,
+                                                                                    productSettingCountAfterLoan);
 
     }
 

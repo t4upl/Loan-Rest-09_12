@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public class ProductTypeSettingDAOImpl extends AbstractDAO implements ProductTypeSettingDAO {
+public class ProductTypeSettingDAOImpl extends AbstractDAOImpl implements ProductTypeSettingDAO {
 
     public ProductTypeSettingDAOImpl() {
         super(ProductTypeSetting.class);

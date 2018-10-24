@@ -1,8 +1,8 @@
 package com.journaldev.playground.wiki;
 
-import com.journaldev.dao.AbstractDAO;
+import com.journaldev.dao.AbstractDAOImpl;
 
-public class EmployeeDAO extends AbstractDAO {
+public class EmployeeDAO extends AbstractDAOImpl {
 
     public EmployeeDAO() {
         super(Employee.class);

@@ -20,6 +20,10 @@ public class SettingType {
     @EqualsAndHashCode.Exclude
     List<ProductTypeSetting> productTypeSettings;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    List<ProductSetting> productSettings;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
@@ -47,5 +51,14 @@ public class SettingType {
 
     public void setProductTypeSettings(List<ProductTypeSetting> productTypeSettings) {
         this.productTypeSettings = productTypeSettings;
+    }
+
+    @OneToMany(mappedBy="settingType", fetch = FetchType.EAGER)
+    public List<ProductSetting> getProductSettings() {
+        return productSettings;
+    }
+
+    public void setProductSettings(List<ProductSetting> productSettings) {
+        this.productSettings = productSettings;
     }
 }

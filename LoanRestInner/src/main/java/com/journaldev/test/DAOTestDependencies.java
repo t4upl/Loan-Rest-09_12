@@ -1,7 +1,7 @@
 package com.journaldev.test;
 
 import com.journaldev.dao.*;
-import com.journaldev.other.EntityFactory;
+import com.journaldev.factory.EntityFactory;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 

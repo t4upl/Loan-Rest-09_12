@@ -1,6 +1,7 @@
 CREATE ROLE username2 PASSWORD 'password2';
 CREATE DATABASE debtDB OWNER username2;
 
+--------------------------------------
 --PRINT USERS
 /*
 SELECT u.usename AS "Role name",

@@ -5,7 +5,7 @@ import com.journaldev.entity.ProductSettingPK;
 
 import java.util.Optional;
 
-public interface ProductSettingDAO extends GenericInsertableDAO<ProductSetting> {
+public interface ProductSettingDAO extends GenericInsertableDAO<ProductSetting>, AbstractDAO<ProductSetting> {
     void delete (ProductSettingPK productSettingPK);
     Optional<ProductSetting> findById(ProductSettingPK productSettingPK);
     ProductSetting insert(ProductSetting productSetting);

@@ -3,6 +3,7 @@ package com;
 import com.journaldev.dao.*;
 import com.journaldev.entity.ProductSettingPK;
 import com.journaldev.entity.ProductTypeSetting;
+import com.journaldev.factory.EntityFactory;
 import com.journaldev.test.DAOTestDependencies;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,12 +16,14 @@ import java.util.List;
 
 public class DAOTest {
 
-    static DAOTestDependencies daoTestDependencies;
+    private static DAOTestDependencies daoTestDependencies;
+    private static EntityFactory entityFactory;
 
     @BeforeAll
     public static void beforeAllTest() {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         DAOTest.daoTestDependencies  = (DAOTestDependencies) context.getBean("daoTestDependencies");
+        DAOTest.entityFactory = DAOTest.daoTestDependencies.getEntityFactory();
     }
 
     @Test
@@ -86,12 +89,15 @@ public class DAOTest {
     }
 
     @Test
-    public void settingTypeDAOinsertTest() {
-//
-//        SettingType settingType = daoTestDependencies.getEntityFactory().
-//        SettingType settingType = daoTestDependencies.getSettingTypeDAO().insert();
-//        ProductTypeSetting productTypeSetting = daoTestDependencies.getSettingTypeDAO().insert();
+    public void productTypeSettingDAOgetCountTest() {
+        int productTypeId = 1;
+        long settingTypeCountForProjectType = daoTestDependencies.getProductTypeSettingDAO()
+                .getCount(entityFactory.getProductTypeSetting(null, productTypeId, null, null));
+
+        Assertions.assertEquals(12, settingTypeCountForProjectType,
+                "Failed on  ProductTypeSettingDAO.getCount()");
     }
+
 
     private <T> void DAOInsertTestTemplate(GenericInsertableDAO<T> genericInsertableDAO, T t) {
         long productCountBeforeInsert = genericInsertableDAO.getCount();

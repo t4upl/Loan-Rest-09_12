@@ -1,16 +1,12 @@
 package com.journaldev.dao;
 
 import com.journaldev.entity.Product;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Repository
 @Transactional
-public class ProductDAOImpl extends AbstractDAO implements ProductDAO {
+public class ProductDAOImpl extends AbstractDAOImpl implements ProductDAO {
 
     public ProductDAOImpl() {
         super(Product.class);
@@ -32,14 +28,23 @@ public class ProductDAOImpl extends AbstractDAO implements ProductDAO {
         return product;
     }
 
+//    @Override
+//    public Long getCount() {
+//        SessionObject sessionObject = getSesionTransactionObject();
+//        Criteria criteria = sessionObject.getSession()
+//                                         .createCriteria(entityClass)
+//                                         .setProjection(Projections.rowCount());
+//        Long rowCount = processCriteria(criteria);
+//        sessionObject.commitTransactionAndCloseSession();
+//        return rowCount;
+//    }
+
     @Override
-    public Long getCount() {
+    @Transactional
+    public Product insertOrUpdate(Product product) {
         SessionObject sessionObject = getSesionTransactionObject();
-        Criteria criteria = sessionObject.getSession()
-                                         .createCriteria(entityClass)
-                                         .setProjection(Projections.rowCount());
-        Long rowCount = processCriteria(criteria);
+        sessionObject.getSession().saveOrUpdate(product);
         sessionObject.commitTransactionAndCloseSession();
-        return rowCount;
+        return product;
     }
 }

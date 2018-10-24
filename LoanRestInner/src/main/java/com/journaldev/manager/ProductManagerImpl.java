@@ -1,6 +1,7 @@
 package com.journaldev.manager;
 
-import com.journaldev.other.EntityFactory;
+import com.journaldev.factory.EntityFactory;
+import com.journaldev.other.LoanTransformer;
 import com.journaldev.util.AppUtil;
 import com.journaldev.util.SettingTypeUtil;
 import com.journaldev.dao.ProductDAO;
@@ -13,9 +14,7 @@ import com.journaldev.other.DecisionSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +34,9 @@ public class ProductManagerImpl implements ProductManager {
 
     @Autowired
     EntityFactory entityFactory;
+
+    @Autowired
+    LoanTransformer loanTransformer;
 
 
     @Override
@@ -58,49 +60,54 @@ public class ProductManagerImpl implements ProductManager {
         List<ProductTypeSetting> productTypeSettings = productTypeSettingDAO.
                                                            getProductTypeSettingsByProductId(productTypeId);
 
-        List<ProductSetting> productSettings = transformProductTypeSettings(productTypeSettings, product.getId(),
-                                                                                                    clientDataWrapper);
+
+        List<ProductSetting> productSettings = loanTransformer.transformProductTypeSettingsToProductSettings(
+                                                    productTypeSettings, product.getId(), clientDataWrapper);
         productSettingManager.insert(productSettings);
     }
 
-    private List<ProductSetting> transformProductTypeSettings (List<ProductTypeSetting> productTypeSettings,
-                                                               final int productId,
-                                                               final ClientDataWrapper clientDataWrapper) {
-        return productTypeSettings.stream()
-                                  .map(x-> transformProductTypeSettingsMapFunction(x, productId, clientDataWrapper))
-                                  .collect(Collectors.toList());
-    }
+//    private List<ProductSetting> transformProductTypeSettings (List<ProductTypeSetting> productTypeSettings,
+//                                                               final int productId,
+//                                                               final ClientDataWrapper clientDataWrapper) {
+//        return productTypeSettings.stream()
+//                                  .map(x-> transformProductTypeSettingsFunctionSingleField(
+//                                                                            x, productId, clientDataWrapper))
+//                                  .collect(Collectors.toList());
+//    }
+//
+//    private ProductSetting transformProductTypeSettingsFunctionSingleField(ProductTypeSetting productTypeSetting,
+//                                                                           int productId,
+//                                                                           ClientDataWrapper clientDataWrapper) {
+//
+//        ProductSetting productSetting = entityFactory.getProductSetting(
+//                -1, productId, productTypeSetting.getSettingTypeId(), productTypeSetting.getValue());
+//
+//        if (productTypeSetting.getProductTypeId() == 1) {
+//            productSetting = singleFieldTransforProduct1(productSetting,
+//                                                                 productTypeSetting.getSettingType().getName(),
+//                                                                 clientDataWrapper);
+//        }
+//
+//        return productSetting;
+//    }
 
-    private ProductSetting transformProductTypeSettingsMapFunction (ProductTypeSetting productTypeSetting,
-                                                                    int productId,
-                                                                    ClientDataWrapper clientDataWrapper) {
-
-        ProductSetting productSetting = entityFactory.getProductSetting(
-                -1, productId, productTypeSetting.getSettingTypeId(), productTypeSetting.getValue());
-
-        if (productTypeSetting.getProductTypeId() == 1) {
-            productSetting = transformProductSettingsForProduct1(productSetting,
-                                                                 productTypeSetting.getSettingType().getName(),
-                                                                 clientDataWrapper);
-        }
-
-        return productSetting;
-    }
-
-    private ProductSetting transformProductSettingsForProduct1 (ProductSetting productSetting,
-                                                                String settingTypeName,
-                                                                ClientDataWrapper clientDataWrapper) {
-        switch (settingTypeName){
-            case (SettingTypeUtil.dueDate):
-                productSetting.setValue(AppUtil.localDateTimeToString(LocalDateTime.now()));
-                break;
-            case (SettingTypeUtil.amount):
-                productSetting.setValue(clientDataWrapper.getAmount().toString());
-                break;
-        }
-
-        return productSetting;
-    }
+//    private ProductSetting singleFieldTransforProduct1(ProductSetting productSetting,
+//                                                       String settingTypeName,
+//                                                       ClientDataWrapper clientDataWrapper) {
+//        switch (settingTypeName){
+//            case (SettingTypeUtil.applicationDate):
+//                productSetting.setValue(AppUtil.localDateTimeToString(LocalDateTime.now()));
+//                break;
+//            case (SettingTypeUtil.amount):
+//                productSetting.setValue(clientDataWrapper.getAmount().toString());
+//                break;
+//            case (SettingTypeUtil.dueDate):
+//                productSetting.setValue(AppUtil.localDateTimeToString(LocalDateTime.now()));
+//                break;
+//        }
+//
+//        return productSetting;
+//    }
 
 //    private ProductSetting makeProduceSetting(int productId, int settingTypeId, String value) {
 //        ProductSetting productSetting = new ProductSetting();

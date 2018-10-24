@@ -9,4 +9,6 @@ public class SettingTypeUtil {
     public static final String maxRejectionHour = "max rejection hour";
     public static final String dueDate = "due date";
     public static final String amount = "amount";
+    public static final String applicationDate = "application date";
+
 }
