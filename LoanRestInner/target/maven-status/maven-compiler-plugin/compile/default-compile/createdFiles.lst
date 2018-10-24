@@ -1,0 +1,6 @@
+com\journaldev\dao\CustomerDAOImpl.class
+com\journaldev\dao\PersonDAOImpl.class
+com\journaldev\dao\PersonDAO.class
+com\journaldev\dao\CustomerDAO.class
+com\journaldev\main\SpringHibernateMain.class
+com\journaldev\main\Main.class
