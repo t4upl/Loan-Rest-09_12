@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class ProductSetting {
 
     Integer id;
-    private int productId;
-    private int settingTypeId;
+    private Integer productId;
+    private Integer settingTypeId;
     private String value;
 
     @ToString.Exclude
@@ -31,20 +31,20 @@ public class ProductSetting {
     }
 
     @Column(name = "product_id")
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
     @Column(name = "setting_type_id")
-    public int getSettingTypeId() {
+    public Integer getSettingTypeId() {
         return settingTypeId;
     }
 
-    public void setSettingTypeId(int settingTypeId) {
+    public void setSettingTypeId(Integer settingTypeId) {
         this.settingTypeId = settingTypeId;
     }
 

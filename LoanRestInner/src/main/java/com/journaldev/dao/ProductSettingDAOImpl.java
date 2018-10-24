@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -39,6 +40,26 @@ public class ProductSettingDAOImpl extends AbstractDAOImpl<ProductSetting> imple
     }
 
     @Override
+    public List<ProductSetting> findByProductId(int productId) {
+        SessionObject sessionObject = getSesionTransactionObject();
+        Criteria criteria = sessionObject.getSession()
+                .createCriteria(entityClass)
+                .add(Restrictions.eq("productId", productId));
+
+        List<ProductSetting> productSettings = (List<ProductSetting>) criteria.uniqueResult();
+        sessionObject.commitTransactionAndCloseSession();
+        return productSettings;
+    }
+
+    @Override
+    @Transactional
+    public void update(ProductSetting productSetting) {
+        SessionObject sessionObject = getSesionTransactionObject();
+        sessionObject.getSession().update(productSetting);
+        sessionObject.commitTransactionAndCloseSession();
+    }
+
+    @Override
     @Transactional
     public ProductSetting insert(ProductSetting productSetting) {
         SessionObject sessionObject = getSesionTransactionObject();
@@ -46,15 +67,4 @@ public class ProductSettingDAOImpl extends AbstractDAOImpl<ProductSetting> imple
         sessionObject.commitTransactionAndCloseSession();
         return productSetting;
     }
-//
-//    @Override
-//    public Long getCount() {
-//        SessionObject sessionObject = getSesionTransactionObject();
-//        Criteria criteria = sessionObject.getSession().createCriteria(entityClass)
-//                .setProjection(Projections.rowCount());
-//
-//        Long rowCount = processCriteria(criteria);
-//        sessionObject.commitTransactionAndCloseSession();
-//        return rowCount;
-//    }
 }

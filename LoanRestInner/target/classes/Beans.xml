@@ -78,11 +78,12 @@
 		<bean id="productSettingManager" class="com.journaldev.manager.ProductSettingManagerImpl"/>
 	<!--/MANAGER-->
 
-	<!--TEST-->
-		<bean id = "daoTestDependencies" class = "com.journaldev.test.DAOTestDependencies"/>
-		<bean id = "managerTestDependencies" class = "com.journaldev.test.ManagerTestDependencies"/>
-		<bean id = "entityTestDependencies" class = "com.journaldev.test.EntityTestDependencies"/>
-	<!--/TEST-->
+	<!--TEST DEPENDENCIES-->
+		<bean id = "daoTestDependencies" class = "com.journaldev.testDependencies.DAOTestDependencies"/>
+		<bean id = "managerTestDependencies" class = "com.journaldev.testDependencies.ManagerTestDependencies"/>
+		<bean id = "entityTestDependencies" class = "com.journaldev.testDependencies.EntityTestDependencies"/>
+		<bean id = "otherTestDependencies" class="com.journaldev.testDependencies.OtherTestDependencies"/>
+	<!--/TEST DEPENDENCIES-->
 
 	<!--OTHER-->
 		<bean id= "decisionSystem" class="com.journaldev.other.DecisionSystemImpl" />

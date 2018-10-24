@@ -1,10 +1,9 @@
-package com.journaldev.test;
+package com.journaldev.testDependencies;
 
 import com.journaldev.dao.ProductDAO;
 import com.journaldev.dao.ProductSettingDAO;
 import com.journaldev.dao.ProductTypeSettingDAO;
 import com.journaldev.dao.SettingTypeDAO;
-import com.journaldev.entity.ProductSetting;
 import com.journaldev.factory.EntityFactory;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;

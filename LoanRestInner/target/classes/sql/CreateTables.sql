@@ -40,7 +40,8 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
         CREATE TABLE IF NOT EXISTS setting_type (
           id integer,
           name text,
-          PRIMARY KEY (id)
+          PRIMARY KEY (id),
+          UNIQUE(name)
         );
 
             -- describes details about product owned by customer

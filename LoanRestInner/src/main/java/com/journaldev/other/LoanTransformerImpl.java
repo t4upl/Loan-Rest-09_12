@@ -1,9 +1,10 @@
 package com.journaldev.other;
 
 import com.journaldev.adapter.ProductTypeSettingAdapter;
+import com.journaldev.dao.SettingTypeDAO;
 import com.journaldev.entity.ProductSetting;
 import com.journaldev.entity.ProductTypeSetting;
-import com.journaldev.util.AppUtil;
+import com.journaldev.util.DateTimeUtil;
 import com.journaldev.util.SettingTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,12 +14,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.journaldev.util.SettingTypeUtil.applicationDate;
-
 public class LoanTransformerImpl implements LoanTransformer {
 
     @Autowired
     ProductTypeSettingAdapter productTypeSettingAdapter;
+
+    @Autowired
+    SettingTypeDAO settingTypeDAO;
 
     @Override
     public List<ProductSetting> transformProductTypeSettingsToProductSettings(
@@ -30,7 +32,8 @@ public class LoanTransformerImpl implements LoanTransformer {
         Map<String, ProductSetting> map =   productSettings
                                                 .stream()
                                                 .collect(Collectors.toMap(
-                                                    producSetting -> producSetting.getSettingType().getName(),
+                                                    producSetting -> settingTypeDAO.findById(
+                                                                        producSetting.getSettingTypeId()).getName(),
                                                     productSetting -> productSetting));
 
         transformProductSettingsMap(map, clientDataWrapper);
@@ -59,15 +62,15 @@ public class LoanTransformerImpl implements LoanTransformer {
 
         switch (settingTypeName) {
             case (SettingTypeUtil.applicationDate):
-                productSetting.setValue(AppUtil.localDateTimeToString(LocalDateTime.now()));
+                productSetting.setValue(DateTimeUtil.localDateTimeToString(LocalDateTime.now()));
                 break;
             case (SettingTypeUtil.amount):
                 productSetting.setValue(clientDataWrapper.getAmount().toString());
                 break;
             case (SettingTypeUtil.dueDate):
                 int numberOfDays = clientDataWrapper.getTerm();
-                productSetting.setValue(AppUtil.localDateTimeToString(
-                        AppUtil.addDaysToToLocalDateTime(LocalDateTime.now(), numberOfDays)));
+                productSetting.setValue(DateTimeUtil.localDateTimeToString(
+                        DateTimeUtil.addDaysToToLocalDateTime(LocalDateTime.now(), numberOfDays)));
                 break;
         }
 

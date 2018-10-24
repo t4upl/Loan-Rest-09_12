@@ -10,7 +10,7 @@ public interface EntityFactory {
 
     ProductTypeSetting getProductTypeSetting(Integer id, Integer productTypeId, Integer settingTypeId, String value);
 
-    ProductSetting getProductSetting(Integer id, int productId, int setttingTypeId, String value) ;
+    ProductSetting getProductSetting(Integer id, Integer productId, Integer setttingTypeId, String value) ;
 
     SettingType getSettingType(int id, String name);
 }

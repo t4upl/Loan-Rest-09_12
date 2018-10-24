@@ -4,7 +4,7 @@ import com.journaldev.dao.*;
 import com.journaldev.entity.ProductSettingPK;
 import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.factory.EntityFactory;
-import com.journaldev.test.DAOTestDependencies;
+import com.journaldev.testDependencies.DAOTestDependencies;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -85,7 +85,7 @@ public class DAOTest {
 
         DAOInsertTestTemplate(daoTestDependencies.getProductSettingDAO(),
                 daoTestDependencies.getEntityFactory().
-                        getProductSetting(1, productId, settingTypeId,"test"));
+                        getProductSetting(1, productId, settingTypeId,"testDependencies"));
     }
 
     @Test

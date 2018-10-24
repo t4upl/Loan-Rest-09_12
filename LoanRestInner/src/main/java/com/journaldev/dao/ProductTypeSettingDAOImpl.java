@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public class ProductTypeSettingDAOImpl extends AbstractDAOImpl implements ProductTypeSettingDAO {
+public class ProductTypeSettingDAOImpl extends AbstractDAOImpl<ProductTypeSetting> implements ProductTypeSettingDAO {
 
     public ProductTypeSettingDAOImpl() {
         super(ProductTypeSetting.class);
@@ -27,7 +27,8 @@ public class ProductTypeSettingDAOImpl extends AbstractDAOImpl implements Produc
         SessionObject sessionObject = getSesionTransactionObject();
         Criteria criteria = sessionObject.getSession()
                                          .createCriteria(entityClass)
-                                         .add(Restrictions.eq("productTypeId", productTypeId));
+                                         .add(Restrictions.eq("productTypeId", productTypeId))
+                                         .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
         List<ProductTypeSetting> productTypeSettings = criteria.list();
         sessionObject.commitTransactionAndCloseSession();

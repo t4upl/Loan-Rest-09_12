@@ -28,13 +28,13 @@ public abstract class AbstractDAOImpl<T> {
         this.entityClass = entityClass;
     }
 
-    public Optional<T> getUniqueByExample(T t) {
+    public List<T> findByExample(T t) {
         SessionObject sessionObject = getSesionTransactionObject();
         Criteria criteria = sessionObject.getSession().createCriteria(t.getClass())
                 .add(Example.create(t));
-        t = (T) criteria.uniqueResult();
+        List<T> list = criteria.list();
         sessionObject.commitTransactionAndCloseSession();
-        return Optional.ofNullable(t);
+        return list;
     }
 
     public T findById(int id) {
@@ -64,16 +64,6 @@ public abstract class AbstractDAOImpl<T> {
 
         throw new RuntimeException(this.getClass().getCanonicalName() + " getCount()");
     }
-
-//    protected void openSessionAndBeginTransaction () {
-//        this.session = this.sessionFactory.openSession();
-//        this.transaction = session.beginTransaction();
-//    }
-//
-//    private void commitTransactionAndCloseSession ()  {
-//        this.transaction.commit();
-//        this.session.close();
-//    }
 
     protected Long processCriteria(Criteria criteria){
         List list = criteria.list();

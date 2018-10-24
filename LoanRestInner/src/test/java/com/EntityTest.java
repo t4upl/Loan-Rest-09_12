@@ -5,7 +5,7 @@ import com.journaldev.entity.ProductSetting;
 import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.entity.SettingType;
 import com.journaldev.factory.EntityFactory;
-import com.journaldev.test.EntityTestDependencies;
+import com.journaldev.testDependencies.EntityTestDependencies;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -53,6 +53,9 @@ public class EntityTest {
             productSetting = entityTestDependencies.getProductSettingDAO().insert(
                              entityFactory.getProductSetting(1, product.getId(), 1,
                                      "productSettingGetSettingTypeTest"));
+
+            //refresh many-to-one
+            productSetting = entityTestDependencies.getProductSettingDAO().findById(productSetting.getId());
         }
 
         SettingType settingType = entityTestDependencies.getSettingTypeDAO().findById(1);

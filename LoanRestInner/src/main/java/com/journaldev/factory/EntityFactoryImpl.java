@@ -1,7 +1,6 @@
 package com.journaldev.factory;
 
 import com.journaldev.entity.*;
-import lombok.NonNull;
 
 public class EntityFactoryImpl implements EntityFactory {
 
@@ -34,7 +33,7 @@ public class EntityFactoryImpl implements EntityFactory {
     }
 
     @Override
-    public ProductSetting getProductSetting(Integer id, int productId, int setttingTypeId, String value) {
+    public ProductSetting getProductSetting(Integer id, Integer productId, Integer setttingTypeId, String value) {
         ProductSetting productSetting = new ProductSetting();
         productSetting.setId(id);
         productSetting.setProductId(productId);

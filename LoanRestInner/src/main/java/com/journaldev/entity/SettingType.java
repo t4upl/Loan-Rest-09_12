@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "setting_type", schema = "public")
@@ -18,11 +18,11 @@ public class SettingType {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    List<ProductTypeSetting> productTypeSettings;
+    Set<ProductTypeSetting >productTypeSettings;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    List<ProductSetting> productSettings;
+    Set<ProductSetting> productSettings;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -45,20 +45,20 @@ public class SettingType {
     }
 
     @OneToMany(mappedBy="settingType", fetch = FetchType.EAGER)
-    public List<ProductTypeSetting> getProductTypeSettings() {
+    public Set<ProductTypeSetting> getProductTypeSettings() {
         return productTypeSettings;
     }
 
-    public void setProductTypeSettings(List<ProductTypeSetting> productTypeSettings) {
+    public void setProductTypeSettings(Set<ProductTypeSetting> productTypeSettings) {
         this.productTypeSettings = productTypeSettings;
     }
 
     @OneToMany(mappedBy="settingType", fetch = FetchType.EAGER)
-    public List<ProductSetting> getProductSettings() {
+    public Set<ProductSetting> getProductSettings() {
         return productSettings;
     }
 
-    public void setProductSettings(List<ProductSetting> productSettings) {
+    public void setProductSettings(Set<ProductSetting> productSettings) {
         this.productSettings = productSettings;
     }
 }

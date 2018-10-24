@@ -13,29 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EntityTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/EntityTest.java">
+      <file leaf-file-name="ProductManagerImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityFactoryImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactoryImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="36" column="71" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
+            <state relative-caret-position="384">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,27 +25,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingType.java">
+      <file leaf-file-name="ProductSettingManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1298#1299#0" expanded="true" />
-                <element signature="e#1336#1337#0" expanded="true" />
-                <element signature="e#1412#1413#0" expanded="true" />
-                <element signature="e#1466#1467#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductSettingDAOImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAOImpl.java">
+      <file leaf-file-name="ProductSettingManagerImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="327">
+              <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,22 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductSetting.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductSetting.java">
+      <file leaf-file-name="SettingTypeUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/SettingTypeUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#882#883#0" expanded="true" />
-                <element signature="e#918#919#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#1023#1024#0" expanded="true" />
-                <element signature="e#1389#1390#0" expanded="true" />
-                <element signature="e#1423#1424#0" expanded="true" />
-                <element signature="e#1482#1483#0" expanded="true" />
-                <element signature="e#1528#1529#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -94,8 +58,8 @@
       <file leaf-file-name="ProductSettingDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="306">
+              <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,20 +67,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateTables.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/sql/CreateTables.sql">
+      <file leaf-file-name="OtherTestDependencies.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/OtherTestDependencies.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+            <state relative-caret-position="289">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductTypeSettingDAOImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAOImpl.java">
+      <file leaf-file-name="ProductSettingDAOImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10">
-              <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+            <state relative-caret-position="314">
+              <caret line="57" column="41" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,14 +88,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductTypeSetting.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductTypeSetting.java">
+      <file leaf-file-name="FilterUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/FilterUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+            <state relative-caret-position="204">
+              <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -141,8 +114,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -167,35 +140,23 @@
       <find>example</find>
       <find>findBy</find>
       <find>Test</find>
+      <find>List</find>
+      <find>int</find>
+      <find>meap</find>
     </findStrings>
     <replaceStrings>
       <replace>daoTestDependencies</replace>
       <replace>getProductDAO()</replace>
       <replace>DAOTest.daoTestDependencies</replace>
+      <replace>Set</replace>
+      <replace>Integer</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/ManagerTestDependencies.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingTypePK.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/EntityTestDependencies.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/playground/wiki/EmployeeDAO.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/DAOTestDependencies.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/test/DAOTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/playground/wiki/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/playground/wiki/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/playground/wiki/Phone.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/test/ManagerTestDependencies.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/EntityFactoryImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/CustomerDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/CustomerDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/CreateTables.sql" />
         <option value="$PROJECT_DIR$/src/test/java/com/DAOTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/ManagerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/util/SettingTypeUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanProcessorImpl1.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformer.java" />
@@ -206,28 +167,45 @@
         <option value="$PROJECT_DIR$/src/main/resources/sql/OtherScript.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sql/CreateUserAndDatabase.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanProcessorImplLoanTransformerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/util/AppUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManagerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/Beans.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/test/EntityTestDependencies.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/SettingTypeDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/SettingTypeDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductTypeSetting.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductSetting.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactory.java" />
         <option value="$PROJECT_DIR$/src/main/resources/sql/CreateTables.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductSetting.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/util/AppUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/main/MainPlayground.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/EntityTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/test/OtherTestDependencies.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/Beans.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/OtherTestDependencies.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/ManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/TestUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/util/DateTimeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/ClientDataWrapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/DecisionSystemImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/OtherTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/FilterUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/other/FilterUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/util/FilterUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/util/SettingTypeUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/EntityTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManagerImpl.java" />
       </list>
     </option>
   </component>
@@ -310,7 +288,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="journaldev" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LoanRestInner" type="b2602c69:ProjectViewProjectNode" />
@@ -318,14 +296,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LoanRestInner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LoanRestInner" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="sql" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LoanRestInner" type="b2602c69:ProjectViewProjectNode" />
@@ -366,11 +336,11 @@
       <recent name="C:\Users\Administrator\Desktop\LoanRest\LoanRestInner\src\main\resources\sql" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.journaldev.test" />
       <recent name="com.journaldev.Util" />
       <recent name="com.journaldev.entity" />
       <recent name="com.journaldev.dao" />
       <recent name="com.journaldev.other" />
-      <recent name="com.journaldev.manager" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\SpringHibernateExample\SpringHibernateExample\src\main\resources" />
@@ -391,7 +361,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EntityTest">
+  <component name="RunManager" selected="JUnit.OtherTest.decisionSystemIsLoanGivenTest">
+    <configuration name="MainPlayground" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.journaldev.main.MainPlayground" />
+      <module name="LoanRestModule" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.journaldev.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -418,30 +399,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EntityTest.getTestInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="LoanRestModule" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com" />
-      <option name="MAIN_CLASS_NAME" value="com.EntityTest" />
-      <option name="METHOD_NAME" value="getTestInfo(org.junit.jupiter.api.TestInfo)" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EntityTest.productSettingGetSettingTypeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LoanRestModule" />
       <extension name="coverage">
         <pattern>
@@ -464,7 +422,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EntityTest.productSettingGetSettingTypeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ManagerTest.productManagerTakeLoanPassTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LoanRestModule" />
       <extension name="coverage">
         <pattern>
@@ -475,8 +433,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com" />
-      <option name="MAIN_CLASS_NAME" value="com.EntityTest" />
-      <option name="METHOD_NAME" value="productSettingGetSettingTypeTest" />
+      <option name="MAIN_CLASS_NAME" value="com.ManagerTest" />
+      <option name="METHOD_NAME" value="productManagerTakeLoanPassTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -487,7 +445,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EntityTest.productTypeSettingGetSettingType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OtherTest.decisionSystemIsLoanGivenTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LoanRestModule" />
       <extension name="coverage">
         <pattern>
@@ -498,8 +456,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com" />
-      <option name="MAIN_CLASS_NAME" value="com.EntityTest" />
-      <option name="METHOD_NAME" value="productTypeSettingGetSettingType" />
+      <option name="MAIN_CLASS_NAME" value="com.OtherTest" />
+      <option name="METHOD_NAME" value="decisionSystemIsLoanGivenTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -549,19 +507,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="JUnit.EntityTest.productSettingGetSettingTypeTest" />
-      <item itemvalue="JUnit.EntityTest.getTestInfo" />
-      <item itemvalue="JUnit.EntityTest.productSettingGetSettingTypeTest (1)" />
-      <item itemvalue="JUnit.EntityTest.productTypeSettingGetSettingType" />
       <item itemvalue="JUnit.EntityTest" />
+      <item itemvalue="JUnit.ManagerTest.productManagerTakeLoanPassTest" />
+      <item itemvalue="Application.MainPlayground" />
+      <item itemvalue="JUnit.EntityTest.productSettingGetSettingTypeTest" />
+      <item itemvalue="JUnit.OtherTest.decisionSystemIsLoanGivenTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OtherTest.decisionSystemIsLoanGivenTest" />
         <item itemvalue="JUnit.EntityTest" />
-        <item itemvalue="JUnit.EntityTest.productTypeSettingGetSettingType" />
-        <item itemvalue="JUnit.EntityTest.productSettingGetSettingTypeTest (1)" />
-        <item itemvalue="JUnit.EntityTest.getTestInfo" />
         <item itemvalue="JUnit.EntityTest.productSettingGetSettingTypeTest" />
+        <item itemvalue="JUnit.ManagerTest.productManagerTakeLoanPassTest" />
+        <item itemvalue="Application.MainPlayground" />
       </list>
     </recent_temporary>
   </component>
@@ -579,35 +537,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 24m 37s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
+    <history-entry file="EntityTest_productSettingGetSettingTypeTest - 2018.10.24 at 22h 04m 04s.xml">
+      <configuration name="EntityTest.productSettingGetSettingTypeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 27m 54s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
+    <history-entry file="EntityTest_productSettingGetSettingTypeTest - 2018.10.24 at 22h 08m 49s.xml">
+      <configuration name="EntityTest.productSettingGetSettingTypeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 34m 11s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
+    <history-entry file="EntityTest_productSettingGetSettingTypeTest - 2018.10.24 at 22h 09m 36s.xml">
+      <configuration name="EntityTest.productSettingGetSettingTypeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 34m 41s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 35m 31s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 43m 53s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 47m 32s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EntityTest_productSettingGetSettingTypeTest_(1) - 2018.10.24 at 15h 49m 07s.xml">
-      <configuration name="EntityTest.productSettingGetSettingTypeTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EntityTest_productTypeSettingGetSettingType - 2018.10.24 at 15h 51m 21s.xml">
-      <configuration name="EntityTest.productTypeSettingGetSettingType" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EntityTest - 2018.10.24 at 15h 58m 22s.xml">
+    <history-entry file="EntityTest - 2018.10.24 at 22h 09m 51s.xml">
       <configuration name="EntityTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OtherTest_decisionSystemIsLoanGivenTest - 2018.10.25 at 00h 55m 38s.xml">
+      <configuration name="OtherTest.decisionSystemIsLoanGivenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OtherTest_decisionSystemIsLoanGivenTest - 2018.10.25 at 00h 56m 51s.xml">
+      <configuration name="OtherTest.decisionSystemIsLoanGivenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OtherTest_decisionSystemIsLoanGivenTest - 2018.10.25 at 01h 03m 53s.xml">
+      <configuration name="OtherTest.decisionSystemIsLoanGivenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OtherTest_decisionSystemIsLoanGivenTest - 2018.10.25 at 01h 04m 59s.xml">
+      <configuration name="OtherTest.decisionSystemIsLoanGivenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OtherTest_decisionSystemIsLoanGivenTest - 2018.10.25 at 01h 07m 22s.xml">
+      <configuration name="OtherTest.decisionSystemIsLoanGivenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OtherTest_decisionSystemIsLoanGivenTest - 2018.10.25 at 01h 07m 36s.xml">
+      <configuration name="OtherTest.decisionSystemIsLoanGivenTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -620,16 +578,16 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.448125" side_tool="true" weight="0.3061761" />
-      <window_info anchor="right" id="Maven Projects" order="4" visible="true" weight="6.25E-4" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.551875" visible="true" weight="0.3061761" />
+      <window_info anchor="right" id="Maven Projects" order="4" visible="true" weight="0.001875" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.551875" visible="true" weight="0.3061761" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.243125" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.243125" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298292" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39947438" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.478318" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -645,19 +603,66 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformerImpl.java</url>
-          <line>29</line>
+          <url>file://$PROJECT_DIR$/src/test/java/com/EntityTest.java</url>
+          <line>50</line>
           <properties />
-          <option name="timeStamp" value="36" />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/EntityTest.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/EntityTest.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="41" />
+      <option name="time" value="61" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>productSettings.get(0)</expression-string>
+        <expression-string>findValueByKey(productTypeSettings, SettingTypeUtil.maxAmount)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>productTypeSettings.get(7).getSettingType().getName().equals(SettingTypeUtil.maxAmount)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>productTypeSettings.get(7)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>productTypeSettings.stream().filter(x -&gt; x.getSettingType().getName().equals(&quot;max amount&quot;))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>productTypeSettings.get(7).getSettingType().getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>productTypeSettings</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityTestDependencies.getProductSettingDAO().findById(1190)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityTestDependencies.getProductSettingDAO().findById(1)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -667,173 +672,13 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>productSettings</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>managerTestDependencies.getProductDAO().getCount()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>session.get(entityClass, 6)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>session.get(entityClass, 5)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>session.get(entityClass, 4)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>session.get(entityClass, 3)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>session.get(entityClass, 2)</expression-string>
+        <expression-string>productSetting.getSettingType()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductSettingPK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingTypePK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.1.0/junit-jupiter-api-5.1.0.jar!/org/junit/jupiter/api/Assertions.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.1.0/junit-jupiter-api-5.1.0.jar!/org/junit/jupiter/api/AssertionUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/playground/wiki/EmployeeDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/test/DAOTestDependencies.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/playground/wiki/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/test/ManagerTestDependencies.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/ClientDataWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/DAOTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="96" column="34" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/SettingTypeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/adapter/ProductTypeSettingAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -854,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/RemoveTablesAndDatabase.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sql/CreateUserAndDatabase.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -875,50 +713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/AppUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/ManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="47" column="33" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="29" column="59" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -992,53 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-            <element signature="e#807#808#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Beans.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="69" column="87" selection-start-line="69" selection-start-column="87" selection-end-line="69" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="77" selection-start-line="7" selection-start-column="77" selection-end-line="7" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/test/EntityTestDependencies.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductTypeSetting.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
@@ -1049,76 +800,313 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAOImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state relative-caret-position="221">
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/ManagerTestDependencies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingType.java">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/Optional.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="167">
+          <caret line="396" selection-start-line="396" selection-end-line="396" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1298#1299#0" expanded="true" />
-            <element signature="e#1336#1337#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/RemoveTablesAndDatabase.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="7" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/CreateTables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/SettingType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="60" column="39" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#612#613#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+            <element signature="e#855#856#0" expanded="true" />
+            <element signature="e#982#983#0" expanded="true" />
+            <element signature="e#1024#1025#0" expanded="true" />
+            <element signature="e#1292#1293#0" expanded="true" />
+            <element signature="e#1330#1331#0" expanded="true" />
             <element signature="e#1412#1413#0" expanded="true" />
             <element signature="e#1466#1467#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductSetting.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductTypeSettingDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+        <state relative-caret-position="272">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#882#883#0" expanded="true" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#1023#1024#0" expanded="true" />
-            <element signature="e#1389#1390#0" expanded="true" />
-            <element signature="e#1423#1424#0" expanded="true" />
-            <element signature="e#1482#1483#0" expanded="true" />
-            <element signature="e#1528#1529#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="36" column="71" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
+        <state relative-caret-position="160">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/LoanTransformerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="48" lean-forward="true" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/DecisionSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/main/MainPlayground.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/CreateTables.sql">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/entity/ProductSetting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        <state relative-caret-position="279">
+          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#536#537#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#696#697#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#821#822#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#1572#1573#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Beans.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="84" column="41" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/DAOTestDependencies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/EntityTestDependencies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="23" column="15" lean-forward="true" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/EntityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/DAOTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1085">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4556#4557#0" expanded="true" />
+            <element signature="e#4612#4613#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/ManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="69" column="85" selection-start-line="69" selection-start-column="85" selection-end-line="69" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/DateTimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#972#973#0" expanded="true" />
+            <element signature="e#1037#1038#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/ClientDataWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/AbstractDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/other/DecisionSystemImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/factory/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/OtherTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="59" column="75" selection-start-line="59" selection-start-column="75" selection-end-line="59" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/testDependencies/OtherTestDependencies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/FilterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/util/SettingTypeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="306">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1127,18 +1115,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/dao/ProductSettingDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="314">
+          <caret line="57" column="41" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/EntityTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/journaldev/manager/ProductSettingManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        <state relative-caret-position="327">
+          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
