@@ -10,6 +10,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 
+//TODO
+//Not finished, not tested
 @Path("/hello")
 public class RestService {
 

@@ -14,6 +14,9 @@ public class EntityTestDependencies {
     @Autowired
     private EntityFactory entityFactory;
 
+    //-----------------------------
+    // DAO
+
     @Autowired
     private ProductTypeSettingDAO productTypeSettingDAO;
 

@@ -32,7 +32,7 @@ public class OtherTest {
     }
 
     @Test
-    public void AutowiredTest() {
+    public void autowiredTest() {
         Assert.notNull(otherTestDependencies);
         Assert.notNull(otherTestDependencies.getDecisionSystem());
     }

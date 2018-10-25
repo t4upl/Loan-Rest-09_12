@@ -18,7 +18,9 @@ public class ProductSettingDAOImpl extends AbstractDAOImpl<ProductSetting> imple
     public void deleteByProductIdAndSettingTypeId(int productId, int settingTypeId) {
         SessionObject sessionObject = getSesionTransactionObject();
         ProductSetting productSetting = findByProductIdAndSettingTypeId(productId, settingTypeId);
-        sessionObject.getSession().delete(productSetting);
+        if (productSetting != null) {
+            sessionObject.getSession().delete(productSetting);
+        }
         sessionObject.commitTransactionAndCloseSession();
     }
 

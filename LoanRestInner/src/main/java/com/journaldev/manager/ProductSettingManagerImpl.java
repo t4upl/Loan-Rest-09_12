@@ -2,7 +2,6 @@ package com.journaldev.manager;
 
 import com.journaldev.dao.ProductSettingDAO;
 import com.journaldev.entity.ProductSetting;
-import com.journaldev.entity.SettingType;
 import com.journaldev.util.DateTimeUtil;
 import com.journaldev.util.FilterUtil;
 import com.journaldev.util.SettingTypeUtil;
@@ -25,12 +24,12 @@ public class ProductSettingManagerImpl implements ProductSettingManager {
     public void extendLoan(int productId) {
         List<ProductSetting> productSettings = productSettingDAO.findByProductId(productId);
 
-        ProductSetting dueDateProductSetting = FilterUtil.findProductSettingByValue(
-                productSettings, SettingTypeUtil.dueDate);
+        ProductSetting dueDateProductSetting = FilterUtil.findProductSettingByValue(productSettings,
+                SettingTypeUtil.dueDate);
         LocalDateTime dueDate = DateTimeUtil.getLocalDateTime(dueDateProductSetting.getValue());
 
-        int extenstion = Integer.parseInt(FilterUtil.findProductSettingByValue(
-                productSettings, SettingTypeUtil.extensionTerm).getValue());
+        int extenstion = Integer.parseInt(FilterUtil.findProductSettingByValue(productSettings,
+                SettingTypeUtil.extensionTerm).getValue());
 
         LocalDateTime localDateTime = DateTimeUtil.addDaysToToLocalDateTime(dueDate, extenstion);
         dueDateProductSetting.setValue(DateTimeUtil.localDateTimeToString(localDateTime));

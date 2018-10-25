@@ -10,7 +10,8 @@ import java.util.List;
 public class FilterUtil {
 
     public static ProductSetting findProductSettingByValue(List<ProductSetting> productSettings, String value) {
-        return productSettings.stream()
+        return productSettings
+                .stream()
                 .filter(productSetting ->
                         productSetting.getSettingType().getName().equals(value))
                 .findFirst()
@@ -19,7 +20,8 @@ public class FilterUtil {
 
     public static ProductTypeSetting findProductTypeSettingByValue(List<ProductTypeSetting> productSettings,
                                                                    String value) {
-        return productSettings.stream()
+        return productSettings
+                .stream()
                 .filter(productTypeSetting ->
                         productTypeSetting .getSettingType().getName().equals(value))
                 .findFirst()

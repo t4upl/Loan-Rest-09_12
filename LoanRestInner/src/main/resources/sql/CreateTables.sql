@@ -12,7 +12,7 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
           PRIMARY KEY (id)
         );
 
-        -- debt attached to customer
+        -- loan(s) attached to customer
         CREATE TABLE product (
           id integer,
           customer_id integer NOT NULL,
@@ -20,13 +20,13 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
           PRIMARY KEY (id)
         );
 
-        --types of debts that customer can buy
+        --types of loan that customer can buy
         CREATE TABLE product_type (
           id integer,
           PRIMARY KEY (id)
         );
 
-            --setting of debts that customer can buy
+        --setting of loans that customer can buy
         CREATE TABLE product_type_setting (
           id integer,
           product_type_id integer NOT NULL,
@@ -36,7 +36,7 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
           UNIQUE (product_type_id, setting_type_id)
         );
 
-            --setting of debts that customer has bought
+         --variables that can describe a loan
         CREATE TABLE IF NOT EXISTS setting_type (
           id integer,
           name text,
@@ -44,7 +44,7 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
           UNIQUE(name)
         );
 
-            -- describes details about product owned by customer
+         -- details of product owned by customer
         CREATE TABLE IF NOT EXISTS product_setting (
           id integer,
           product_id integer NOT NULL,
@@ -99,7 +99,7 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO setting_type (id, name) VALUES (12, 'application date');
 
 
-        --insert settings describing a debt with id = 1
+        --insert settings describing a debt with product_type_id = 1
         INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (1, 1, 1, '1000');
         INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (2, 1, 2, '5000');
         INSERT INTO product_type_setting (id, product_type_id, setting_type_id, value) VALUES (3, 1, 3, '3');

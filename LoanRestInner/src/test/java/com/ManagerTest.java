@@ -31,21 +31,22 @@ public class ManagerTest {
     }
 
     @Test
-    public void AutowiredTest() {
+    public void autowiredTest() {
         Assert.notNull(managerTestDependencies);
         Assert.notNull(managerTestDependencies.getProductSettingManager());
     }
 
     @Test
     public void productSettingManagerInsertTest() {
-        int productId = 1;
+        int productId = managerTestDependencies.getProductDAO().insert(entityFactory.getProduct(
+                -1, TestUtil.productTypeId, TestUtil.customerId)).getId();
         int settingTypeId1 = 1;
         int settingTypeId2 = 2;
         String value = "productSettingManagerInsertTest";
 
         List<ProductSetting> productSettings = new ArrayList<>();
-        productSettings.add(entityFactory.getProductSetting(1, productId, settingTypeId1, value));
-        productSettings.add(entityFactory.getProductSetting(1, productId, settingTypeId2, value));
+        productSettings.add(entityFactory.getProductSetting(-1, productId, settingTypeId1, value));
+        productSettings.add(entityFactory.getProductSetting(-1, productId, settingTypeId2, value));
 
         managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(productId, settingTypeId1);
         managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(productId, settingTypeId2);

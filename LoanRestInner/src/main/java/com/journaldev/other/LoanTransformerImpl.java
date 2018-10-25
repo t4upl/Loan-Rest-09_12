@@ -28,7 +28,6 @@ public class LoanTransformerImpl implements LoanTransformer {
                                     ClientDataWrapper clientDataWrapper) {
 
         List<ProductSetting> productSettings = mapProductTypeSettingsToProductSetting(productTypeSettings, productId);
-
         Map<String, ProductSetting> map =   productSettings
                                                 .stream()
                                                 .collect(Collectors.toMap(
@@ -37,7 +36,6 @@ public class LoanTransformerImpl implements LoanTransformer {
                                                     productSetting -> productSetting));
 
         transformProductSettingsMap(map, clientDataWrapper);
-
         return new ArrayList<>(map.values());
     }
 

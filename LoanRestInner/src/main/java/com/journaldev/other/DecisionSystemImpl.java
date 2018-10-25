@@ -1,6 +1,7 @@
 package com.journaldev.other;
 
 import com.journaldev.util.DateTimeUtil;
+import com.journaldev.util.FilterUtil;
 import com.journaldev.util.SettingTypeUtil;
 import com.journaldev.dao.ProductTypeSettingDAO;
 import com.journaldev.entity.ProductTypeSetting;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Filter;
 
 public class DecisionSystemImpl implements DecisionSystem {
 
@@ -27,8 +29,6 @@ public class DecisionSystemImpl implements DecisionSystem {
                     .isOutsideOfRejectionHours()
                     .getDecision();
     }
-
-
 
     private static class Decision {
         boolean isLoanGiven;
@@ -65,16 +65,16 @@ public class DecisionSystemImpl implements DecisionSystem {
 
         public Decision isOutsideOfRejectionHours() {
             LocalDateTime applicationDate = clientDataWrapper.getApplicationDate();
+
             LocalTime minRejectionTime = DateTimeUtil.getLocalTime(findValueByKey(productTypeSettings,
-                                                                                    SettingTypeUtil.minRejectionHour));
+                    SettingTypeUtil.minRejectionHour));
             LocalTime maxRejectionTime = DateTimeUtil.getLocalTime(findValueByKey(productTypeSettings,
-                                                                                    SettingTypeUtil.maxRejectionHour));
+                    SettingTypeUtil.maxRejectionHour));
 
             LocalDateTime minRejectionDate = DateTimeUtil.getLocalDateTimeWithLocalTime(applicationDate,
-                                                                                        minRejectionTime);
-
+                    minRejectionTime);
             LocalDateTime maxRejectionDate = DateTimeUtil.getLocalDateTimeWithLocalTime(applicationDate,
-                                                                                        maxRejectionTime);
+                    maxRejectionTime);
 
             int maxAmount = Integer.parseInt(findValueByKey(productTypeSettings, SettingTypeUtil.maxAmount));
 
@@ -92,14 +92,20 @@ public class DecisionSystemImpl implements DecisionSystem {
         }
 
         private String findValueByKey (List<ProductTypeSetting> productTypeSettings, String key) {
-            ProductTypeSetting productTypeSetting = productTypeSettings
-                    .stream()
-                    .filter(x -> x.getSettingType().getName().equals(key))
-                    .findFirst().orElseThrow(() -> new RuntimeException("Key: " + key
-                            + " does not exist in " + Arrays.toString(productTypeSettings.toArray())));
-
-            return productTypeSetting.getValue();
+            return FilterUtil.findProductTypeSettingByValue(productTypeSettings, key).getValue();
         }
+
+ //TODO
+//        private String findValueByKey (List<ProductTypeSetting> productTypeSettings, String key) {
+//            ProductTypeSetting productTypeSetting = productTypeSettings
+//                    .stream()
+//                    .filter(x -> x.getSettingType().getName().equals(key))
+//                    .findFirst().orElseThrow(() -> new RuntimeException("Key: " + key
+//                            + " does not exist in " + Arrays.toString(productTypeSettings.toArray())));
+//
+//            return productTypeSetting.getValue();
+//        }
+
 
     }
 }
