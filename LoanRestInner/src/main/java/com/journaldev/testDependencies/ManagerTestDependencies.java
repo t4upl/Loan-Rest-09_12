@@ -11,14 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ManagerTestDependencies {
 
     @Autowired
+    private EntityFactory entityFactory;
+
+
+    //------------------------------------------
+    //Manager
+    @Autowired
     private ProductSettingManager productSettingManager;
 
     @Autowired
     private ProductManager productManager;
 
-    @Autowired
-    private EntityFactory entityFactory;
 
+    //------------------------------------------
+    //DAO
     @Autowired
     private CustomerDAO customerDAO;
 
@@ -33,4 +39,6 @@ public class ManagerTestDependencies {
 
     @Autowired
     private SettingTypeDAO settingTypeDAO;
+
+
 }

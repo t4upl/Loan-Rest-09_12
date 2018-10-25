@@ -1,5 +1,6 @@
 package com.journaldev.manager;
 
+import com.journaldev.factory.EntityFactory;
 import com.journaldev.other.LoanTransformer;
 import com.journaldev.dao.ProductDAO;
 import com.journaldev.dao.ProductTypeSettingDAO;
@@ -16,44 +17,52 @@ import java.util.List;
 public class ProductManagerImpl implements ProductManager {
 
     @Autowired
+    DecisionSystem decisionSystem;
+
+    @Autowired
+    LoanTransformer loanTransformer;
+
+    @Autowired
+    EntityFactory entityFactory;
+
+    //--------------------------
+    // Manager
+
+    @Autowired
+    ProductSettingManager productSettingManager;
+
+    //--------------------------
+    // DAO
+
+    @Autowired
     ProductDAO productDAO;
 
     @Autowired
     ProductTypeSettingDAO productTypeSettingDAO;
 
-    @Autowired
-    DecisionSystem decisionSystem;
-
-    @Autowired
-    ProductSettingManager productSettingManager;
-
-    @Autowired
-    LoanTransformer loanTransformer;
-
 
     @Override
     public Product applyForLoan(ClientDataWrapper clientDataWrapper) {
-//        if (decisionSystem.isLoanGiven(clientDataWrapper)) {
-//            insertProduct(clientDataWrapper.getProductTypeId(), clientDataWrapper.getCustomerId());
-//        }
+        if (decisionSystem.isLoanGiven(clientDataWrapper)) {
+            return insertProduct(clientDataWrapper);
+        }
 
-        return insertProduct(clientDataWrapper, clientDataWrapper.getCustomerId());
+        return null;
     }
 
     @Transactional
-    private Product insertProduct(ClientDataWrapper clientDataWrapper, int customerId) {
+    private Product insertProduct(ClientDataWrapper clientDataWrapper) {
         int productTypeId = clientDataWrapper.getProductTypeId();
+        int customerId = clientDataWrapper.getCustomerId();
 
-        Product product = new Product();
-        product.setCustomerId(customerId);
-        product.setProductTypeId(productTypeId);
+        Product product = entityFactory.getProduct(-1, productTypeId, customerId);
 
         product = productDAO.insert(product);
         List<ProductTypeSetting> productTypeSettings = productTypeSettingDAO.
-                                                           getProductTypeSettingsByProductId(productTypeId);
+                getProductTypeSettingsByProductId(productTypeId);
 
         List<ProductSetting> productSettings = loanTransformer.transformProductTypeSettingsToProductSettings(
-                                                    productTypeSettings, product.getId(), clientDataWrapper);
+                productTypeSettings, product.getId(), clientDataWrapper);
         productSettingManager.insert(productSettings);
         return product;
     }

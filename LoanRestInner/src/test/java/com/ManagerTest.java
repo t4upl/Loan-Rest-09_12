@@ -6,8 +6,8 @@ import com.journaldev.entity.ProductSettingPK;
 import com.journaldev.other.ClientDataWrapper;
 import com.journaldev.factory.EntityFactory;
 import com.journaldev.testDependencies.ManagerTestDependencies;
-import com.journaldev.util.FilterUtil;
 import com.journaldev.util.SettingTypeUtil;
+import com.journaldev.util.TestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Assert;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,12 +48,12 @@ public class ManagerTest {
         productSettings.add(entityFactory.getProductSetting(1, productId, settingTypeId1, value));
         productSettings.add(entityFactory.getProductSetting(1, productId, settingTypeId2, value));
 
-        managerTestDependencies.getProductSettingDAO().delete(ProductSettingPK.builder()
+        managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(ProductSettingPK.builder()
                                                                           .settingTypeId(settingTypeId1)
                                                                           .productId(productId)
                                                                           .build());
 
-        managerTestDependencies.getProductSettingDAO().delete(ProductSettingPK.builder()
+        managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(ProductSettingPK.builder()
                                                                           .settingTypeId(settingTypeId2)
                                                                           .productId(productId)
                                                                           .build());
@@ -64,9 +65,9 @@ public class ManagerTest {
     }
 
     @Test
-    public void productManagerTakeLoanPassTest() {
-        int productTypeId = 1;
-        ClientDataWrapper clientDataWrapper = FilterUtil.getClientDataWrapperForLoan();
+    public void productManagerTakeLoanTest() {
+        int productTypeId = TestUtil.productTypeId;
+        ClientDataWrapper clientDataWrapper = TestUtil.getClientDataWrapperForLoan();
 
         long productCountBeforeLoan = managerTestDependencies.getProductDAO().getCount();
         long productSettingCountBeforeLoan = managerTestDependencies.getProductSettingDAO().getCount();
@@ -75,18 +76,34 @@ public class ManagerTest {
 
         Product product = managerTestDependencies.getProductManager().applyForLoan(clientDataWrapper);
 
-        long productCountAfterLoan = managerTestDependencies.getProductDAO().getCount();
-        long productSettingCountAfterLoan = managerTestDependencies.getProductSettingDAO().getCount();
-
-        Assertions.assertEquals(productCountBeforeLoan + 1, productCountAfterLoan);
+        Assertions.assertEquals(productCountBeforeLoan + 1,
+                (long)managerTestDependencies.getProductDAO().getCount());
         Assertions.assertEquals(productSettingCountBeforeLoan + settingTypeCountForProjectType,
-                                                                                    productSettingCountAfterLoan);
+                (long)managerTestDependencies.getProductSettingDAO().getCount());
 
-        List<ProductSetting> productSettings = managerTestDependencies.getProductSettingDAO().findByExample(
-                entityFactory.getProductSetting(null, product.getId(), null, null));
-
-        Assertions.assertEquals(settingTypeCountForProjectType, productSettings.size());
-        ProductSetting productSettingAmount = FilterUtil.findProductSettingByValue(productSettings, SettingTypeUtil.amount);
+        Assertions.assertEquals(settingTypeCountForProjectType, managerTestDependencies.getProductSettingDAO()
+                .findByProductId(product.getId()).size());
+        ProductSetting productSettingAmount = managerTestDependencies.getProductSettingManager().
+                getProductSettingBySettingTypeName(product.getId(), SettingTypeUtil.amount);
         Assertions.assertEquals(clientDataWrapper.getAmount().toString(), productSettingAmount.getValue());
     }
+
+    @Test
+    public void productManagerExtendLoanTest() {
+        ClientDataWrapper clientDataWrapper = TestUtil.getClientDataWrapperForLoan();
+        Product product = managerTestDependencies.getProductManager().applyForLoan(clientDataWrapper);
+
+        LocalDateTime dueDateBeforeExtend = managerTestDependencies.getProductSettingManager().getDueDate(
+                product.getId());
+        int extensionTerm = managerTestDependencies.getProductSettingManager().getExtensionTerm(
+                product.getId());
+        managerTestDependencies.getProductSettingManager().extendLoan(product.getId());
+
+        Assertions.assertEquals(dueDateBeforeExtend.plusDays(extensionTerm),
+                managerTestDependencies.getProductSettingManager().getDueDate(product.getId()));
+    }
+
+
+
+
 }

@@ -1,6 +1,5 @@
 package com;
 
-import com.journaldev.entity.Product;
 import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.factory.EntityFactory;
 import com.journaldev.other.ClientDataWrapper;
@@ -9,6 +8,7 @@ import com.journaldev.testDependencies.OtherTestDependencies;
 import com.journaldev.util.FilterUtil;
 import com.journaldev.util.DateTimeUtil;
 import com.journaldev.util.SettingTypeUtil;
+import com.journaldev.util.TestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,14 +38,16 @@ public class OtherTest {
     }
 
     @Test
-    public void decisionSystemIsLoanGivenTest() {
+    public void decisionSystemIsLoanGivenGoodClientDataTest() {
         DecisionSystem decisionSystem = otherTestDependencies.getDecisionSystem();
-        ClientDataWrapper clientDataWrapper = FilterUtil.getClientDataWrapperForLoan();
-
+        ClientDataWrapper clientDataWrapper = TestUtil.getClientDataWrapperForLoan();
         Assertions.assertTrue(decisionSystem.isLoanGiven(clientDataWrapper));
+    }
 
-        Product product = otherTestDependencies.getProductDAO().insert(entityFactory.getProduct(
-                                                                        -1, 1 ,1));
+    @Test
+    public void decisionSystemIsLoanGivenBadClientDataTest() {
+        DecisionSystem decisionSystem = otherTestDependencies.getDecisionSystem();
+        ClientDataWrapper clientDataWrapper = TestUtil.getClientDataWrapperForLoan();
 
         List<ProductTypeSetting> productTypeSettings = otherTestDependencies.getProductTypeSettingDAO().findByExample(
                 entityFactory.getProductTypeSetting(null, 1, null, null));
@@ -59,7 +61,8 @@ public class OtherTest {
         LocalTime rejectionTime = LocalTime.of(rejectionTimeMax.getHour() -1, 0, 0);
 
         clientDataWrapper.setAmount(maxAmount);
-        clientDataWrapper.setApplicationDate(DateTimeUtil.getLocalDateTimeWithLocalTime(clientDataWrapper.getApplicationDate(),
-                rejectionTime));
+        clientDataWrapper.setApplicationDate(DateTimeUtil.getLocalDateTimeWithLocalTime(
+                clientDataWrapper.getApplicationDate(), rejectionTime));
+        Assertions.assertFalse(decisionSystem.isLoanGiven(clientDataWrapper));
     }
 }

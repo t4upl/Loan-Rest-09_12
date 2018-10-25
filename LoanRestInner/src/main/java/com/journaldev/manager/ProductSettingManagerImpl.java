@@ -36,4 +36,20 @@ public class ProductSettingManagerImpl implements ProductSettingManager {
         dueDateProductSetting.setValue(DateTimeUtil.localDateTimeToString(localDateTime));
         productSettingDAO.update(dueDateProductSetting);
     }
+
+    @Override
+    public ProductSetting getProductSettingBySettingTypeName(int productId, String productSettingName) {
+        List<ProductSetting> productSettings = productSettingDAO.findByProductId(productId);
+        return FilterUtil.findProductSettingByValue(productSettings, productSettingName);
+    }
+
+    public LocalDateTime getDueDate(int productId) {
+        return DateTimeUtil.getLocalDateTime(getProductSettingBySettingTypeName(productId,
+                SettingTypeUtil.dueDate).getValue());
+    }
+
+    public int getExtensionTerm(int productId) {
+        return Integer.parseInt(getProductSettingBySettingTypeName(productId,
+                SettingTypeUtil.extensionTerm).getValue());
+    }
 }

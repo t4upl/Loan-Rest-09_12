@@ -32,7 +32,4 @@ public class DateTimeUtil {
         return LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonth(), localDateTime.getDayOfMonth(),
                                 localTime.getHour(),localTime.getMinute(),localTime.getSecond());
     }
-
-
-
 }

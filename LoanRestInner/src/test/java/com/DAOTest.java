@@ -80,7 +80,7 @@ public class DAOTest {
     public void productSettingDAOInsertTest() {
         int productId = 1;
         int settingTypeId = 1;
-        daoTestDependencies.getProductSettingDAO().delete(ProductSettingPK.builder().productId(productId)
+        daoTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(ProductSettingPK.builder().productId(productId)
                                                             .settingTypeId(settingTypeId).build());
 
         DAOInsertTestTemplate(daoTestDependencies.getProductSettingDAO(),

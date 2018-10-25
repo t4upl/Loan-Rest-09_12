@@ -19,11 +19,31 @@ public class ProductSettingDAOImpl extends AbstractDAOImpl<ProductSetting> imple
 
     @Override
     @Transactional
-    public void delete(ProductSettingPK productSettingPK) {
+    public void deleteByProductIdAndSettingTypeId(ProductSettingPK productSettingPK) {
         SessionObject sessionObject = getSesionTransactionObject();
         Optional<ProductSetting> productSettingOptional = findById(productSettingPK);
         productSettingOptional.ifPresent(productSetting -> sessionObject.getSession().delete(productSetting));
         sessionObject.commitTransactionAndCloseSession();
+    }
+
+    @Override
+    public void deleteByProductIdAndSettingTypeId(int productId, int settingTypeId) {
+        SessionObject sessionObject = getSesionTransactionObject();
+        ProductSetting productSetting = findByProductIdAndSettingTypeId(productId, settingTypeId);
+        sessionObject.getSession().delete(productSetting);
+        sessionObject.commitTransactionAndCloseSession();
+    }
+
+    @Override
+    public ProductSetting findByProductIdAndSettingTypeId(int productId, int settingTypeId) {
+        SessionObject sessionObject = getSesionTransactionObject();
+        Criteria criteria = sessionObject.getSession()
+                .createCriteria(entityClass)
+                .add(Restrictions.eq("productId", productId))
+                .add(Restrictions.eq("settingTypeId", settingTypeId));
+        ProductSetting productSetting = (ProductSetting) criteria.uniqueResult();
+        sessionObject.commitTransactionAndCloseSession();
+        return productSetting;
     }
 
     @Override
@@ -46,7 +66,7 @@ public class ProductSettingDAOImpl extends AbstractDAOImpl<ProductSetting> imple
                 .createCriteria(entityClass)
                 .add(Restrictions.eq("productId", productId));
 
-        List<ProductSetting> productSettings = (List<ProductSetting>) criteria.uniqueResult();
+        List<ProductSetting> productSettings = criteria.list();
         sessionObject.commitTransactionAndCloseSession();
         return productSettings;
     }
