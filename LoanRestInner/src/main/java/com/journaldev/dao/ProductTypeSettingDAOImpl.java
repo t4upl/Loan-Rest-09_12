@@ -2,8 +2,6 @@ package com.journaldev.dao;
 
 import com.journaldev.entity.ProductTypeSetting;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Example;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;

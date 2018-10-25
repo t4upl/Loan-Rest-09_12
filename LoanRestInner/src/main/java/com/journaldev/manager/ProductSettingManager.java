@@ -1,8 +1,6 @@
 package com.journaldev.manager;
 
 import com.journaldev.entity.ProductSetting;
-import com.journaldev.util.DateTimeUtil;
-import com.journaldev.util.SettingTypeUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;

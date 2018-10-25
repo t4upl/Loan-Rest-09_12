@@ -12,7 +12,6 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
 
 public abstract class AbstractDAOImpl<T> {
 
