@@ -1,10 +1,10 @@
 package com;
 
-import com.journaldev.dao.*;
-import com.journaldev.entity.ProductSettingPK;
+import com.journaldev.dao.GenericInsertableDAO;
 import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.factory.EntityFactory;
 import com.journaldev.testDependencies.DAOTestDependencies;
+import com.journaldev.util.TestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,49 +27,41 @@ public class DAOTest {
     }
 
     @Test
-    public void AutowiredTest() {
+    public void autowiredTest() {
         Assert.notNull(daoTestDependencies);
         Assert.notNull(daoTestDependencies.getCustomerDAO());
     }
 
     @Test
     public void customerDAOSelectTest() {
-        DAOselectTestTemplate(daoTestDependencies.getEntityFactory().getCustomer(1, "Johny"),
-                daoTestDependencies.getCustomerDAO().findById(1));
-    }
-
-    @Test
-    public void productDAOSelectTest() {
-        DAOselectTestTemplate(daoTestDependencies.getEntityFactory().getProduct(1,1, 1),
-                daoTestDependencies.getProductDAO().findById(1));
+        DAOselectTestTemplate(daoTestDependencies.getEntityFactory().getCustomer(TestUtil.customerId, "Johny"),
+                daoTestDependencies.getCustomerDAO().findById(TestUtil.customerId));
     }
 
     @Test
     public void productDAOInsertTest() {
-        DAOInsertTestTemplate(daoTestDependencies.getProductDAO(),
-                daoTestDependencies.getEntityFactory().getProduct(1, 1, 1));
+        DAOInsertTestTemplate(daoTestDependencies.getProductDAO(), daoTestDependencies.getEntityFactory().
+                getProduct(-1, TestUtil.productTypeId, TestUtil.customerId));
     }
 
     @Test
     public void productTypeSettingDAOfindByIdTest(){
-        DAOselectTestTemplate(
-                daoTestDependencies.getEntityFactory().
-                        getProductTypeSetting(1,1,1,"1000"),
-                daoTestDependencies.getProductTypeSettingDAO().findById(1));
+        DAOselectTestTemplate(daoTestDependencies.getEntityFactory().getProductTypeSetting(1,
+                TestUtil.productTypeId,1,"1000"), daoTestDependencies.getProductTypeSettingDAO().
+                findById(1));
     }
 
     @Test
     public void productTypeSettingDAOGetProductTypeSettingsByProductId() {
-        int productTypeId = 1;
         ProductTypeSetting productTypeSetting = daoTestDependencies.getEntityFactory().
-                getProductTypeSetting(1, productTypeId, 1, "1000");
+                getProductTypeSetting(1, TestUtil.productTypeId, 1, "1000");
         ProductTypeSetting productTypeSetting2 = daoTestDependencies.getEntityFactory().
-                getProductTypeSetting(2, productTypeId, 2, "5000");
+                getProductTypeSetting(2, TestUtil.productTypeId, 2, "5000");
         ProductTypeSetting productTypeSetting3 = daoTestDependencies.getEntityFactory().
-                getProductTypeSetting(3, productTypeId, 3, "3");
+                getProductTypeSetting(3, TestUtil.productTypeId, 3, "3");
 
         List<ProductTypeSetting> productTypeSettings = daoTestDependencies.getProductTypeSettingDAO().
-                                                            getProductTypeSettingsByProductId(productTypeId);
+                getProductTypeSettingsByProductTypeId(TestUtil.productTypeId);
 
         Assertions.assertTrue(productTypeSettings.contains(productTypeSetting));
         Assertions.assertTrue(productTypeSettings.contains(productTypeSetting2));
@@ -77,22 +69,9 @@ public class DAOTest {
     }
 
     @Test
-    public void productSettingDAOInsertTest() {
-        int productId = 1;
-        int settingTypeId = 1;
-        daoTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(ProductSettingPK.builder().productId(productId)
-                                                            .settingTypeId(settingTypeId).build());
-
-        DAOInsertTestTemplate(daoTestDependencies.getProductSettingDAO(),
-                daoTestDependencies.getEntityFactory().
-                        getProductSetting(1, productId, settingTypeId,"testDependencies"));
-    }
-
-    @Test
     public void productTypeSettingDAOgetCountTest() {
-        int productTypeId = 1;
-        long settingTypeCountForProjectType = daoTestDependencies.getProductTypeSettingDAO()
-                .getCount(entityFactory.getProductTypeSetting(null, productTypeId, null, null));
+        long settingTypeCountForProjectType = daoTestDependencies.getProductTypeSettingDAO().
+                getProductTypeSettingsByProductTypeId(TestUtil.productTypeId).size();
 
         Assertions.assertEquals(12, settingTypeCountForProjectType,
                 "Failed on  ProductTypeSettingDAO.getCount()");

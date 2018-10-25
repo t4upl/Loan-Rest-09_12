@@ -21,17 +21,13 @@ public abstract class AbstractDAOImpl<T> {
     @Autowired
     protected SessionFactory sessionFactory;
 
-//    protected Session session;
-//    protected Transaction transaction;
-
     public AbstractDAOImpl(Class entityClass) {
         this.entityClass = entityClass;
     }
 
     public List<T> findByExample(T t) {
         SessionObject sessionObject = getSesionTransactionObject();
-        Criteria criteria = sessionObject.getSession().createCriteria(t.getClass())
-                .add(Example.create(t));
+        Criteria criteria = sessionObject.getSession().createCriteria(t.getClass()).add(Example.create(t));
         List<T> list = criteria.list();
         sessionObject.commitTransactionAndCloseSession();
         return list;
@@ -65,20 +61,10 @@ public abstract class AbstractDAOImpl<T> {
         throw new RuntimeException(this.getClass().getCanonicalName() + " getCount()");
     }
 
-    protected Long processCriteria(Criteria criteria){
-        List list = criteria.list();
-        if (list != null) {
-            Long rowCount = (Long) list.get(0);
-            return rowCount;
-        }
-
-        throw new RuntimeException(this.getClass().getCanonicalName());
-    }
-
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class SessionObject {
+    protected static class SessionObject {
         protected Session session;
         protected Transaction transaction;
 
@@ -87,8 +73,4 @@ public abstract class AbstractDAOImpl<T> {
             this.session.close();
         }
     }
-
-
-
-
 }

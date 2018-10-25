@@ -15,15 +15,7 @@ public class ProductTypeSettingDAOImpl extends AbstractDAOImpl<ProductTypeSettin
     }
 
     @Override
-    public ProductTypeSetting findById(int id) {
-        SessionObject sessionObject = getSesionTransactionObject();
-        ProductTypeSetting productTypeSetting = (ProductTypeSetting) sessionObject.getSession().get(entityClass, id);
-        sessionObject.commitTransactionAndCloseSession();
-        return productTypeSetting;
-    }
-
-    @Override
-    public List<ProductTypeSetting> getProductTypeSettingsByProductId(int productTypeId) {
+    public List<ProductTypeSetting> getProductTypeSettingsByProductTypeId(int productTypeId) {
         SessionObject sessionObject = getSesionTransactionObject();
         Criteria criteria = sessionObject.getSession()
                                          .createCriteria(entityClass)
@@ -33,16 +25,5 @@ public class ProductTypeSettingDAOImpl extends AbstractDAOImpl<ProductTypeSettin
         List<ProductTypeSetting> productTypeSettings = criteria.list();
         sessionObject.commitTransactionAndCloseSession();
         return productTypeSettings;
-    }
-
-    @Override
-    public Long getCount(ProductTypeSetting productTypeSetting) {
-        SessionObject sessionObject = getSesionTransactionObject();
-        Criteria criteria = sessionObject.getSession().createCriteria(entityClass)
-                                                      .add(Example.create(productTypeSetting))
-                                                      .setProjection(Projections.rowCount());
-        Long count = processCriteria(criteria);
-        sessionObject.commitTransactionAndCloseSession();
-        return count;
     }
 }

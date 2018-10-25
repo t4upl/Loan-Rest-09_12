@@ -13,6 +13,6 @@ public class ProductTypeSettingAdapterImpl implements ProductTypeSettingAdapter 
     @Override
     public ProductSetting getProductSetting(ProductTypeSetting productTypeSetting, int productId) {
         return entityFactory.getProductSetting(-1, productId, productTypeSetting.getSettingTypeId(),
-                                                                                    productTypeSetting.getValue());
+                productTypeSetting.getValue());
     }
 }

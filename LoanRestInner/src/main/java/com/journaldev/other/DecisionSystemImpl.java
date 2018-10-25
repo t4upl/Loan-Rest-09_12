@@ -18,7 +18,7 @@ public class DecisionSystemImpl implements DecisionSystem {
 
     @Override
     public boolean isLoanGiven(ClientDataWrapper clientDataWrapper) {
-        List<ProductTypeSetting> productTypeSettings = productTypeSettingDAO.getProductTypeSettingsByProductId(
+        List<ProductTypeSetting> productTypeSettings = productTypeSettingDAO.getProductTypeSettingsByProductTypeId(
                 clientDataWrapper.getProductTypeId());
 
         return new Decision(productTypeSettings, clientDataWrapper)

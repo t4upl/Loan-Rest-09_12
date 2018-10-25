@@ -16,16 +16,10 @@
         <property name="use_sql_comments">true</property>
 
 
-        <mapping class="com.journaldev.entity.Person"/>
-        <mapping class="com.journaldev.playground.wiki.Employee"/>
-        <mapping class="com.journaldev.playground.wiki.Phone"/>
-
-
         <mapping class="com.journaldev.entity.Customer"/>
         <mapping class="com.journaldev.entity.Product"/>
         <mapping class="com.journaldev.entity.ProductTypeSetting"/>
         <mapping class="com.journaldev.entity.SettingType"/>
         <mapping class="com.journaldev.entity.ProductSetting"/>
-
     </session-factory>
 </hibernate-configuration>

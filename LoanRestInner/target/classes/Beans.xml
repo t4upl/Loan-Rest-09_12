@@ -40,25 +40,11 @@
 		</property>
 	</bean>
 
-	<bean id="mainAutowire" class="com.journaldev.main.MainAutowire"/>
-
-	<!--<bean id = "textEditor" class = "com.journaldev.autowired.TextEditor"/>-->
-	<!--&lt;!&ndash; Definition for spellChecker bean &ndash;&gt;-->
-	<!--<bean id = "spellChecker" class = "com.journaldev.autowired.SpellChecker"/>-->
-
-
-
 	<!--ADAPTER-->
 		<bean id="ProductTypeSettingAdapter" class="com.journaldev.adapter.ProductTypeSettingAdapterImpl" />
 	<!--/ADAPTER-->
 
 	<!--DAOS-->
-		<bean id="personDAO" class="com.journaldev.dao.PersonDAOImpl">
-			<property name="sessionFactory" ref="sessionFactory" />
-		</bean>
-
-		<bean id="EmployeeDAO" class="com.journaldev.playground.wiki.EmployeeDAO"/>
-
 		<bean id="customerDAO" class="com.journaldev.dao.CustomerDAOImpl"/>
 		<bean id="productDAO" class="com.journaldev.dao.ProductDAOImpl"/>
 		<bean id="productTypeSettingDAO" class="com.journaldev.dao.ProductTypeSettingDAOImpl"/>
@@ -67,10 +53,10 @@
 	<!--/DAOS-->
 
 	<!--ENTITY-->
-		<bean id = "entityFacotry" class = "com.journaldev.factory.EntityFactoryImpl"/>
 	<!--/ENTITY-->
 
 	<!--FACTORY-->
+		<bean id = "entityFacotry" class = "com.journaldev.factory.EntityFactoryImpl"/>
 	<!--/FACTORY-->
 
 	<!--MANAGER-->

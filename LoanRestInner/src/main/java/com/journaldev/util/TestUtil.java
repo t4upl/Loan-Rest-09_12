@@ -6,6 +6,7 @@ public class TestUtil {
 
     public static final int productTypeId = 1;
     public static final int customerId = 1;
+    public static final int settingTypeId = 1;
 
     public static ClientDataWrapper getClientDataWrapperForLoan() {
         return ClientDataWrapper.builder()

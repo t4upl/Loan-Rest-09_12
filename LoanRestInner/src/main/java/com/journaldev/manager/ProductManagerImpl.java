@@ -59,7 +59,7 @@ public class ProductManagerImpl implements ProductManager {
 
         product = productDAO.insert(product);
         List<ProductTypeSetting> productTypeSettings = productTypeSettingDAO.
-                getProductTypeSettingsByProductId(productTypeId);
+                getProductTypeSettingsByProductTypeId(productTypeId);
 
         List<ProductSetting> productSettings = loanTransformer.transformProductTypeSettingsToProductSettings(
                 productTypeSettings, product.getId(), clientDataWrapper);

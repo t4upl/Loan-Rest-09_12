@@ -178,27 +178,23 @@
 			<scope>test</scope>
 		</dependency>
 
+
+
 	</dependencies>
-
-
 	<build>
-		<finalName>JerseyJettyEx</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
 				<configuration>
-					<mainClass>com.Main2</mainClass>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/spring2</contextPath>
+					</webApp>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

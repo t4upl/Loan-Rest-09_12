@@ -1,3 +1,4 @@
+com\journaldev\playground\ReservationWebservice.class
 com\journaldev\dao\CustomerDAOImpl.class
 com\journaldev\main\SpringHibernateMain.class
 com\Main2.class

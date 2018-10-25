@@ -60,7 +60,7 @@ public class ProductTypeSetting {
     }
 
     @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name="SETTING_TYPE_ID")
+    @JoinColumn(name="setting_type_id", insertable= false, updatable =false)
     public SettingType getSettingType() {
         return settingType;
     }

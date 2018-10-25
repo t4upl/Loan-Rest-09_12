@@ -2,9 +2,8 @@ package com;
 
 import com.journaldev.entity.Product;
 import com.journaldev.entity.ProductSetting;
-import com.journaldev.entity.ProductSettingPK;
-import com.journaldev.other.ClientDataWrapper;
 import com.journaldev.factory.EntityFactory;
+import com.journaldev.other.ClientDataWrapper;
 import com.journaldev.testDependencies.ManagerTestDependencies;
 import com.journaldev.util.SettingTypeUtil;
 import com.journaldev.util.TestUtil;
@@ -48,15 +47,8 @@ public class ManagerTest {
         productSettings.add(entityFactory.getProductSetting(1, productId, settingTypeId1, value));
         productSettings.add(entityFactory.getProductSetting(1, productId, settingTypeId2, value));
 
-        managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(ProductSettingPK.builder()
-                                                                          .settingTypeId(settingTypeId1)
-                                                                          .productId(productId)
-                                                                          .build());
-
-        managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(ProductSettingPK.builder()
-                                                                          .settingTypeId(settingTypeId2)
-                                                                          .productId(productId)
-                                                                          .build());
+        managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(productId, settingTypeId1);
+        managerTestDependencies.getProductSettingDAO().deleteByProductIdAndSettingTypeId(productId, settingTypeId2);
 
         long countBeforeInsert = managerTestDependencies.getProductSettingDAO().getCount();
         managerTestDependencies.getProductSettingManager().insert(productSettings);
@@ -72,7 +64,7 @@ public class ManagerTest {
         long productCountBeforeLoan = managerTestDependencies.getProductDAO().getCount();
         long productSettingCountBeforeLoan = managerTestDependencies.getProductSettingDAO().getCount();
         long settingTypeCountForProjectType = managerTestDependencies.getProductTypeSettingDAO()
-                .getCount(entityFactory.getProductTypeSetting(null, productTypeId, null, null));
+                .getProductTypeSettingsByProductTypeId(productTypeId).size();
 
         Product product = managerTestDependencies.getProductManager().applyForLoan(clientDataWrapper);
 
