@@ -1,4 +1,4 @@
-package com.journaldev.testDependencies;
+package com.journaldev.test;
 
 import com.journaldev.dao.ProductDAO;
 import com.journaldev.dao.ProductSettingDAO;

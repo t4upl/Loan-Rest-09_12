@@ -4,17 +4,16 @@ import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.factory.EntityFactory;
 import com.journaldev.other.ClientDataWrapper;
 import com.journaldev.other.DecisionSystem;
-import com.journaldev.testDependencies.OtherTestDependencies;
+import com.journaldev.test.OtherTestDependencies;
 import com.journaldev.util.FilterUtil;
 import com.journaldev.util.DateTimeUtil;
 import com.journaldev.util.SettingTypeUtil;
 import com.journaldev.util.TestUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.util.Assert;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -24,7 +23,7 @@ public class OtherTest {
     private static OtherTestDependencies otherTestDependencies;
     private static EntityFactory entityFactory;
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAllTest() {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         OtherTest.otherTestDependencies  = (OtherTestDependencies) context.getBean("otherTestDependencies");
@@ -33,15 +32,15 @@ public class OtherTest {
 
     @Test
     public void autowiredTest() {
-        Assert.notNull(otherTestDependencies);
-        Assert.notNull(otherTestDependencies.getDecisionSystem());
+        Assert.assertNotNull(otherTestDependencies);
+        Assert.assertNotNull(otherTestDependencies.getDecisionSystem());
     }
 
     @Test
     public void decisionSystemIsLoanGivenGoodClientDataTest() {
         DecisionSystem decisionSystem = otherTestDependencies.getDecisionSystem();
         ClientDataWrapper clientDataWrapper = TestUtil.getClientDataWrapperForLoan();
-        Assertions.assertTrue(decisionSystem.isLoanGiven(clientDataWrapper));
+        Assert.assertTrue(decisionSystem.isLoanGiven(clientDataWrapper));
     }
 
     @Test
@@ -63,6 +62,6 @@ public class OtherTest {
         clientDataWrapper.setAmount(maxAmount);
         clientDataWrapper.setApplicationDate(DateTimeUtil.getLocalDateTimeWithLocalTime(
                 clientDataWrapper.getApplicationDate(), rejectionTime));
-        Assertions.assertFalse(decisionSystem.isLoanGiven(clientDataWrapper));
+        Assert.assertFalse(decisionSystem.isLoanGiven(clientDataWrapper));
     }
 }

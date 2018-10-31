@@ -1,7 +1,6 @@
-package com.journaldev.testDependencies;
+package com.journaldev.test;
 
 import com.journaldev.dao.*;
-import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.factory.EntityFactory;
 import com.journaldev.other.DecisionSystem;
 import lombok.Getter;

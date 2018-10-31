@@ -3,14 +3,13 @@ package com;
 import com.journaldev.dao.GenericInsertableDAO;
 import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.factory.EntityFactory;
-import com.journaldev.testDependencies.DAOTestDependencies;
+import com.journaldev.test.DAOTestDependencies;
 import com.journaldev.util.TestUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class DAOTest {
     private static DAOTestDependencies daoTestDependencies;
     private static EntityFactory entityFactory;
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAllTest() {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         DAOTest.daoTestDependencies  = (DAOTestDependencies) context.getBean("daoTestDependencies");
@@ -28,8 +27,8 @@ public class DAOTest {
 
     @Test
     public void autowiredTest() {
-        Assert.notNull(daoTestDependencies);
-        Assert.notNull(daoTestDependencies.getCustomerDAO());
+        Assert.assertNotNull(daoTestDependencies);
+        Assert.assertNotNull(daoTestDependencies.getCustomerDAO());
     }
 
     @Test
@@ -63,9 +62,9 @@ public class DAOTest {
         List<ProductTypeSetting> productTypeSettings = daoTestDependencies.getProductTypeSettingDAO().
                 getProductTypeSettingsByProductTypeId(TestUtil.productTypeId);
 
-        Assertions.assertTrue(productTypeSettings.contains(productTypeSetting));
-        Assertions.assertTrue(productTypeSettings.contains(productTypeSetting2));
-        Assertions.assertTrue(productTypeSettings.contains(productTypeSetting3));
+        Assert.assertTrue(productTypeSettings.contains(productTypeSetting));
+        Assert.assertTrue(productTypeSettings.contains(productTypeSetting2));
+        Assert.assertTrue(productTypeSettings.contains(productTypeSetting3));
     }
 
     @Test
@@ -73,8 +72,7 @@ public class DAOTest {
         long settingTypeCountForProjectType = daoTestDependencies.getProductTypeSettingDAO().
                 getProductTypeSettingsByProductTypeId(TestUtil.productTypeId).size();
 
-        Assertions.assertEquals(12, settingTypeCountForProjectType,
-                "Failed on  ProductTypeSettingDAO.getCount()");
+        Assert.assertEquals(12, settingTypeCountForProjectType);
     }
 
 
@@ -82,11 +80,11 @@ public class DAOTest {
         long productCountBeforeInsert = genericInsertableDAO.getCount();
         genericInsertableDAO.insert(t);
         long productCountAfterInsert = genericInsertableDAO.getCount();
-        Assertions.assertEquals(productCountBeforeInsert + 1, productCountAfterInsert);
+        Assert.assertEquals(productCountBeforeInsert + 1, productCountAfterInsert);
     }
 
     private void DAOselectTestTemplate(Object object, Object object2) {
-        Assertions.assertEquals(object, object2);
+        Assert.assertEquals(object, object2);
     }
 
 }

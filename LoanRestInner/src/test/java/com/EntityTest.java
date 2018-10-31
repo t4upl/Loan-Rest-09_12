@@ -5,11 +5,10 @@ import com.journaldev.entity.ProductSetting;
 import com.journaldev.entity.ProductTypeSetting;
 import com.journaldev.entity.SettingType;
 import com.journaldev.factory.EntityFactory;
-import com.journaldev.testDependencies.EntityTestDependencies;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
+import com.journaldev.test.EntityTestDependencies;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,7 +17,7 @@ public class EntityTest {
     private static EntityTestDependencies entityTestDependencies;
     private static EntityFactory entityFactory;
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAllTest() {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         EntityTest.entityTestDependencies = (EntityTestDependencies) context.getBean("entityTestDependencies");
@@ -27,24 +26,23 @@ public class EntityTest {
 
     @Test
     public void autowiredTest() {
-        Assertions.assertNotNull(entityTestDependencies);
-        Assertions.assertNotNull(entityTestDependencies.getProductTypeSettingDAO());
+        Assert.assertNotNull(entityTestDependencies);
+        Assert.assertNotNull(entityTestDependencies.getProductTypeSettingDAO());
     }
 
     @Test
     public void productTypeSettingGetSettingType(){
         ProductTypeSetting productTypeSetting = entityTestDependencies.getProductTypeSettingDAO().findById(1);
 
-        Assertions.assertNotNull(productTypeSetting, "productTypeSetting is null");
+        Assert.assertNotNull(productTypeSetting);
         SettingType settingType = productTypeSetting.getSettingType();
-        Assertions.assertEquals("1000", productTypeSetting.getValue());
-        Assertions.assertNotNull(settingType);
-        Assertions.assertEquals("min amount", settingType.getName());
+        Assert.assertEquals("1000", productTypeSetting.getValue());
+        Assert.assertNotNull(settingType);
+        Assert.assertEquals("min amount", settingType.getName());
     }
 
     @Test
-    void productSettingGetSettingTypeTest(TestInfo testInfo) {
-
+    void productSettingGetSettingTypeTest() {
         Product product = entityTestDependencies.getProductDAO().insert(
                             entityFactory.getProduct(-1, 1, 1));
 
@@ -59,12 +57,10 @@ public class EntityTest {
         }
 
         SettingType settingType = entityTestDependencies.getSettingTypeDAO().findById(1);
-        Assertions.assertNotNull(settingType);
-        Assertions.assertNotNull(settingType.getProductSettings(),
-                testInfo.getDisplayName() + ": getProductSettings() is null");
+        Assert.assertNotNull(settingType);
+        Assert.assertNotNull(settingType.getProductSettings());
 
-        Assertions.assertNotNull(productSetting);
-        Assertions.assertNotNull(productSetting.getSettingType(),
-                        testInfo.getDisplayName() + ": getSettingType() is null");
+        Assert.assertNotNull(productSetting);
+        Assert.assertNotNull(productSetting.getSettingType());
     }
 }

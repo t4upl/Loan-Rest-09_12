@@ -1,4 +1,4 @@
-package com.journaldev.testDependencies;
+package com.journaldev.test;
 
 import com.journaldev.dao.*;
 import com.journaldev.manager.ProductManager;

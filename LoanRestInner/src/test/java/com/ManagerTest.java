@@ -4,15 +4,14 @@ import com.journaldev.entity.Product;
 import com.journaldev.entity.ProductSetting;
 import com.journaldev.factory.EntityFactory;
 import com.journaldev.other.ClientDataWrapper;
-import com.journaldev.testDependencies.ManagerTestDependencies;
+import com.journaldev.test.ManagerTestDependencies;
 import com.journaldev.util.SettingTypeUtil;
 import com.journaldev.util.TestUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class ManagerTest {
     static ManagerTestDependencies managerTestDependencies;
     static EntityFactory entityFactory;
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAllTest() {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         ManagerTest.managerTestDependencies  = (ManagerTestDependencies) context.getBean("managerTestDependencies");
@@ -32,8 +31,8 @@ public class ManagerTest {
 
     @Test
     public void autowiredTest() {
-        Assert.notNull(managerTestDependencies);
-        Assert.notNull(managerTestDependencies.getProductSettingManager());
+        Assert.assertNotNull(managerTestDependencies);
+        Assert.assertNotNull(managerTestDependencies.getProductSettingManager());
     }
 
     @Test
@@ -54,7 +53,7 @@ public class ManagerTest {
         long countBeforeInsert = managerTestDependencies.getProductSettingDAO().getCount();
         managerTestDependencies.getProductSettingManager().insert(productSettings);
         long countAfterInsert = managerTestDependencies.getProductSettingDAO().getCount();
-        Assertions.assertEquals(countBeforeInsert + 2, countAfterInsert);
+        Assert.assertEquals(countBeforeInsert + 2, countAfterInsert);
     }
 
     @Test
@@ -69,16 +68,16 @@ public class ManagerTest {
 
         Product product = managerTestDependencies.getProductManager().applyForLoan(clientDataWrapper);
 
-        Assertions.assertEquals(productCountBeforeLoan + 1,
+        Assert.assertEquals(productCountBeforeLoan + 1,
                 (long)managerTestDependencies.getProductDAO().getCount());
-        Assertions.assertEquals(productSettingCountBeforeLoan + settingTypeCountForProjectType,
+        Assert.assertEquals(productSettingCountBeforeLoan + settingTypeCountForProjectType,
                 (long)managerTestDependencies.getProductSettingDAO().getCount());
 
-        Assertions.assertEquals(settingTypeCountForProjectType, managerTestDependencies.getProductSettingDAO()
+        Assert.assertEquals(settingTypeCountForProjectType, managerTestDependencies.getProductSettingDAO()
                 .findByProductId(product.getId()).size());
         ProductSetting productSettingAmount = managerTestDependencies.getProductSettingManager().
                 getProductSettingBySettingTypeName(product.getId(), SettingTypeUtil.amount);
-        Assertions.assertEquals(clientDataWrapper.getAmount().toString(), productSettingAmount.getValue());
+        Assert.assertEquals(clientDataWrapper.getAmount().toString(), productSettingAmount.getValue());
     }
 
     @Test
@@ -92,7 +91,7 @@ public class ManagerTest {
                 product.getId());
         managerTestDependencies.getProductSettingManager().extendLoan(product.getId());
 
-        Assertions.assertEquals(dueDateBeforeExtend.plusDays(extensionTerm),
+        Assert.assertEquals(dueDateBeforeExtend.plusDays(extensionTerm),
                 managerTestDependencies.getProductSettingManager().getDueDate(product.getId()));
     }
 
