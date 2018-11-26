@@ -7,15 +7,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer", schema = "public")
-@Getter @Setter
-@ToString (exclude = {"products"})
-public class Customer implements Serializable {
-
+@Table(name = "product_type", schema = "public")
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+public class ProductType {
     @Id
     @Column(columnDefinition = "id")
     private Integer id;
@@ -23,7 +23,6 @@ public class Customer implements Serializable {
     @Column(columnDefinition = "name")
     private String name;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "productType")
     Set<Product> products;
-
 }

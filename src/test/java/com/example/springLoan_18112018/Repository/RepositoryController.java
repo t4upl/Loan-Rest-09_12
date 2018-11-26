@@ -1,7 +1,8 @@
-package com.example.springLoan_18112018;
+package com.example.springLoan_18112018.Repository;
 
 import com.example.springLoan_18112018.model.Customer;
 import com.example.springLoan_18112018.repository.CustomerRepository;
+import com.example.springLoan_18112018.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class RepositoryController {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @RequestMapping(value = "/test")
     public ResponseEntity<Object> getProduct() {

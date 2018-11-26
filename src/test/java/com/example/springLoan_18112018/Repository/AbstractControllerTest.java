@@ -1,5 +1,6 @@
-package com.example.springLoan_18112018;
+package com.example.springLoan_18112018.Repository;
 
+import com.example.springLoan_18112018.SpringLoan18112018Application;
 import com.google.gson.Gson;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
