@@ -1,13 +1,10 @@
 package com.example.springLoan_18112018.Repository;
 
-import com.example.springLoan_18112018.Repository.AbstractControllerTest;
-import com.example.springLoan_18112018.Repository.RepositoryController;
 import com.example.springLoan_18112018.model.Customer;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;

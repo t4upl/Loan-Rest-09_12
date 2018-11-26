@@ -1,8 +1,11 @@
 package com.example.springLoan_18112018.Repository;
 
 import com.example.springLoan_18112018.model.Customer;
+import com.example.springLoan_18112018.model.Product;
+import com.example.springLoan_18112018.model.ProductType;
 import com.example.springLoan_18112018.repository.CustomerRepository;
 import com.example.springLoan_18112018.repository.ProductRepository;
+import com.example.springLoan_18112018.repository.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,9 @@ public class RepositoryController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductTypeRepository productTypeRepository;
+
     @RequestMapping(value = "/test")
     public ResponseEntity<Object> getProduct() {
         return new ResponseEntity<>("Test passed", HttpStatus.OK);
@@ -30,4 +36,16 @@ public class RepositoryController {
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
     }
+
+    @RequestMapping(value = "/product-types")
+    public List<ProductType> getProductTypes() {
+        return productTypeRepository.findAll();
+    }
+
+    @RequestMapping(value = "/products")
+    public List<Product> getProducts() {
+        return productRepository.findAll();
+    }
+
+
 }

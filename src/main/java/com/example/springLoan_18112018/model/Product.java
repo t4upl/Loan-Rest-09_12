@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "product", schema = "public")
 @Getter
 @Setter
+@ToString (exclude = {"customer", "productType"})
 public class Product {
 
     @Id
