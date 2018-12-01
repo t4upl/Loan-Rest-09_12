@@ -1,5 +1,6 @@
 package com.example.springLoan_18112018.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,19 +10,24 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer", schema = "public")
+@Table(name = "product_type_setting", schema = "public")
 @Getter @Setter
-@ToString (exclude = {"products"})
+@ToString (exclude = {"productType", "setting"})
 public class ProductTypeSetting implements Serializable {
 
     @Id
     @Column(columnDefinition = "id")
     private Integer id;
 
-    @Column(columnDefinition = "name")
-    private String name;
+    @Column(columnDefinition = "value")
+    private String value;
 
-    @OneToMany(mappedBy = "customer")
-    Set<Product> products;
+    @ManyToOne
+    @JoinColumn(name="product_type_id")
+    private ProductType productType;
+
+    @ManyToOne
+    @JoinColumn(name="setting_id")
+    private Setting setting;
 
 }

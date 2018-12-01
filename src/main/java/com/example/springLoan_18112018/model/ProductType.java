@@ -25,4 +25,7 @@ public class ProductType {
 
     @OneToMany(mappedBy = "productType")
     Set<Product> products;
+
+    @OneToMany(mappedBy = "productType")
+    Set<ProductTypeSetting> productTypeSettings;
 }

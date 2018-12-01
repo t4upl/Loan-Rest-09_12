@@ -30,4 +30,7 @@ public class Setting {
 
     @Column(name = "is_runtime_input")
     private Boolean isRuntimeInput;
+
+    @OneToMany(mappedBy = "setting")
+    private Set<ProductTypeSetting> productTypeSettings;
 }

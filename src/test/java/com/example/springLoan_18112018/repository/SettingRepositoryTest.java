@@ -1,8 +1,7 @@
-package com.example.springLoan_18112018.service;
+package com.example.springLoan_18112018.repository;
 
 import com.example.springLoan_18112018.model.DataType;
 import com.example.springLoan_18112018.model.Setting;
-import com.example.springLoan_18112018.repository.SettingRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
