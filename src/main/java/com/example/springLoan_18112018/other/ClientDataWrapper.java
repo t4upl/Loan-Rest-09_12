@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class ClientDataWrapper {
     private Integer customerId;
     private Integer productTypeId;
-    private Integer amount;
+    private Double amount;
     private Integer term;
     private LocalDateTime applicationDate;
 }
