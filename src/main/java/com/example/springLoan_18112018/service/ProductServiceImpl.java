@@ -27,11 +27,4 @@ public class ProductServiceImpl implements ProductService {
 
         return Optional.empty();
     }
-
-    @Override
-    public List<Product> findAll() {
-        return productRepository.findAll();
-    }
-
-
 }

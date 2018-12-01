@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "product", schema = "public")
@@ -21,12 +22,12 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="customer_id")
-    @JsonIgnore
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name="product_type_id")
-    @JsonIgnore
     private ProductType productType;
 
+    @OneToMany(mappedBy = "product")
+    Set<ProductSetting> productSettings;
 }

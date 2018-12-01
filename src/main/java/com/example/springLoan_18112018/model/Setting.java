@@ -33,4 +33,7 @@ public class Setting {
 
     @OneToMany(mappedBy = "setting")
     private Set<ProductTypeSetting> productTypeSettings;
+
+    @OneToMany(mappedBy = "setting")
+    private Set<ProductSetting> productSettings;
 }

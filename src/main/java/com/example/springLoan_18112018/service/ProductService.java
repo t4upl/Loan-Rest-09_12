@@ -11,6 +11,4 @@ public interface ProductService {
 
     @Transactional
     Optional<Product> applyForLoan(ClientDataWrapper clientDataWrapper);
-
-    List<Product> findAll();
 }
