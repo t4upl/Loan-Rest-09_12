@@ -1,4 +1,4 @@
-package com.example.springLoan_18112018.Repository;
+package com.example.springLoan_18112018.DeprecatedRepository;
 
 import com.example.springLoan_18112018.SpringLoan18112018Application;
 import com.google.gson.Gson;
@@ -36,7 +36,7 @@ public abstract class AbstractControllerTest {
     protected abstract String getMappingString();
 
     protected String repositoryTestGetURI(){
-        return RepositoryController.CLASS_MAPPING + getMappingString();
+        return RepositoryTestController.CLASS_MAPPING + getMappingString();
     }
 
 }

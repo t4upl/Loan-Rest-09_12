@@ -1,13 +1,7 @@
-package com.example.springLoan_18112018.Repository;
+package com.example.springLoan_18112018.DeprecatedRepository;
 
-import com.example.springLoan_18112018.model.Customer;
-import com.example.springLoan_18112018.model.DataType;
-import com.example.springLoan_18112018.model.Product;
-import com.example.springLoan_18112018.model.ProductType;
-import com.example.springLoan_18112018.repository.CustomerRepository;
-import com.example.springLoan_18112018.repository.DataTypeRepository;
-import com.example.springLoan_18112018.repository.ProductRepository;
-import com.example.springLoan_18112018.repository.ProductTypeRepository;
+import com.example.springLoan_18112018.model.*;
+import com.example.springLoan_18112018.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.example.springLoan_18112018.Repository.RepositoryController.CLASS_MAPPING;
+import static com.example.springLoan_18112018.DeprecatedRepository.RepositoryTestController.CLASS_MAPPING;
 
 /***
  * This class used to test repository classes.
@@ -25,9 +19,14 @@ import static com.example.springLoan_18112018.Repository.RepositoryController.CL
 
 @RestController
 @RequestMapping(CLASS_MAPPING)
-public class RepositoryController {
+public class RepositoryTestController {
 
     public static final String CLASS_MAPPING = "/repository";
+    public static final String CUSTOMERS_MAPPING = "/customers";
+    public static final String PRODUCT_TYPES_MAPPING = "/product-types";
+    public static final String PRODUCTS_MAPPING = "/products";
+    public static final String DATA_TYPES_MAPPING = "/data-types";
+    public static final String SETTINGS_MAPPING = "/settings";
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -41,29 +40,37 @@ public class RepositoryController {
     @Autowired
     private DataTypeRepository dataTypeRepository;
 
+    @Autowired
+    private SettingRepository settingRepository;
+
     @RequestMapping(value = "/test")
     public ResponseEntity<Object> getProduct() {
         return new ResponseEntity<>("Test passed", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/customers")
+    @RequestMapping(value = CUSTOMERS_MAPPING)
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
     }
 
-    @RequestMapping(value = "/product-types")
+    @RequestMapping(value = PRODUCT_TYPES_MAPPING)
     public List<ProductType> getProductTypes() {
         return productTypeRepository.findAll();
     }
 
-    @RequestMapping(value = "/products")
+    @RequestMapping(value = PRODUCTS_MAPPING)
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
 
-    @RequestMapping(value = "/data-types")
+    @RequestMapping(value = DATA_TYPES_MAPPING)
     public List<DataType> getDataTypes() {
         return dataTypeRepository.findAll();
+    }
+
+    @RequestMapping(value = SETTINGS_MAPPING)
+    public List<Setting> getSettings() {
+        return settingRepository.findAll();
     }
 
 

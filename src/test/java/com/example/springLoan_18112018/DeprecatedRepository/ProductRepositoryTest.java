@@ -1,8 +1,6 @@
-package com.example.springLoan_18112018.Repository;
+package com.example.springLoan_18112018.DeprecatedRepository;
 
-import com.example.springLoan_18112018.model.Customer;
 import com.example.springLoan_18112018.model.Product;
-import com.example.springLoan_18112018.model.ProductType;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +11,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Set;
 
-public class ProductTypeRepositoryTest extends AbstractControllerTest {
+public class ProductRepositoryTest extends AbstractControllerTest {
 
     @Override
     @Before
@@ -23,7 +21,7 @@ public class ProductTypeRepositoryTest extends AbstractControllerTest {
 
     @Override
     protected String getMappingString() {
-        return "/product-types";
+        return RepositoryTestController.PRODUCTS_MAPPING;
     }
 
     @Test
@@ -38,19 +36,13 @@ public class ProductTypeRepositoryTest extends AbstractControllerTest {
         //then
         Assert.assertEquals(200, response.getStatus());
 
-        Set<ProductType> productTypes = (Set<ProductType>) fromJsonToSet(response.getContentAsString(),
-                new TypeToken<Set<ProductType>>(){}.getType());
+        Set<Product> products = (Set<Product>) fromJsonToSet(response.getContentAsString(),
+                new TypeToken<Set<Product>>(){}.getType());
 
-        for (ProductType productType : productTypes) {
-            System.out.println(productType);
-            Set<Product> products = productType.getProducts();
-            for (Product product : products) {
-                System.out.println(product);
-                System.out.println(product.getProductType());
-                System.out.println(product.getCustomer());
-            }
+        for (Product product : products) {
+            System.out.println(product);
+            System.out.println(product.getCustomer());
+            System.out.println(product.getProductType());
         }
-
-        System.out.println(productTypes.size());
     }
 }
