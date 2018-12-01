@@ -12,12 +12,17 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Set;
 
 
-public class RepositoryControllerTest extends AbstractControllerTest {
+public class CustomerRepositoryTest extends AbstractControllerTest {
 
     @Override
     @Before
     public void setUp() {
         super.setUp();
+    }
+
+    @Override
+    protected String getMappingString() {
+        return "/customers";
     }
 
     @Test
@@ -32,7 +37,7 @@ public class RepositoryControllerTest extends AbstractControllerTest {
         customerVerify.setName("Johny");
 
         //given
-        String uri = "/repository/customers";
+        String uri = repositoryTestGetURI();
 
         //when
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri)

@@ -29,4 +29,14 @@ public abstract class AbstractControllerTest {
     protected Object fromJsonToSet(String jsonString, Type type) {
         return new Gson().fromJson(jsonString, type);
     }
+
+    /***
+     * Note: While overriding add "/" in front
+     */
+    protected abstract String getMappingString();
+
+    protected String repositoryTestGetURI(){
+        return RepositoryController.CLASS_MAPPING + getMappingString();
+    }
+
 }

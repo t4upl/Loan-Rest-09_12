@@ -1,5 +1,6 @@
 package com.example.springLoan_18112018.Repository;
 
+import com.example.springLoan_18112018.model.Customer;
 import com.example.springLoan_18112018.model.Product;
 import com.example.springLoan_18112018.model.ProductType;
 import com.google.gson.reflect.TypeToken;
@@ -12,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Set;
 
-public class ProductRepositoryTest extends AbstractControllerTest {
+public class ProductTypeRepositoryTest extends AbstractControllerTest {
 
     @Override
     @Before
@@ -20,15 +21,10 @@ public class ProductRepositoryTest extends AbstractControllerTest {
         super.setUp();
     }
 
-    @Override
-    protected String getMappingString() {
-        return "/products";
-    }
-
     @Test
     public void productTypes() throws Exception {
         //given
-        String uri = repositoryTestGetURI();
+        String uri = "/repository/product-types";
 
         //when
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri)
@@ -37,13 +33,19 @@ public class ProductRepositoryTest extends AbstractControllerTest {
         //then
         Assert.assertEquals(200, response.getStatus());
 
-        Set<Product> products = (Set<Product>) fromJsonToSet(response.getContentAsString(),
-                new TypeToken<Set<Product>>(){}.getType());
+        Set<ProductType> productTypes = (Set<ProductType>) fromJsonToSet(response.getContentAsString(),
+                new TypeToken<Set<ProductType>>(){}.getType());
 
-        for (Product product : products) {
-            System.out.println(product);
-            System.out.println(product.getCustomer());
-            System.out.println(product.getProductType());
+        for (ProductType productType : productTypes) {
+            System.out.println(productType);
+            Set<Product> products = productType.getProducts();
+            for (Product product : products) {
+                System.out.println(product);
+                System.out.println(product.getProductType());
+                System.out.println(product.getCustomer());
+            }
         }
+
+        System.out.println(productTypes.size());
     }
 }

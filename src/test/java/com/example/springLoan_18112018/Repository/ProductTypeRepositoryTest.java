@@ -21,10 +21,15 @@ public class ProductTypeRepositoryTest extends AbstractControllerTest {
         super.setUp();
     }
 
+    @Override
+    protected String getMappingString() {
+        return "/product-types";
+    }
+
     @Test
     public void productTypes() throws Exception {
         //given
-        String uri = "/repository/product-types";
+        String uri = repositoryTestGetURI();
 
         //when
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri)
