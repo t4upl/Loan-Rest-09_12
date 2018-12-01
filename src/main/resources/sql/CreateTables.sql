@@ -103,6 +103,7 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO data_type (id, name) VALUES (2, 'LocalDateTime');
         INSERT INTO data_type (id, name) VALUES (3, 'LocalTime');
         INSERT INTO data_type (id, name) VALUES (4, 'String');
+        INSERT INTO data_type (id, name) VALUES (5, 'Double');
 
         --insert settings describing a product
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (1, 'min amount', 1, '0');
