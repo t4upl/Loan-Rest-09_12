@@ -1,8 +1,6 @@
 package com.example.springLoan_18112018.repository;
 
-import com.example.springLoan_18112018.model.DataType;
 import com.example.springLoan_18112018.model.ProductTypeSetting;
-import com.example.springLoan_18112018.model.Setting;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -31,5 +28,17 @@ public class ProductTypeSettingRepositoryTest {
         Assert.assertEquals("1000", productTypeSetting.getValue());
         Assert.assertEquals("test product type", productTypeSetting.getProductType().getName());
         Assert.assertEquals("min amount", productTypeSetting.getSetting().getName());
+    }
+
+    @Test
+    public void shouldReturnAllProductTypeSettingsWithProductTypeId(){
+        List<ProductTypeSetting> productTypeSettings = productTypeSettingRepository
+                .findByProductType_Id(1);
+
+        Assert.assertEquals(14, productTypeSettings.size());
+        Assert.assertTrue(productTypeSettings
+                .stream()
+                .allMatch(x -> x.getProductType().getName().equals("test product type")));
+
     }
 }

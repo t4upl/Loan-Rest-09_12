@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 @Component
 public class DecisionFilterFactory {
 
-    static public DecisionFilter getAmountInRange(Integer minAmount, Integer maxAmount, Integer loanAmount){
+    static public DecisionFilter getAmountInRange(Integer minAmount, Integer maxAmount, Integer value){
         return new AmountInRangeDecisionFilter(minAmount.doubleValue(), maxAmount.doubleValue(),
-                loanAmount.doubleValue());
+                value.doubleValue());
     }
 
-    static public DecisionFilter getAmountInRange(Double minAmount, Double maxAmount, Double loanAmount){
-        return new AmountInRangeDecisionFilter(minAmount, maxAmount, loanAmount);
+    static public DecisionFilter getAmountInRange(Double minAmount, Double maxAmount, Double value){
+        return new AmountInRangeDecisionFilter(minAmount, maxAmount, value);
     }
 
     static public  DecisionFilter getOutsideOfRejectionHours(Double maxAmount, Double loanAmount,
