@@ -30,9 +30,11 @@ public class ProductTypeSettingServiceTest {
     @Before
     public void setUp() {
         productTypeSettings = new ArrayList<>();
-//        ProductTypeSetting productTypeSetting = new ProductTypeSetting();
-//        productTypeSetting.setValue("foo");
-//        productTypeSettings.add(productTypeSetting);
+        ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
+        when(productTypeSetting.getSetting().getName()).thenReturn("min amount");
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(EntityUtil.INTEGER);
+        when(productTypeSetting.getValue()).thenReturn("-1");
+        productTypeSettings.add(productTypeSetting);
     }
 
     @Test
@@ -41,7 +43,7 @@ public class ProductTypeSettingServiceTest {
     }
 
     @Test
-    public void foo(){
+    public void returnProductTypeSettingOnfindAndGetAsInteger(){
         String name = "name";
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -56,6 +58,25 @@ public class ProductTypeSettingServiceTest {
 
         //then
         Assert.assertEquals(999, integer.longValue());
+    }
 
+    @Test (expected = RuntimeException.class)
+    public void throwExceptionWhenBadDataTypeName(){
+        String name = "name";
+        ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
+
+        //given
+        when(productTypeSetting.getSetting().getName()).thenReturn(name);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(EntityUtil.DOUBLE);
+        when(productTypeSetting.getValue()).thenReturn("999");
+        productTypeSettings.add(productTypeSetting);
+
+        //when
+        productTypeSettingService.findAndGetAsInteger(productTypeSettings, name);
+    }
+
+    @Test (expected = RuntimeException.class)
+    public void throwExceptionWhenNoRroductTypeSettingWithName(){
+        productTypeSettingService.findAndGetAsInteger(productTypeSettings, "no such name in list");
     }
 }
