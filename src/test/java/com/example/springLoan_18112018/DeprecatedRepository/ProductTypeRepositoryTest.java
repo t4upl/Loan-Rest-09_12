@@ -5,6 +5,7 @@ import com.example.springLoan_18112018.model.ProductType;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Set;
 
+@Ignore
 public class ProductTypeRepositoryTest extends AbstractControllerTest {
 
     @Override
