@@ -22,7 +22,7 @@ public class SettingRepositoryTest {
 
     @Test
     public void findByIdTest(){
-        Long id = 1L;
+        Integer id = 1;
         Setting setting = settingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(String.format("No setting with id %d", id)));
 
