@@ -1,2 +1,2 @@
-# Loan-Rest-09_12
-A simple rest app that simulates applying for loan.
+# debt_rest
+A simple rest app that allows to get and extend debt
