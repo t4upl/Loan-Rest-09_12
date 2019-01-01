@@ -110,8 +110,8 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (2, 'max amount', 1, '0');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (3, 'min term', 1, '0');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (4, 'max term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (5, 'min rejection hour', 3, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (6, 'max rejection hour', 3, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (5, 'min rejection time', 3, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (6, 'max rejection time', 3, '0');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (7, 'loan type', 4, '0');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (8, 'rate of interest', 1, '0');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (9, 'due date', 2, '1');
