@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface ProductService {
 
     @Transactional
-    Optional<Product> applyForLoan(ClientDataWrapper clientDataWrapper);
+    Optional<Product> getLoan(ClientDataWrapper clientDataWrapper);
 }

@@ -55,7 +55,7 @@ public class RestControllerClass {
 
     @RequestMapping(value = "/apply-for-loan")
     public ResponseEntity<Object> applyForLoan(@RequestBody ClientDataWrapper clientDataWrapper){
-        Optional<Product> optionalProduct = productService.applyForLoan(clientDataWrapper);
+        Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
         if (optionalProduct.isPresent()) {
             return new ResponseEntity<>(null, HttpStatus.OK);
         }

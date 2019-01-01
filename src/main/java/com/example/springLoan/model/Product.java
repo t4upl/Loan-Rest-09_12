@@ -1,5 +1,6 @@
 package com.example.springLoan.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString (exclude = {"customer", "productType"})
+@AllArgsConstructor
 public class Product {
 
     @Id
