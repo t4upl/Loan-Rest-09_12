@@ -11,41 +11,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.springLoan.util.constant.ApplicationConstant.SANITY_TEST_ENDPOINT_RESPONSE;
 
-@org.springframework.web.bind.annotation.RestController
+
+@RestController
 public class API {
-
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
 
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/test")
-    public ResponseEntity<Object> getProduct() {
-        return new ResponseEntity<>("Test passed", HttpStatus.OK);
-    }
 
-    @RequestMapping(value = "/customers")
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
-    }
-
-    @RequestMapping(value = "/products")
-    public List<Product> gerProducts() {
-
-        List<Product> products = productRepository.findAll();
-
-        System.out.println(products);
-
-        return productRepository.findAll();
+    /**
+     * This endpoint is for sanity testing
+     */
+    @RequestMapping(value = "/sanity-test")
+    public ResponseEntity<String> getProduct() {
+        return new ResponseEntity<>(SANITY_TEST_ENDPOINT_RESPONSE, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/apply-for-loan")
