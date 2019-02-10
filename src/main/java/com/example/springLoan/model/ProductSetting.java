@@ -1,8 +1,6 @@
 package com.example.springLoan.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,10 +9,13 @@ import java.io.Serializable;
 @Table(name = "product_setting", schema = "public")
 @Getter @Setter
 @ToString (exclude = {"product", "setting"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductSetting implements Serializable {
 
     @Id
     @Column(columnDefinition = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(columnDefinition = "value")

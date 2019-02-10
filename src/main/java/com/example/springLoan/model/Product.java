@@ -18,6 +18,7 @@ public class Product {
 
     @Id
     @Column(columnDefinition = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne

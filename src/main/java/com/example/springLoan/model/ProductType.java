@@ -17,6 +17,7 @@ import java.util.Set;
 public class ProductType {
     @Id
     @Column(columnDefinition = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(columnDefinition = "name")

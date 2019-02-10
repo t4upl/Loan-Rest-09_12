@@ -14,6 +14,9 @@ public class EntityUtil {
         public static final String AMOUNT = "amount";
         public static final String APPLICATION_DATE = "application date";
         public static final String EXTENSION_TERM = "extension term";
+        public static final String AMOUNT_TO_PAY = "amount to pay";
+        public static final String RATE_OF_INTEREST = "rate of interest";
+        public static final String TERM = "term";
     }
 
     public class DataType {

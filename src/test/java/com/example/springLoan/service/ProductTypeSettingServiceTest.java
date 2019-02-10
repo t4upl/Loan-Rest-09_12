@@ -37,11 +37,6 @@ public class ProductTypeSettingServiceTest {
     }
 
     @Test
-    public void smokeTest(){
-        System.out.println("test");
-    }
-
-    @Test
     public void returnProductTypeSettingOnfindAndGetAsInteger(){
         String name = "name";
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);

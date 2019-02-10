@@ -16,8 +16,10 @@ import java.util.Set;
 @ToString (exclude = {"dataType"})
 @EqualsAndHashCode
 public class Setting {
+
     @Id
     @Column(columnDefinition = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(columnDefinition = "name")

@@ -8,6 +8,5 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    @Transactional
     Optional<Product> getLoan(ClientDataWrapper clientDataWrapper);
 }

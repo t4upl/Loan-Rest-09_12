@@ -20,6 +20,11 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
         return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, EntityUtil.DataType.LOCAL_TIME));
     }
 
+    @Override
+    public Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, String key) {
+        return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, EntityUtil.DataType.DOUBLE));
+    }
+
     private String findAndGetAsObject (List<ProductTypeSetting> productTypeSettings, String propertyKey,
                                        String dataTypeKey) {
         ProductTypeSetting productTypeSetting = findProductTypeSettingByValue(productTypeSettings, propertyKey);

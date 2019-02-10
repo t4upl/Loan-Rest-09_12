@@ -1,5 +1,7 @@
 package com.example.springLoan.other.decision_system;
 
+import com.example.springLoan.AbstractTest;
+import com.example.springLoan.ClientDataWrapperFactory;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
@@ -27,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DecisionSystemTest {
+public class DecisionSystemTest extends AbstractTest {
 
     @Autowired
     DecisionSystemImpl decisionSystemImpl;
@@ -49,11 +51,6 @@ public class DecisionSystemTest {
     public void setUp() {
         when(productTypeSettingRepository.findByProductType_Id(any()))
                 .thenAnswer(i -> getProductTypeSettingListForMock());
-    }
-
-    @Test
-    public void sanityTest() {
-        System.out.println("Sanity passed");
     }
 
     @Test
@@ -99,14 +96,7 @@ public class DecisionSystemTest {
     }
 
     private ClientDataWrapper getClientDataWrapper(Integer amount, String applicationDate, Integer term) {
-        return ClientDataWrapper.builder()
-                .amount(amount)
-                .applicationDate(LocalDateTime.parse(applicationDate,
-                        DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT)))
-                .customerId(TestingUtil.CUSTOMER_ID)
-                .productTypeId(TestingUtil.PRODUCT_TYPE_ID)
-                .term(term)
-                .build();
+        return ClientDataWrapperFactory.getClientDataWrapper(amount, applicationDate, term);
     }
 
     private ProductTypeSetting getProductTypeSetting(String settingName, String dataTypeName, String value) {
