@@ -1,4 +1,4 @@
-package com.example.springLoan;
+package com.example.springLoan.api;
 
 import com.example.springLoan.model.Customer;
 import com.example.springLoan.model.Product;
@@ -11,18 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
-/***
- *  THIS CLASS IS FOR TESTING ONLY!
- *
- */
 
-@RestController
-public class RestControllerClass {
+@org.springframework.web.bind.annotation.RestController
+public class API {
 
     @Autowired
     private CustomerRepository customerRepository;

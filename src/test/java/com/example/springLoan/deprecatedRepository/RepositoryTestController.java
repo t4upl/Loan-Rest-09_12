@@ -1,4 +1,4 @@
-package com.example.springLoan.DeprecatedRepository;
+package com.example.springLoan.deprecatedRepository;
 
 import com.example.springLoan.model.*;
 import com.example.springLoan.repository.*;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.example.springLoan.DeprecatedRepository.RepositoryTestController.CLASS_MAPPING;
+import static com.example.springLoan.deprecatedRepository.RepositoryTestController.CLASS_MAPPING;
 
 /***
  * This class used to test repository classes.

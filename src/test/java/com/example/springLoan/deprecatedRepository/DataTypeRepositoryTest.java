@@ -1,4 +1,4 @@
-package com.example.springLoan.DeprecatedRepository;
+package com.example.springLoan.deprecatedRepository;
 
 import com.example.springLoan.model.DataType;
 import com.google.gson.reflect.TypeToken;

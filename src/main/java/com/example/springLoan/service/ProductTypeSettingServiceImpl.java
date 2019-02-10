@@ -1,7 +1,10 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.model.ProductTypeSetting;
+import com.example.springLoan.repository.ProductTypeRepository;
+import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.util.constant.EntityUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Service
 public class ProductTypeSettingServiceImpl implements ProductTypeSettingService {
+
+    @Autowired
+    ProductTypeSettingRepository productTypeSettingRepository;
 
     @Override
     public Integer findAndGetAsInteger(List<ProductTypeSetting> productTypeSettings, String key) {
@@ -23,6 +29,11 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
     @Override
     public Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, String key) {
         return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, EntityUtil.DataType.DOUBLE));
+    }
+
+    @Override
+    public List<ProductTypeSetting> findByProductType_Id(Integer productTypeId) {
+        return productTypeSettingRepository.findByProductType_Id(productTypeId);
     }
 
     private String findAndGetAsObject (List<ProductTypeSetting> productTypeSettings, String propertyKey,

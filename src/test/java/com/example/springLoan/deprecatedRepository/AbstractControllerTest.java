@@ -1,4 +1,4 @@
-package com.example.springLoan.DeprecatedRepository;
+package com.example.springLoan.deprecatedRepository;
 
 import com.example.springLoan.SpringLoan18112018Application;
 import com.google.gson.Gson;
@@ -17,7 +17,6 @@ import java.lang.reflect.Type;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpringLoan18112018Application.class)
 @WebAppConfiguration
-@Ignore
 public abstract class AbstractControllerTest {
 
     protected MockMvc mvc;

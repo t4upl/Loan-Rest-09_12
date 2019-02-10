@@ -12,4 +12,6 @@ public interface ProductTypeSettingService {
     LocalTime findAndGetAsLocalTime(List<ProductTypeSetting> productTypeSettings, String key);
 
     Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, String key);
+
+    List<ProductTypeSetting> findByProductType_Id(Integer productTypeId);
 }

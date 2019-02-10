@@ -22,39 +22,28 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-//    @Autowired
     ProductRepository productRepository;
 
-//    @Autowired
-    CustomerRepository customerRepository;
+    CustomerService customerService;
 
-//    @Autowired
-    ProductTypeRepository productTypeRepository;
+    ProductTypeService productTypeService;
 
-//    @Autowired
-    ProductTypeSettingRepository productTypeSettingRepository;
-
-//    @Autowired
     ProductSettingService productSettingService;
 
-//    @Autowired
     ProductTypeSettingService productTypeSettingService;
 
-//    @Autowired
     DecisionSystem decisionSystem;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository,
-                              CustomerRepository customerRepository,
-                              ProductTypeRepository productTypeRepository,
-                              ProductTypeSettingRepository productTypeSettingRepository,
+                              CustomerService customerService,
+                              ProductTypeService productTypeService,
                               ProductSettingService productSettingService,
                               ProductTypeSettingService productTypeSettingService,
                               DecisionSystem decisionSystem) {
         this.productRepository = productRepository;
-        this.customerRepository = customerRepository;
-        this.productTypeRepository = productTypeRepository;
-        this.productTypeSettingRepository = productTypeSettingRepository;
+        this.customerService = customerService;
+        this.productTypeService = productTypeService;
         this.productSettingService = productSettingService;
         this.productTypeSettingService = productTypeSettingService;
         this.decisionSystem = decisionSystem;
@@ -114,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     private Set<ProductSetting> getProductSettings(Product product, ClientDataWrapper clientDataWrapper) {
-        List<ProductTypeSetting> productTypeSettings = productTypeSettingRepository.findByProductType_Id(
+        List<ProductTypeSetting> productTypeSettings = productTypeSettingService.findByProductType_Id(
                 clientDataWrapper.getProductTypeId());
 
         return productTypeSettings
@@ -124,10 +113,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Product insertProduct(ClientDataWrapper clientDataWrapper) {
-        Customer customer = customerRepository.findById(clientDataWrapper.getCustomerId())
+        Customer customer = customerService.findById(clientDataWrapper.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("customerRepository.findById"));
 
-        ProductType productType = productTypeRepository.findById(clientDataWrapper.getProductTypeId())
+        ProductType productType = productTypeService.findById(clientDataWrapper.getProductTypeId())
                 .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
         Product product = new Product(-1, customer, productType, new HashSet<>());

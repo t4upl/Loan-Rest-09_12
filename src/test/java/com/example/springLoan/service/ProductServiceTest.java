@@ -5,10 +5,7 @@ import com.example.springLoan.ClientDataWrapperFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.other.decision_system.DecisionSystem;
-import com.example.springLoan.repository.CustomerRepository;
 import com.example.springLoan.repository.ProductRepository;
-import com.example.springLoan.repository.ProductTypeRepository;
-import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.util.constant.EntityUtil;
 import org.apache.logging.log4j.util.Strings;
 import org.junit.Assert;
@@ -20,10 +17,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -36,13 +30,10 @@ public class ProductServiceTest extends AbstractTest {
     ProductServiceImpl productServiceImpl;
 
     @Mock
+    CustomerService customerService;
+
+    @Mock
     ProductRepository productRepository;
-
-    @Mock
-    CustomerRepository customerRepository;
-
-    @Mock
-    ProductTypeRepository productTypeRepository;
 
     @Mock
     ProductSettingService productSettingService;
@@ -54,7 +45,7 @@ public class ProductServiceTest extends AbstractTest {
     DecisionSystem decisionSystem;
 
     @Mock
-    ProductTypeSettingRepository productTypeSettingRepository;
+    ProductTypeService productTypeService;
 
     ClientDataWrapper clientDataWrapper;
 
@@ -62,8 +53,8 @@ public class ProductServiceTest extends AbstractTest {
 
     @Before
     public void setUp(){
-        productServiceImpl = new ProductServiceImpl(productRepository, customerRepository, productTypeRepository,
-                productTypeSettingRepository, productSettingService, productTypeSettingService, decisionSystem);
+        productServiceImpl = new ProductServiceImpl(productRepository, customerService, productTypeService,
+                productSettingService, productTypeSettingService, decisionSystem);
         clientDataWrapper = ClientDataWrapperFactory.getClientDataWrapper(CLIENT_DATA_WRAPPER_AMOUNT, "1986-04-08 12:30", 15);
     }
 
@@ -76,15 +67,17 @@ public class ProductServiceTest extends AbstractTest {
 
     @Test
     public void whenClientDataValidReturnProduct(){
+
+        //given
         when(decisionSystem.isLoanGiven(any())).thenReturn(true);
-        when(customerRepository.findById(any())).thenReturn(Optional.of(new Customer()));
-        when(productTypeRepository.findById(any())).thenReturn(Optional.of(new ProductType()));
+        when(customerService.findById(any())).thenReturn(Optional.of(new Customer()));
+        when(productTypeService.findById(any())).thenReturn(Optional.of(new ProductType()));
         when(productRepository.save(any())).thenAnswer(
                 (Answer<Product>) invocationOnMock -> (Product) invocationOnMock.getArguments()[0]);
 
 
-        when(productSettingService.saveAll(any())).thenAnswer((Answer<Set<ProductSetting>>) invocationOnMock
-                -> (Set<ProductSetting>) invocationOnMock.getArguments()[0]);
+        when(productSettingService.saveAll(any())).thenAnswer((Answer<List<ProductSetting>>) invocationOnMock
+                -> new ArrayList<> ((HashSet<ProductSetting>) invocationOnMock.getArguments()[0]));
         when(productSettingService.getProductSetting(any(), any(), any(), any())).thenAnswer(
                 new Answer<ProductSetting>() {
                     @Override
@@ -108,15 +101,19 @@ public class ProductServiceTest extends AbstractTest {
                     setName(EntityUtil.Setting.AMOUNT);
         }});
         List<ProductTypeSetting> productTypeSettings = Arrays.asList(productTypeSetting1, productTypeSetting2);
-        when(productTypeSettingRepository.findByProductType_Id(any())).thenReturn(productTypeSettings);
+        when(productTypeSettingService.findByProductType_Id(any())).thenReturn(productTypeSettings);
 
 
+        //when
         Optional<Product> optionalProduct = productServiceImpl.getLoan(clientDataWrapper);
+
+        //then
         Assert.assertTrue(optionalProduct.isPresent());
 
         Set<ProductSetting> productSettings = optionalProduct.get().getProductSettings();
-        Assert.assertTrue(productSettings.stream().anyMatch(x
-                -> x.getValue().equals(CLIENT_DATA_WRAPPER_AMOUNT.toString())));
+        Assert.assertTrue("After successful giving the loan in productSettings there should be a setting with " +
+                "value equal to the amount of loan asked", productSettings.stream()
+                .anyMatch(x -> x.getValue().equals(CLIENT_DATA_WRAPPER_AMOUNT.toString())));
         Assert.assertTrue(productSettings.stream().anyMatch(x
                 -> x.getValue().equals(PRODUCT_TYPE_SETTING1_VALUE)));
 

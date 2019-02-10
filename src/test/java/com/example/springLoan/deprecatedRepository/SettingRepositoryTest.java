@@ -1,6 +1,7 @@
-package com.example.springLoan.DeprecatedRepository;
+package com.example.springLoan.deprecatedRepository;
 
 import com.example.springLoan.model.Customer;
+import com.example.springLoan.model.Setting;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Set;
 
 @Ignore
-public class CustomerRepositoryTest extends AbstractControllerTest {
+public class SettingRepositoryTest extends AbstractControllerTest {
 
     @Override
     @Before
@@ -23,7 +24,7 @@ public class CustomerRepositoryTest extends AbstractControllerTest {
 
     @Override
     protected String getMappingString() {
-        return RepositoryTestController.CUSTOMERS_MAPPING;
+        return RepositoryTestController.SETTINGS_MAPPING;
     }
 
     @Test
@@ -32,7 +33,7 @@ public class CustomerRepositoryTest extends AbstractControllerTest {
     }
 
     @Test
-    public void customers() throws Exception {
+    public void settings() throws Exception {
         Customer customerVerify = new Customer();
         customerVerify.setId(1);
         customerVerify.setName("Johny");
@@ -47,13 +48,19 @@ public class CustomerRepositoryTest extends AbstractControllerTest {
         //then
         Assert.assertEquals(200, response.getStatus());
 
-        Set<Customer> customers = (Set<Customer>) fromJsonToSet(response.getContentAsString(),
-                new TypeToken<Set<Customer>>(){}.getType());
-        Object[] objects = customers.toArray();
-        Assert.assertEquals(1, objects.length);
-        Customer customerRepo = (Customer) objects[0];
-        Assert.assertTrue( customerRepo.getId().equals(customerVerify.getId())
-                && customerRepo.getName().equals(customerVerify.getName()));
-        Assert.assertEquals(1, customerRepo.getProducts().size());
+        Set<Setting> settings = (Set<Setting>) fromJsonToSet(response.getContentAsString(),
+                new TypeToken<Set<Setting>>(){}.getType());
+
+        settings.stream().forEach(x -> System.out.println(x));
+
+        final String minAmountNameSetting = "min amount";
+        Setting minAmountSetting =  settings
+                .stream()
+                .filter(x -> x.getName().equals(minAmountNameSetting))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No proepr"));
+
+        System.out.println(minAmountSetting);
+        System.out.println(minAmountSetting.getDataType());
     }
 }
