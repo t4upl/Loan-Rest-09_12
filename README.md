@@ -16,7 +16,7 @@ As a general rule upon granting the loan its properties with relation to the cus
 
 
 ## Data model
-[resources/doc/db_schema.png](https://github.com/t4upl/Loan_Rest/blob/master/src/main/resources/doc/db_schema.png)
+![resources/doc/db_schema.png](https://raw.githubusercontent.com/t4upl/Loan_Rest/master/src/main/resources/doc/db_schema.png)
 
 #### Tables:
 - customer - Customers who can request a loan
