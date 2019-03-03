@@ -1,8 +1,7 @@
 package com.example.springLoan.deprecatedRepository;
 
-import com.example.springLoan.SpringLoan18112018Application;
+import com.example.springLoan.SpringLoanRestAPI;
 import com.google.gson.Gson;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.lang.reflect.Type;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = SpringLoan18112018Application.class)
+@SpringBootTest(classes = SpringLoanRestAPI.class)
 @WebAppConfiguration
 public abstract class AbstractControllerTest {
 
