@@ -22,14 +22,19 @@ public class DecisionSystemImpl implements DecisionSystem {
 
     @Override
     public boolean isLoanGiven(ClientDataWrapper clientDataWrapper) {
+        DecisionRule decisionRule;
         switch (clientDataWrapper.getProductTypeId()) {
-            case 1: return rulesForProductTypeWithId1(clientDataWrapper);
-            default: throw new RuntimeException(String.format("No loan application rule set for loan with " +
+            case 1:
+                decisionRule = rulesForProductTypeWithId1(clientDataWrapper);
+                break;
+            default:
+                throw new RuntimeException(String.format("No loan application rule set for loan with " +
                     "productType: %d", clientDataWrapper.getProductTypeId()));
         }
+        return decisionRule.checkRule();
     }
 
-    private boolean rulesForProductTypeWithId1(ClientDataWrapper clientDataWrapper){
+    private DecisionRule rulesForProductTypeWithId1(ClientDataWrapper clientDataWrapper){
         List<ProductTypeSetting> productTypeSettings = productTypeSettingRepository
                 .findByProductType_Id(clientDataWrapper.getProductTypeId());
 
@@ -56,8 +61,7 @@ public class DecisionSystemImpl implements DecisionSystem {
                 // don't accept if between hours and max amount is asked
                 .addFilter(DecisionFilterFactory.outsideOfRejectionHours(maxAmount, loanAmount,
                         minRejectionTime, maxRejectionTime, loanApplicationTime))
-                .build()
-                .checkRule();
+                .build();
     }
 
 
