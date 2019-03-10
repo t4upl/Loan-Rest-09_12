@@ -15,7 +15,7 @@ public class ProductSetting implements Serializable {
 
     @Id
     @Column(columnDefinition = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(columnDefinition = "value")

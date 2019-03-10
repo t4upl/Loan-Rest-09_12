@@ -124,7 +124,7 @@ public class ProductServiceImpl implements ProductService {
         ProductType productType = productTypeService.findById(clientDataWrapper.getProductTypeId())
                 .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
-        Product product = new Product(-1, customer, productType, new HashSet<>());
+        Product product = abstractFactory.getProductFactory().getProduct(-1, customer, productType, new HashSet<>());
         product = productRepository.save(product);
         setProductSettingsInProduct(product, clientDataWrapper);
 

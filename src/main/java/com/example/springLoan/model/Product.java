@@ -1,9 +1,6 @@
 package com.example.springLoan.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,11 +11,12 @@ import java.util.Set;
 @Setter
 @ToString (exclude = {"customer", "productType"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
     @Column(columnDefinition = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

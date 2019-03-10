@@ -93,59 +93,59 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         RAISE NOTICE 'insertTestData - start';
 
         -- insert a customer
-        INSERT INTO customer (id, name) VALUES (1, 'Johny');
+        INSERT INTO customer (id, name) VALUES (nextval('customer_id_seq'), 'Johny');
 
         --insert a product
-        INSERT INTO product_type (id, name) VALUES (1, 'test product type');
+        INSERT INTO product_type (id, name) VALUES (nextval('product_type_id_seq'), 'test product type');
 
         --insert data_type
-        INSERT INTO data_type (id, name) VALUES (1, 'Integer');
-        INSERT INTO data_type (id, name) VALUES (2, 'LocalDateTime');
-        INSERT INTO data_type (id, name) VALUES (3, 'LocalTime');
-        INSERT INTO data_type (id, name) VALUES (4, 'String');
-        INSERT INTO data_type (id, name) VALUES (5, 'Double');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'Integer');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'LocalDateTime');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'LocalTime');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'String');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'Double');
 
         --insert settings describing a product
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (1, 'min amount', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (2, 'max amount', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (3, 'min term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (4, 'max term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (5, 'min rejection time', 3, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (6, 'max rejection time', 3, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (7, 'loan type', 4, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (8, 'rate of interest', 5, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (9, 'due date', 2, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (10, 'extension term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (11, 'amount', 1, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (12, 'application date', 2, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (13, 'amount to pay', 1, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (14, 'term', 1, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'min amount', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'max amount', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'min term', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'max term', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'min rejection time', 3, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'max rejection time', 3, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'loan type', 4, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'rate of interest', 5, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'due date', 2, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'extension term', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount', 1, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'application date', 2, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount to pay', 1, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'term', 1, '1');
 
         --insert settings describing a debt with product_type_id = 1
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (1, 1, 1, '1000');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (2, 1, 2, '5000');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (3, 1, 3, '3');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (4, 1, 4, '60');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (5, 1, 5, '00:00:00');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (6, 1, 6, '06:00:00');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (7, 1, 7, 'principal');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (8, 1, 8, '10');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (9, 1, 9, '');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (10, 1, 10, '7');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (11, 1, 11, '');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (12, 1, 12, '');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (13, 1, 13, '');
-        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (14, 1, 14, '');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 1, '1000');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 2, '5000');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 3, '3');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 4, '60');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 5, '00:00:00');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 6, '06:00:00');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 7, 'principal');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 8, '10');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 9, '');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 10, '7');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 11, '');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 12, '');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 13, '');
+        INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 14, '');
 
 
         --insert product
-        INSERT INTO product (id, product_type_id, customer_id) VALUES (1, 1, 1);
+        INSERT INTO product (id, product_type_id, customer_id) VALUES (nextval('product_id_seq'), 1, 1);
 
         --insert product setting
         INSERT INTO product_setting (id, product_id, setting_id, value)
         SELECT nextval('product_setting_id_seq'), 1, setting_id, value
         FROM product_type_setting
-        WHERE product_type_id = 1;
+        WHERE product_type_id = currval('product_type_id_seq');
 
         update product_setting
         set value = '2018-11-02 15:12:54'
