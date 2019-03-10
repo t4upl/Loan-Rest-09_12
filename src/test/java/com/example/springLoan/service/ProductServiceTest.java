@@ -2,6 +2,7 @@ package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.ClientDataWrapperFactory;
+import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.other.decision_system.DecisionSystem;
@@ -47,6 +48,9 @@ public class ProductServiceTest extends AbstractTest {
     @Mock
     ProductTypeService productTypeService;
 
+    @Mock
+    AbstractFactory abstractFactory;
+
     ClientDataWrapper clientDataWrapper;
 
 
@@ -54,7 +58,7 @@ public class ProductServiceTest extends AbstractTest {
     @Before
     public void setUp(){
         productServiceImpl = new ProductServiceImpl(productRepository, customerService, productTypeService,
-                productSettingService, productTypeSettingService, decisionSystem);
+                productSettingService, productTypeSettingService, decisionSystem, abstractFactory);
         clientDataWrapper = ClientDataWrapperFactory.getClientDataWrapper(CLIENT_DATA_WRAPPER_AMOUNT, "1986-04-08 12:30", 15);
     }
 

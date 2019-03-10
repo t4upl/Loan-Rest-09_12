@@ -1,5 +1,6 @@
 package com.example.springLoan.service;
 
+import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.other.decision_system.DecisionSystem;
@@ -34,19 +35,23 @@ public class ProductServiceImpl implements ProductService {
 
     DecisionSystem decisionSystem;
 
+    AbstractFactory abstractFactory;
+
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository,
                               CustomerService customerService,
                               ProductTypeService productTypeService,
                               ProductSettingService productSettingService,
                               ProductTypeSettingService productTypeSettingService,
-                              DecisionSystem decisionSystem) {
+                              DecisionSystem decisionSystem,
+                              AbstractFactory abstractFactory) {
         this.productRepository = productRepository;
         this.customerService = customerService;
         this.productTypeService = productTypeService;
         this.productSettingService = productSettingService;
         this.productTypeSettingService = productTypeSettingService;
         this.decisionSystem = decisionSystem;
+        this.abstractFactory = abstractFactory;
     }
 
     @Override
@@ -74,7 +79,6 @@ public class ProductServiceImpl implements ProductService {
     private String getValueForProductSetting(ProductTypeSetting productTypeSetting,
                                              ClientDataWrapper clientDataWrapper,
                                              List<ProductTypeSetting> productTypeSettings) {
-
         switch (productTypeSetting.getSetting().getName()) {
             case (EntityUtil.Setting.APPLICATION_DATE):
                 return FilterUtil.localDateTimeToString(clientDataWrapper.getApplicationDate());
@@ -98,7 +102,8 @@ public class ProductServiceImpl implements ProductService {
 
 
     private ProductSetting getProductSetting(ProductTypeSetting productTypeSetting, Product product, String value) {
-        return productSettingService.getProductSetting(-1, value, product, productTypeSetting.getSetting());
+        return abstractFactory.getProductSettingFactory()
+                    .getProductSetting(-1, value, product, productTypeSetting.getSetting());
     }
 
 
