@@ -71,7 +71,6 @@ public class ProductServiceTest extends AbstractTest {
 
     @Test
     public void whenClientDataValidReturnProduct(){
-
         //given
         when(decisionSystem.isLoanGiven(any())).thenReturn(true);
         when(customerService.findById(any())).thenReturn(Optional.of(new Customer()));

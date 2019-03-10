@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.example.springLoan.util.constant.APIConstant.*;
+import static com.example.springLoan.util.constant.ProductControllerConstant.*;
 
 
 @RestController
-public class API {
+public class ProductController {
 
     @Autowired
     private ProductService productService;

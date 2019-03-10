@@ -1,6 +1,6 @@
 package com.example.springLoan.util.constant;
 
-public class APIConstant {
+public class ProductControllerConstant {
     public static final String SANITY_TEST_PATH = "/sanity-test";
     public static final String APPLY_FOR_LOAN_PATH = "/apply-for-loan";
 
