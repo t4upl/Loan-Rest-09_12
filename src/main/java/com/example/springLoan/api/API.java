@@ -1,10 +1,7 @@
 package com.example.springLoan.api;
 
-import com.example.springLoan.model.Customer;
 import com.example.springLoan.model.Product;
 import com.example.springLoan.other.ClientDataWrapper;
-import com.example.springLoan.repository.CustomerRepository;
-import com.example.springLoan.repository.ProductRepository;
 import com.example.springLoan.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.example.springLoan.util.constant.ApplicationConstant.SANITY_TEST_ENDPOINT_RESPONSE;
+import static com.example.springLoan.util.constant.APIConstant.*;
 
 
 @RestController
@@ -25,27 +22,34 @@ public class API {
     @Autowired
     private ProductService productService;
 
-
     /**
-     * This endpoint is for sanity testing
+     * This endpoint is for sanity testing / health check
      */
-    @RequestMapping(value = "/sanity-test")
+    @RequestMapping(SANITY_TEST_PATH)
     public ResponseEntity<String> getProduct() {
-        return new ResponseEntity<>(SANITY_TEST_ENDPOINT_RESPONSE, HttpStatus.OK);
+        return new ResponseEntity<>(SANITY_TEST_RESPONSE, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/apply-for-loan")
-    public ResponseEntity<Object> applyForLoan(@RequestBody ClientDataWrapper clientDataWrapper){
+    @RequestMapping(value = APPLY_FOR_LOAN_PATH)
+    public ResponseEntity<String> applyForLoan(@RequestBody ClientDataWrapper clientDataWrapper){
         Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
         if (optionalProduct.isPresent()) {
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_SUCCESS_RESPONSE,
+                    optionalProduct.get().getId()), HttpStatus.OK);
         }
-
-        return new ResponseEntity<>("Loan is not given based on business rules.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_FAIL_RESPONSE), HttpStatus.BAD_REQUEST);
     }
 
+    private String addMetaData(String inputMsg){
+        return inputMsg + "\n\n" + addRequestTime();
+    }
 
+    private String addMetaData(String inputMsg, Integer loanId){
+        return addMetaData(inputMsg) + "\t" + LOAN_ID_METADATA + " " + loanId;
+    }
 
-
-
+    private String addRequestTime(){
+        LocalDateTime applicationTime = LocalDateTime.now();
+        return TIME_METADATA + " " + applicationTime.toString();
+    }
 }
