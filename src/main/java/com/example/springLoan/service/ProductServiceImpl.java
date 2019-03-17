@@ -21,17 +21,11 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository;
-
     CustomerService customerService;
-
     ProductTypeService productTypeService;
-
     ProductSettingService productSettingService;
-
     ProductTypeSettingService productTypeSettingService;
-
     DecisionSystem decisionSystem;
-
     AbstractFactory abstractFactory;
 
     @Autowired
@@ -52,7 +46,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
     public Optional<Product> getLoan(ClientDataWrapper clientDataWrapper) {
         if (decisionSystem.isLoanGiven(clientDataWrapper)) {
             return Optional.of(insertProduct(clientDataWrapper));
@@ -61,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
         return Optional.empty();
     }
 
+    @Transactional
     private Product insertProduct(ClientDataWrapper clientDataWrapper) {
         Customer customer = customerService.findById(clientDataWrapper.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("customerRepository.findById"));
@@ -68,63 +62,14 @@ public class ProductServiceImpl implements ProductService {
         ProductType productType = productTypeService.findById(clientDataWrapper.getProductTypeId())
                 .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
-        return productRepository.save(abstractFactory.getProductFactory()
-                .getProduct(-1, customer, productType, getProductSettingsInProduct(clientDataWrapper)));
-    }
+        Product product = productRepository.save(abstractFactory.getProductFactory()
+                .getProduct(-1, customer, productType, null));
 
-    private Set<ProductSetting> getProductSettingsInProduct(ClientDataWrapper clientDataWrapper){
-        Set<ProductSetting> productSettings = getProductSettings(clientDataWrapper);
-        return new HashSet<>(productSettingService.saveAll(productSettings));
-    }
+        Set<ProductSetting> productSettings = productSettingService.getProductSettings(clientDataWrapper);
+        productSettings.forEach(x -> x.setProduct(product));
+        productSettingService.saveAll(productSettings);
 
-    private Set<ProductSetting> getProductSettings(ClientDataWrapper clientDataWrapper) {
-        List<ProductTypeSetting> productTypeSettings = productTypeSettingService.findByProductType_Id(
-                clientDataWrapper.getProductTypeId());
-
-        return productTypeSettings
-                .stream()
-                .map(pts -> mapProductTypeSettingToProductSetting(pts, clientDataWrapper, productTypeSettings))
-                .collect(Collectors.toSet());
-    }
-
-    private ProductSetting mapProductTypeSettingToProductSetting(ProductTypeSetting productTypeSetting,
-                                                                 ClientDataWrapper clientDataWrapper,
-                                                                 List<ProductTypeSetting> productTypeSettings) {
-        if (!productTypeSetting.getSetting().getIsRuntimeInput()) {
-            return getProductSetting(productTypeSetting, productTypeSetting.getValue());
-        }
-
-        return getProductSetting(productTypeSetting,
-                getValueForProductSetting(productTypeSetting, clientDataWrapper, productTypeSettings));
-    }
-
-    private ProductSetting getProductSetting(ProductTypeSetting productTypeSetting, String value) {
-        return abstractFactory.getProductSettingFactory()
-                .getProductSetting(-1, value, null, productTypeSetting.getSetting());
-    }
-
-    private String getValueForProductSetting(ProductTypeSetting productTypeSetting,
-                                             ClientDataWrapper clientDataWrapper,
-                                             List<ProductTypeSetting> productTypeSettings) {
-        switch (productTypeSetting.getSetting().getName()) {
-            case (EntityUtil.Setting.APPLICATION_DATE):
-                return FilterUtil.localDateTimeToString(clientDataWrapper.getApplicationDate());
-            case (EntityUtil.Setting.AMOUNT):
-                return FilterUtil.integerToString(clientDataWrapper.getAmount());
-            case (EntityUtil.Setting.DUE_DATE):
-                return FilterUtil.localDateTimeToString(clientDataWrapper.getApplicationDate().plusDays(
-                        clientDataWrapper.getTerm()));
-            case (EntityUtil.Setting.AMOUNT_TO_PAY):
-                double rateOfIntrest = productTypeSettingService.findAndGetAsDouble(productTypeSettings,
-                        EntityUtil.Setting.RATE_OF_INTEREST);
-                return FilterUtil.doubleToString(Double.valueOf(clientDataWrapper.getAmount())
-                        * (1 + rateOfIntrest / 100));
-            case (EntityUtil.Setting.TERM):
-                return FilterUtil.integerToString(clientDataWrapper.getTerm());
-        }
-
-        throw new RuntimeException(String.format("getValueForProductSetting - case not found for Setting with name %s",
-                productTypeSetting.getSetting().getName()));
+        return product;
     }
 
 
