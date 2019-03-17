@@ -1,12 +1,12 @@
 package com.example.springLoan.decision_system;
 
 import com.example.springLoan.AbstractTest;
-import com.example.springLoan.ClientDataWrapperFactory;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.service.ProductTypeSettingService;
 import com.example.springLoan.service.ProductTypeSettingServiceImpl;
+import com.example.springLoan.util.TestingUtil;
 import com.example.springLoan.util.constant.EntityUtil;
 import org.junit.Assert;
 import org.junit.Before;
@@ -94,7 +94,7 @@ public class DecisionSystemTest extends AbstractTest {
     }
 
     private ClientDataWrapper getClientDataWrapper(Integer amount, String applicationDate, Integer term) {
-        return ClientDataWrapperFactory.getClientDataWrapper(amount, applicationDate, term);
+        return TestingUtil.getClientDataWrapper(amount, applicationDate, term);
     }
 
     private ProductTypeSetting getProductTypeSetting(String settingName, String dataTypeName, String value) {

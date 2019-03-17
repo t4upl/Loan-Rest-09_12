@@ -30,7 +30,7 @@ As a general rule upon granting the loan its properties with relation to the cus
 Loan properties are modelled as generic table. Name of properties are stored in *setting* table while values of the properties are stored in *product_type_setting* table as text. Upon retrieving a property from database the application casts the property to Java type based on value from *data_type* table. Generic solution was needed as loans may require a lot of  variables specific to only chosen types of loans.
 
 ## To Do
-- Endpoint for giving the loan
+- <del>Endpoint for applying the loan<del>
 - Endpoint for prolonging the loan
 - Liquibase integration
 - Google checkstyle
