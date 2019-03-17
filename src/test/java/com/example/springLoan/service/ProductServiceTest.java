@@ -8,7 +8,7 @@ import com.example.springLoan.model.Product;
 import com.example.springLoan.model.ProductSetting;
 import com.example.springLoan.model.ProductType;
 import com.example.springLoan.other.ClientDataWrapper;
-import com.example.springLoan.other.decision_system.DecisionSystem;
+import com.example.springLoan.decision_system.DecisionSystem;
 import com.example.springLoan.repository.ProductRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,7 +38,8 @@ public class ProductServiceTest extends AbstractTest {
 
     @Before
     public void setUp(){
-        this.productRepository = Mockito.mock(ProductRepository.class, new NullPointerExceptionAnswer("productRepository"));
+        this.productRepository = Mockito.mock(ProductRepository.class,
+                new NullPointerExceptionAnswer("productRepository"));
         this.customerService = Mockito.mock(CustomerService.class, new NullPointerExceptionAnswer("customerService"));
         this.productTypeService = Mockito.mock(ProductTypeService.class,
                 new NullPointerExceptionAnswer("productTypeService"));

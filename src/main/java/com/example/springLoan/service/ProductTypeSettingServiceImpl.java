@@ -1,9 +1,9 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.model.ProductTypeSetting;
-import com.example.springLoan.repository.ProductTypeRepository;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.util.constant.EntityUtil;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ProductTypeSettingServiceImpl implements ProductTypeSettingService {
 
-    @Autowired
     ProductTypeSettingRepository productTypeSettingRepository;
 
     @Override
@@ -38,7 +38,7 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
 
     private String findAndGetAsObject (List<ProductTypeSetting> productTypeSettings, String propertyKey,
                                        String dataTypeKey) {
-        ProductTypeSetting productTypeSetting = findProductTypeSettingByValue(productTypeSettings, propertyKey);
+        ProductTypeSetting productTypeSetting = findProductTypeSettingByName(productTypeSettings, propertyKey);
 
         String ptsDataType = productTypeSetting.getSetting().getDataType().getName();
         if (!ptsDataType.equals(dataTypeKey)) {
@@ -49,13 +49,13 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
         return productTypeSetting.getValue();
     }
 
-    private ProductTypeSetting findProductTypeSettingByValue(List<ProductTypeSetting> productSettings,
-                                                             String key) {
+    private ProductTypeSetting findProductTypeSettingByName(List<ProductTypeSetting> productSettings,
+                                                            String key) {
         return productSettings
                 .stream()
                 .filter(productTypeSetting ->
                         productTypeSetting.getSetting().getName().equals(key))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("findProductTypeSettingByValue: " + key));
+                .orElseThrow(() -> new RuntimeException("findProductTypeSettingByName: " + key));
     }
 }

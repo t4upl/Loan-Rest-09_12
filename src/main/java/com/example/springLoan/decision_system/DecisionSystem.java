@@ -1,4 +1,4 @@
-package com.example.springLoan.other.decision_system;
+package com.example.springLoan.decision_system;
 
 import com.example.springLoan.other.ClientDataWrapper;
 

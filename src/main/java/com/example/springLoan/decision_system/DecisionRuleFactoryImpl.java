@@ -1,41 +1,24 @@
-package com.example.springLoan.other.decision_system;
+package com.example.springLoan.decision_system;
 
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.other.ClientDataWrapper;
-import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.service.ProductTypeSettingService;
 import com.example.springLoan.util.constant.EntityUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
 import java.util.List;
 
 @Component
-public class DecisionSystemImpl implements DecisionSystem {
+@AllArgsConstructor
+public class DecisionRuleFactoryImpl implements DecisionRuleFactory {
 
-    @Autowired
-    private ProductTypeSettingRepository productTypeSettingRepository;
-
-    @Autowired
-    private ProductTypeSettingService productTypeSettingService;
+    ProductTypeSettingService productTypeSettingService;
 
     @Override
-    public boolean isLoanGiven(ClientDataWrapper clientDataWrapper) {
-        DecisionRule decisionRule;
-        switch (clientDataWrapper.getProductTypeId()) {
-            case 1:
-                decisionRule = rulesForProductTypeWithId1(clientDataWrapper);
-                break;
-            default:
-                throw new RuntimeException(String.format("No loan application rule set for loan with " +
-                    "productType: %d", clientDataWrapper.getProductTypeId()));
-        }
-        return decisionRule.checkRule();
-    }
-
-    private DecisionRule rulesForProductTypeWithId1(ClientDataWrapper clientDataWrapper){
-        List<ProductTypeSetting> productTypeSettings = productTypeSettingRepository
+    public DecisionRule rulesForTestProductType(ClientDataWrapper clientDataWrapper) {
+        List<ProductTypeSetting> productTypeSettings = productTypeSettingService
                 .findByProductType_Id(clientDataWrapper.getProductTypeId());
 
         Integer minAmount = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
@@ -63,6 +46,4 @@ public class DecisionSystemImpl implements DecisionSystem {
                         minRejectionTime, maxRejectionTime, loanApplicationTime))
                 .build();
     }
-
-
 }
