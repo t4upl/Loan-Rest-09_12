@@ -1,7 +1,6 @@
 package com.example.springLoan.factory;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 @Component

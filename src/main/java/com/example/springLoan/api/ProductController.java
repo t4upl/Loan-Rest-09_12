@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -30,7 +31,7 @@ public class ProductController {
         return new ResponseEntity<>(SANITY_TEST_RESPONSE, HttpStatus.OK);
     }
 
-    @RequestMapping(value = APPLY_FOR_LOAN_PATH)
+    @RequestMapping(value = APPLY_FOR_LOAN_PATH, method = RequestMethod.POST)
     public ResponseEntity<String> applyForLoan(@RequestBody ClientDataWrapper clientDataWrapper){
         Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
         if (optionalProduct.isPresent()) {
