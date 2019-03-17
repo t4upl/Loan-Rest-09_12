@@ -1,7 +1,6 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
-import com.example.springLoan.ClientDataWrapperFactory;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.Customer;
 import com.example.springLoan.model.Product;
@@ -10,6 +9,7 @@ import com.example.springLoan.model.ProductType;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.decision_system.DecisionSystem;
 import com.example.springLoan.repository.ProductRepository;
+import com.example.springLoan.util.TestingUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class ProductServiceTest extends AbstractTest {
         this.productService = new ProductServiceImpl(productRepository, customerService, productTypeService,
                 productSettingService, productTypeSettingService, decisionSystem, abstractFactory);
 
-        this.clientDataWrapper = ClientDataWrapperFactory.getClientDataWrapper(null, "1986-04-08 12:30", 15);
+        this.clientDataWrapper = TestingUtil.getClientDataWrapper(null, "1986-04-08 12:30", 15);
     }
 
     @Test

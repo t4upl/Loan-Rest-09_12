@@ -1,13 +1,12 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
-import com.example.springLoan.ClientDataWrapperFactory;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductSettingRepository;
+import com.example.springLoan.util.TestingUtil;
 import com.example.springLoan.util.constant.EntityUtil;
-import org.apache.logging.log4j.util.Strings;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,7 +46,7 @@ public class ProductSettingServiceTest extends AbstractTest {
         this.productSettingService = new ProductSettingServiceImpl(productSettingRepository, productTypeSettingService,
                 abstractFactory);
 
-        this.clientDataWrapper = ClientDataWrapperFactory.getClientDataWrapper(CLIENT_DATA_WRAPPER_AMOUNT,
+        this.clientDataWrapper = TestingUtil.getClientDataWrapper(CLIENT_DATA_WRAPPER_AMOUNT,
                 APPLICATION_DATE, TERM);
     }
 
