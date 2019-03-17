@@ -28,5 +28,4 @@ public class ProductSetting implements Serializable {
     @ManyToOne
     @JoinColumn(name="setting_id")
     private Setting setting;
-
 }
