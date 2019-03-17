@@ -1,20 +1,15 @@
 package com.example.springLoan.factory;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class AbstractFactoryImpl implements AbstractFactory {
 
     ProductSettingFactory productSettingFactory;
-
     ProductFactory productFactory;
-
-    AbstractFactoryImpl (ProductSettingFactory productSettingFactory, ProductFactory productFactory){
-        this.productSettingFactory = productSettingFactory;
-        this.productFactory = productFactory;
-    }
 
     @Override
     public ProductSettingFactory getProductSettingFactory() {
