@@ -25,9 +25,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 public class ProductServiceTest extends AbstractTest {
-
-    private final static Integer CLIENT_DATA_WRAPPER_AMOUNT = 5000;
-
     ProductService productService;
     CustomerService customerService;
     ProductRepository productRepository;
@@ -56,18 +53,18 @@ public class ProductServiceTest extends AbstractTest {
         this.productService = new ProductServiceImpl(productRepository, customerService, productTypeService,
                 productSettingService, productTypeSettingService, decisionSystem, abstractFactory);
 
-        this.clientDataWrapper = ClientDataWrapperFactory.getClientDataWrapper(CLIENT_DATA_WRAPPER_AMOUNT, "1986-04-08 12:30", 15);
+        this.clientDataWrapper = ClientDataWrapperFactory.getClientDataWrapper(null, "1986-04-08 12:30", 15);
     }
 
     @Test
     public void whenClientDataNotValidReturnOptionalEmpty(){
-        when(decisionSystem.isLoanGiven(any())).thenReturn(false);
+        doReturn(false).when(decisionSystem).isLoanGiven(any());
         Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
-        Assert.assertFalse(optionalProduct .isPresent());
+        Assert.assertFalse(optionalProduct.isPresent());
     }
 
     @Test
-    public void whenClientDataValidReturnProduct_2(){
+    public void whenClientDataValidReturnProduct(){
         //given
         doReturn(true).when(decisionSystem).isLoanGiven(any());
         doReturn(Optional.of(new Customer())).when(customerService).findById(any());
@@ -104,37 +101,4 @@ public class ProductServiceTest extends AbstractTest {
         Assert.assertEquals("There should be 1 element in productSettings list",1,
                 productSettings.size());
         }
-
-    @Test
-    public void whenClientDataValidReturnProduct(){
-        //given
-        doReturn(true).when(decisionSystem).isLoanGiven(any());
-        doReturn(Optional.of(new Customer())).when(customerService).findById(any());
-        doReturn(Optional.of(new ProductType())).when(productTypeService).findById(any());
-        when(abstractFactory.getProductFactory().getProduct(any(), any(), any(), any()))
-            .thenAnswer((Answer<Product>) inv -> new Product(inv.getArgument(0), inv.getArgument(1),
-                    inv.getArgument(2), inv.getArgument(3)));
-
-
-        doAnswer((Answer<List<ProductSetting>>) invocationOnMock
-                -> new ArrayList<> ((HashSet<ProductSetting>) invocationOnMock.getArguments()[0]))
-                .when(productSettingService).saveAll(any());
-
-        doAnswer((Answer<Product>) invocationOnMock -> (Product) invocationOnMock.getArguments()[0])
-                .when(productRepository).save(any());
-
-        //when
-        Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
-
-        //then
-        Assert.assertTrue(optionalProduct.isPresent());
-
-        Set<ProductSetting> productSettings = optionalProduct.get().getProductSettings();
-        Assert.assertEquals("There should be 2 productTypeSettings present in list",2, productSettings.size());
-    }
-
-
-
-
-
 }
