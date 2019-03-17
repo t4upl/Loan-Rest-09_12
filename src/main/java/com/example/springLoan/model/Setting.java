@@ -1,10 +1,7 @@
 package com.example.springLoan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,6 +12,8 @@ import java.util.Set;
 @Setter
 @ToString (exclude = {"dataType"})
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Setting {
 
     @Id

@@ -9,6 +9,7 @@ import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.constant.EntityUtil;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +18,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class ProductSettingServiceImpl implements ProductSettingService {
 
-    @Autowired
     ProductSettingRepository productSettingRepository;
-
-    @Autowired
     ProductTypeSettingService productTypeSettingService;
-
-    @Autowired
     AbstractFactory abstractFactory;
 
     @Override

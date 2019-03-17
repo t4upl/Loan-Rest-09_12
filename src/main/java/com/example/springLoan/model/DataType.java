@@ -1,8 +1,6 @@
 package com.example.springLoan.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +10,8 @@ import java.util.Set;
 @Table(name = "data_type", schema = "public")
 @Getter @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class DataType implements Serializable {
 
     @Id
@@ -23,6 +23,6 @@ public class DataType implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "dataType")
-    Set<Setting> dataTypes;
+    Set<Setting> settings;
 
 }
