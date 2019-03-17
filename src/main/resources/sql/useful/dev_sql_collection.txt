@@ -4,8 +4,9 @@
 
 -- print all settings of product_type with [id] = 1
 
-select name, value from product_type_setting
+select setting.name, value, data_type.name  from product_type_setting
 join setting on product_type_setting.setting_id = setting.id
+join data_type on setting.data_type_id = data_type.id
 where product_type_id=1;
 --------------------------------------
 
@@ -14,9 +15,13 @@ where product_type_id=1;
 select product.id, setting.name, product_setting.value from product
 join product_setting on product.id = product_setting.product_id
 join setting on setting.id = product_setting.setting_id
-where product.id = 1;
+where product.id = 2
+order by name;
 --------------------------------------
 
 -- delete product
 delete from product_setting where product_id > 1;
 delete from product where id > 1;
+
+--------------------------------------
+

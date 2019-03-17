@@ -10,10 +10,12 @@ import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.constant.EntityUtil;
 import lombok.AllArgsConstructor;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,25 +62,36 @@ public class ProductSettingServiceImpl implements ProductSettingService {
     private String getValueForProductSetting(ProductTypeSetting productTypeSetting,
                                              ClientDataWrapper clientDataWrapper,
                                              List<ProductTypeSetting> productTypeSettings) {
+
+        String dataTypeName = productTypeSetting.getSetting().getDataType().getName();
+        Optional<Object> javaObjectOpt = Optional.empty();
+
         switch (productTypeSetting.getSetting().getName()) {
             case (EntityUtil.Setting.APPLICATION_DATE):
-                return FilterUtil.localDateTimeToString(clientDataWrapper.getApplicationDate());
+                javaObjectOpt = Optional.of(clientDataWrapper.getApplicationDate());
+                break;
             case (EntityUtil.Setting.AMOUNT):
-                return FilterUtil.integerToString(clientDataWrapper.getAmount());
+                javaObjectOpt = Optional.of(clientDataWrapper.getAmount());
+                break;
             case (EntityUtil.Setting.DUE_DATE):
-                return FilterUtil.localDateTimeToString(clientDataWrapper.getApplicationDate().plusDays(
+                javaObjectOpt = Optional.of(clientDataWrapper.getApplicationDate().plusDays(
                         clientDataWrapper.getTerm()));
+                break;
             case (EntityUtil.Setting.AMOUNT_TO_PAY):
                 double rateOfIntrest = productTypeSettingService.findAndGetAsDouble(productTypeSettings,
                         EntityUtil.Setting.RATE_OF_INTEREST);
-                return FilterUtil.doubleToString(Double.valueOf(clientDataWrapper.getAmount())
+                javaObjectOpt = Optional.of(Double.valueOf(clientDataWrapper.getAmount())
                         * (1 + rateOfIntrest / 100));
+                break;
             case (EntityUtil.Setting.TERM):
-                return FilterUtil.integerToString(clientDataWrapper.getTerm());
+                javaObjectOpt = Optional.of(clientDataWrapper.getTerm());
+                break;
         }
 
+        if (javaObjectOpt.isPresent()) {
+            return FilterUtil.convertJavaToString(javaObjectOpt.get(), dataTypeName);
+        }
         throw new RuntimeException(String.format("getValueForProductSetting - case not found for Setting with name %s",
                 productTypeSetting.getSetting().getName()));
     }
-
 }

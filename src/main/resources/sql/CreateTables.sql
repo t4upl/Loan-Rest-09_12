@@ -118,7 +118,7 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'extension term', 1, '0');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount', 1, '1');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'application date', 2, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount to pay', 1, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount to pay', 5, '1');
         INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'term', 1, '1');
 
         --insert settings describing a debt with product_type_id = 1

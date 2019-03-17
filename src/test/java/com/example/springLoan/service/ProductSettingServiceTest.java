@@ -52,7 +52,7 @@ public class ProductSettingServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenGetProductSettingsValidReturnProductSettingSet(){
+    public void whenClientDataValidReturnProductSettingSet(){
         //given
         final String PRODUCT_TYPE_SETTING_VALUE = "1000";
         final String TERM_SETTING = "30";
