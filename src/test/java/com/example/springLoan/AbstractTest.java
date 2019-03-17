@@ -2,7 +2,7 @@ package com.example.springLoan;
 
 import org.junit.Test;
 
-public class AbstractTest {
+public abstract class AbstractTest {
 
     @Test
     public void smokeTest(){

@@ -13,7 +13,7 @@ public class TestingUtil {
 
     public static String readFileAsString(String filePath) {
         File file = new File(TestingUtil.class.getClassLoader()
-                .getResource("test/json/client_data_wrapper/client_data_wrapper.json").getFile());
+                .getResource(filePath).getFile());
         List<String> strings = null;
         try {
             strings = Files.readAllLines(file.toPath());

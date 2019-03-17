@@ -5,8 +5,6 @@ import com.example.springLoan.ClientDataWrapperFactory;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
-import com.example.springLoan.util.TestingUtil;
-import com.example.springLoan.util.constant.ApplicationConstant;
 import com.example.springLoan.util.constant.EntityUtil;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 

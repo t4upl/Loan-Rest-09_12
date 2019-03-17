@@ -7,11 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class AbstractFactoryImpl implements AbstractFactory {
 
-    @Autowired
     ProductSettingFactory productSettingFactory;
 
-    @Autowired
     ProductFactory productFactory;
+
+    AbstractFactoryImpl (ProductSettingFactory productSettingFactory, ProductFactory productFactory){
+        this.productSettingFactory = productSettingFactory;
+        this.productFactory = productFactory;
+    }
 
     @Override
     public ProductSettingFactory getProductSettingFactory() {

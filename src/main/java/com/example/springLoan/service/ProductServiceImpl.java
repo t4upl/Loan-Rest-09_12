@@ -4,10 +4,7 @@ import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.other.decision_system.DecisionSystem;
-import com.example.springLoan.repository.CustomerRepository;
 import com.example.springLoan.repository.ProductRepository;
-import com.example.springLoan.repository.ProductTypeRepository;
-import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.constant.EntityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,16 +61,46 @@ public class ProductServiceImpl implements ProductService {
         return Optional.empty();
     }
 
-    private ProductSetting mapProductTypeSettingToProductSetting(ProductTypeSetting productTypeSetting,
-                                                                 Product product, ClientDataWrapper clientDataWrapper,
-                                                                 List<ProductTypeSetting> productTypeSettings) {
+    private Product insertProduct(ClientDataWrapper clientDataWrapper) {
+        Customer customer = customerService.findById(clientDataWrapper.getCustomerId())
+                .orElseThrow(() -> new RuntimeException("customerRepository.findById"));
 
+        ProductType productType = productTypeService.findById(clientDataWrapper.getProductTypeId())
+                .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
+
+        return productRepository.save(abstractFactory.getProductFactory()
+                .getProduct(-1, customer, productType, getProductSettingsInProduct(clientDataWrapper)));
+    }
+
+    private Set<ProductSetting> getProductSettingsInProduct(ClientDataWrapper clientDataWrapper){
+        Set<ProductSetting> productSettings = getProductSettings(clientDataWrapper);
+        return new HashSet<>(productSettingService.saveAll(productSettings));
+    }
+
+    private Set<ProductSetting> getProductSettings(ClientDataWrapper clientDataWrapper) {
+        List<ProductTypeSetting> productTypeSettings = productTypeSettingService.findByProductType_Id(
+                clientDataWrapper.getProductTypeId());
+
+        return productTypeSettings
+                .stream()
+                .map(pts -> mapProductTypeSettingToProductSetting(pts, clientDataWrapper, productTypeSettings))
+                .collect(Collectors.toSet());
+    }
+
+    private ProductSetting mapProductTypeSettingToProductSetting(ProductTypeSetting productTypeSetting,
+                                                                 ClientDataWrapper clientDataWrapper,
+                                                                 List<ProductTypeSetting> productTypeSettings) {
         if (!productTypeSetting.getSetting().getIsRuntimeInput()) {
-            return getProductSetting(productTypeSetting, product, productTypeSetting.getValue());
+            return getProductSetting(productTypeSetting, productTypeSetting.getValue());
         }
 
-        return getProductSetting(productTypeSetting, product,
+        return getProductSetting(productTypeSetting,
                 getValueForProductSetting(productTypeSetting, clientDataWrapper, productTypeSettings));
+    }
+
+    private ProductSetting getProductSetting(ProductTypeSetting productTypeSetting, String value) {
+        return abstractFactory.getProductSettingFactory()
+                .getProductSetting(-1, value, null, productTypeSetting.getSetting());
     }
 
     private String getValueForProductSetting(ProductTypeSetting productTypeSetting,
@@ -101,39 +128,4 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    private ProductSetting getProductSetting(ProductTypeSetting productTypeSetting, Product product, String value) {
-        return abstractFactory.getProductSettingFactory()
-                    .getProductSetting(-1, value, product, productTypeSetting.getSetting());
-    }
-
-
-    private Set<ProductSetting> getProductSettings(Product product, ClientDataWrapper clientDataWrapper) {
-        List<ProductTypeSetting> productTypeSettings = productTypeSettingService.findByProductType_Id(
-                clientDataWrapper.getProductTypeId());
-
-        return productTypeSettings
-                .stream()
-                .map(pts -> mapProductTypeSettingToProductSetting(pts, product, clientDataWrapper, productTypeSettings))
-                .collect(Collectors.toSet());
-    }
-
-    private Product insertProduct(ClientDataWrapper clientDataWrapper) {
-        Customer customer = customerService.findById(clientDataWrapper.getCustomerId())
-                .orElseThrow(() -> new RuntimeException("customerRepository.findById"));
-
-        ProductType productType = productTypeService.findById(clientDataWrapper.getProductTypeId())
-                .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
-
-        Product product = abstractFactory.getProductFactory().getProduct(-1, customer, productType, new HashSet<>());
-        product = productRepository.save(product);
-        setProductSettingsInProduct(product, clientDataWrapper);
-
-        return product;
-    }
-
-    private void setProductSettingsInProduct(Product product, ClientDataWrapper clientDataWrapper){
-        Set<ProductSetting> productSettings = getProductSettings(product, clientDataWrapper);
-        List<ProductSetting> productSettings1 = productSettingService.saveAll(productSettings);
-        product.setProductSettings(new HashSet<ProductSetting>(productSettings1));
-    }
 }
