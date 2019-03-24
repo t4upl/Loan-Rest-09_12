@@ -1,4 +1,4 @@
-package com.example.springLoan.other;
+package com.example.springLoan.dto;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @AllArgsConstructor
-public class ClientDataWrapper {
+public class ProductRequestDTO {
     private Integer customerId;
     private Integer productTypeId;
     private Integer amount;

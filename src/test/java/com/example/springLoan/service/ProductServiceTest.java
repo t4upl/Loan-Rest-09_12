@@ -1,12 +1,12 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
+import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.Customer;
 import com.example.springLoan.model.Product;
 import com.example.springLoan.model.ProductSetting;
 import com.example.springLoan.model.ProductType;
-import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.decision_system.DecisionSystem;
 import com.example.springLoan.repository.ProductRepository;
 import com.example.springLoan.util.TestingUtil;
@@ -34,7 +34,7 @@ public class ProductServiceTest extends AbstractTest {
     ProductTypeService productTypeService;
     AbstractFactory abstractFactory;
 
-    ClientDataWrapper clientDataWrapper;
+    ProductRequestDTO productRequestDTO;
 
     @Before
     public void setUp(){
@@ -54,13 +54,13 @@ public class ProductServiceTest extends AbstractTest {
         this.productService = new ProductServiceImpl(productRepository, customerService, productTypeService,
                 productSettingService, productTypeSettingService, decisionSystem, abstractFactory);
 
-        this.clientDataWrapper = TestingUtil.getClientDataWrapper(null, "1986-04-08 12:30", 15);
+        this.productRequestDTO = TestingUtil.getProductRequestDTO(null, "1986-04-08 12:30", 15);
     }
 
     @Test
     public void whenClientDataNotValidReturnOptionalEmpty(){
         doReturn(false).when(decisionSystem).isLoanGiven(any());
-        Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
+        Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
         Assert.assertFalse(optionalProduct.isPresent());
     }
 
@@ -92,7 +92,7 @@ public class ProductServiceTest extends AbstractTest {
                 .when(productSettingService).saveAll(any());
 
         //when
-        Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
+        Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
 
         //then
         Assert.assertTrue(optionalProduct.isPresent());

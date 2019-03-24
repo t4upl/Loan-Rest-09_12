@@ -1,7 +1,7 @@
 package com.example.springLoan.service;
 
+import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.model.ProductSetting;
-import com.example.springLoan.other.ClientDataWrapper;
 
 import java.util.List;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
 public interface ProductSettingService {
     List<ProductSetting> saveAll(Iterable<ProductSetting> productSettings);
 
-    Set<ProductSetting> getProductSettings(ClientDataWrapper clientDataWrapper);
+    Set<ProductSetting> getProductSettings(ProductRequestDTO productRequestDTO);
 
 
 }

@@ -1,6 +1,6 @@
 package com.example.springLoan.util;
 
-import com.example.springLoan.other.ClientDataWrapper;
+import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.util.constant.ApplicationConstant;
 
 import java.io.File;
@@ -25,8 +25,8 @@ public class TestingUtil {
         return strings.stream().collect(Collectors.joining("\n"));
     }
 
-    public static ClientDataWrapper getClientDataWrapper(Integer amount, String applicationDate, Integer term) {
-        return ClientDataWrapper.builder()
+    public static ProductRequestDTO getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
+        return ProductRequestDTO.builder()
                 .amount(amount)
                 .applicationDate(LocalDateTime.parse(applicationDate,
                         DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT)))

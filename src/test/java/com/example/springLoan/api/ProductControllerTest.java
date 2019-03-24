@@ -61,13 +61,13 @@ public class ProductControllerTest {
         when(productService.getLoan(any())).thenReturn(optionalProduct);
 
 
-        String clientDataWrapper = TestingUtil.readFileAsString(
-                "test/json/client_data_wrapper/client_data_wrapper.json");
+        String productRequest = TestingUtil.readFileAsString(
+                "test/json/product_request_dto.json");
 
         //when
         MvcResult mvcResult = mockMvc.perform(post(ProductControllerConstant.APPLY_FOR_LOAN_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(clientDataWrapper)
+                .content(productRequest)
                 .accept(MediaType.TEXT_PLAIN)).andReturn();
 
         //then
@@ -82,13 +82,13 @@ public class ProductControllerTest {
     public void whenApplyForLoanFailReturnBadRequest() throws Exception {
         //given
         when(productService.getLoan(any())).thenReturn(Optional.empty());
-        String clientDataWrapper = TestingUtil.readFileAsString(
-                "test/json/client_data_wrapper/client_data_wrapper.json");
+        String productRequestDTO = TestingUtil.readFileAsString(
+                "test/json/product_request_dto.json");
 
         //when
         MvcResult mvcResult = mockMvc.perform(post(ProductControllerConstant.APPLY_FOR_LOAN_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(clientDataWrapper)
+                .content(productRequestDTO)
                 .accept(MediaType.TEXT_PLAIN)).andReturn();
 
         //then

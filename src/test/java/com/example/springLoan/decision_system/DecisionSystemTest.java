@@ -1,8 +1,8 @@
 package com.example.springLoan.decision_system;
 
 import com.example.springLoan.AbstractTest;
+import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.model.ProductTypeSetting;
-import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.service.ProductTypeSettingService;
 import com.example.springLoan.service.ProductTypeSettingServiceImpl;
@@ -53,48 +53,48 @@ public class DecisionSystemTest extends AbstractTest {
 
     @Test
     public void whenProperClientDataReturnTrue() {
-        Assert.assertTrue(decisionSystem.isLoanGiven(getClientDataWrapper(2000,
+        Assert.assertTrue(decisionSystem.isLoanGiven(getProductRequestDTO(2000,
                 "1986-04-08 12:30", 15)));
     }
 
     @Test
     public void whenAmountEqualsMaxAmountReturnTrue() {
-        Assert.assertTrue(decisionSystem.isLoanGiven(getClientDataWrapper(5000,
+        Assert.assertTrue(decisionSystem.isLoanGiven(getProductRequestDTO(5000,
                 "1986-04-08 12:30", 15)));
     }
 
     @Test
     public void whenAmountBiggerThanMaxAmountReturnFalse() {
-        Assert.assertFalse(decisionSystem.isLoanGiven(getClientDataWrapper(20000000,
+        Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(20000000,
                 "1986-04-08 12:30", 15)));
     }
 
     @Test
     public void whenAmountSamllerThanMinAmountReturnFalse() {
-        Assert.assertFalse(decisionSystem.isLoanGiven(getClientDataWrapper(-1,
+        Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(-1,
                 "1986-04-08 12:30", 15)));
     }
 
     @Test
     public void whenTermBiggerThanMaxTermReturnFalse() {
-        Assert.assertFalse(decisionSystem.isLoanGiven(getClientDataWrapper(2000,
+        Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(2000,
                 "1986-04-08 12:30", 15000)));
     }
 
     @Test
     public void whenAmountEqualsMaxAndApplicationHourBetweenMinAndMaxAmountReturnFalse() {
-        Assert.assertFalse(decisionSystem.isLoanGiven(getClientDataWrapper(5000,
+        Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(5000,
                 "1986-04-08 05:30", 15)));
     }
 
     @Test
     public void whenAmountSmallerThanMaxAndApplicationHourBetweenMinAndMaxAmountReturnTrue() {
-        Assert.assertTrue(decisionSystem.isLoanGiven(getClientDataWrapper(4900,
+        Assert.assertTrue(decisionSystem.isLoanGiven(getProductRequestDTO(4900,
                 "1986-04-08 05:30", 15)));
     }
 
-    private ClientDataWrapper getClientDataWrapper(Integer amount, String applicationDate, Integer term) {
-        return TestingUtil.getClientDataWrapper(amount, applicationDate, term);
+    private ProductRequestDTO getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
+        return TestingUtil.getProductRequestDTO(amount, applicationDate, term);
     }
 
     private ProductTypeSetting getProductTypeSetting(String settingName, String dataTypeName, String value) {

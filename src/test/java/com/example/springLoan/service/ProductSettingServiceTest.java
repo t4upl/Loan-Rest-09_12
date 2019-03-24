@@ -1,9 +1,9 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
+import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
-import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.TestingUtil;
 import com.example.springLoan.util.constant.EntityUtil;
@@ -33,7 +33,7 @@ public class ProductSettingServiceTest extends AbstractTest {
     ProductTypeSettingService productTypeSettingService;
     AbstractFactory abstractFactory;
 
-    ClientDataWrapper clientDataWrapper;
+    ProductRequestDTO productRequestDTO;
 
     @Before
     public void setUp(){
@@ -46,7 +46,7 @@ public class ProductSettingServiceTest extends AbstractTest {
         this.productSettingService = new ProductSettingServiceImpl(productSettingRepository, productTypeSettingService,
                 abstractFactory);
 
-        this.clientDataWrapper = TestingUtil.getClientDataWrapper(CLIENT_DATA_WRAPPER_AMOUNT,
+        this.productRequestDTO = TestingUtil.getProductRequestDTO(CLIENT_DATA_WRAPPER_AMOUNT,
                 APPLICATION_DATE, TERM);
     }
 
@@ -75,7 +75,7 @@ public class ProductSettingServiceTest extends AbstractTest {
                         new ProductSetting(null, inv.getArgument(1), null, inv.getArgument(3)));
 
         //when
-        Set<ProductSetting> productSettings = productSettingService.getProductSettings(clientDataWrapper);
+        Set<ProductSetting> productSettings = productSettingService.getProductSettings(productRequestDTO);
 
         //then
         Assert.assertEquals("productSetting size should be the same as productTypeSettingsMock size",
@@ -88,7 +88,7 @@ public class ProductSettingServiceTest extends AbstractTest {
                 productSettings.stream().anyMatch(x -> EntityUtil.Setting.TERM.equals(x.getSetting().getName())));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to true " +
-                        "should have value based on clientDataWrapper.",
+                        "should have value based on productRequestDTO.",
                 CLIENT_DATA_WRAPPER_AMOUNT.toString(), getValueByName(productSettings, EntityUtil.Setting.AMOUNT));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to false " +

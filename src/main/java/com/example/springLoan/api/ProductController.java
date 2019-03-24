@@ -1,7 +1,7 @@
 package com.example.springLoan.api;
 
+import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.model.Product;
-import com.example.springLoan.other.ClientDataWrapper;
 import com.example.springLoan.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,8 +32,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = APPLY_FOR_LOAN_PATH, method = RequestMethod.POST)
-    public ResponseEntity<String> applyForLoan(@RequestBody ClientDataWrapper clientDataWrapper){
-        Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
+    public ResponseEntity<String> applyForLoan(@RequestBody ProductRequestDTO productRequestDTO){
+        Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
         if (optionalProduct.isPresent()) {
             return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_SUCCESS_RESPONSE,
                     optionalProduct.get().getId()), HttpStatus.CREATED);

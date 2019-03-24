@@ -1,6 +1,6 @@
 package com.example.springLoan.decision_system;
 
-import com.example.springLoan.other.ClientDataWrapper;
+import com.example.springLoan.dto.ProductRequestDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,15 +11,15 @@ public class DecisionSystemImpl implements DecisionSystem {
     DecisionRuleFactory decisionRuleFactory;
 
     @Override
-    public boolean isLoanGiven(ClientDataWrapper clientDataWrapper) {
+    public boolean isLoanGiven(ProductRequestDTO productRequestDTO) {
         DecisionRule decisionRule;
-        switch (clientDataWrapper.getProductTypeId()) {
+        switch (productRequestDTO.getProductTypeId()) {
             case 1:
-                decisionRule = decisionRuleFactory.rulesForTestProductType(clientDataWrapper);
+                decisionRule = decisionRuleFactory.rulesForTestProductType(productRequestDTO);
                 break;
             default:
                 throw new RuntimeException(String.format("No loan application rule set for loan with " +
-                    "productType: %d", clientDataWrapper.getProductTypeId()));
+                    "productType: %d", productRequestDTO.getProductTypeId()));
         }
         return decisionRule.checkRule();
     }

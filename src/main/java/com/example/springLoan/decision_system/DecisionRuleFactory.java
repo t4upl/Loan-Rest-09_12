@@ -1,7 +1,7 @@
 package com.example.springLoan.decision_system;
 
-import com.example.springLoan.other.ClientDataWrapper;
+import com.example.springLoan.dto.ProductRequestDTO;
 
 public interface DecisionRuleFactory {
-    DecisionRule rulesForTestProductType(ClientDataWrapper clientDataWrapper);
+    DecisionRule rulesForTestProductType(ProductRequestDTO productRequestDTO);
 }
