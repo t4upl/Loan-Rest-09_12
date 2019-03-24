@@ -2,7 +2,7 @@ package com.example.springLoan.service;
 
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
-import com.example.springLoan.util.constant.EntityUtil;
+import com.example.springLoan.util.constant.DataTypeConstant;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +17,17 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
 
     @Override
     public Integer findAndGetAsInteger(List<ProductTypeSetting> productTypeSettings, String key) {
-        return Integer.parseInt(findAndGetAsObject(productTypeSettings, key, EntityUtil.DataType.INTEGER));
+        return Integer.parseInt(findAndGetAsObject(productTypeSettings, key, DataTypeConstant.INTEGER));
     }
 
     @Override
     public LocalTime findAndGetAsLocalTime(List<ProductTypeSetting> productTypeSettings, String key) {
-        return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, EntityUtil.DataType.LOCAL_TIME));
+        return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, DataTypeConstant.LOCAL_TIME));
     }
 
     @Override
     public Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, String key) {
-        return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, EntityUtil.DataType.DOUBLE));
+        return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, DataTypeConstant.DOUBLE));
     }
 
     @Override

@@ -7,7 +7,8 @@ import com.example.springLoan.model.*;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.TestingUtil;
-import com.example.springLoan.util.constant.EntityUtil;
+import com.example.springLoan.util.constant.DataTypeConstant;
+import com.example.springLoan.util.constant.SettingConstant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,14 +57,14 @@ public class ProductSettingServiceTest extends AbstractTest {
         final String PRODUCT_TYPE_SETTING_VALUE = "1000";
         final String TERM_SETTING = "30";
 
-        Setting setting1 = new Setting(null, EntityUtil.Setting.AMOUNT,
-                new DataType(null, EntityUtil.DataType.INTEGER, null),
+        Setting setting1 = new Setting(null, SettingConstant.AMOUNT,
+                new DataType(null, DataTypeConstant.INTEGER, null),
                 true, null, null);
         ProductTypeSetting productTypeSetting1 = new ProductTypeSetting(null, PRODUCT_TYPE_SETTING_VALUE,
                 null, setting1);
 
-        Setting setting2 = new Setting(null, EntityUtil.Setting.TERM,
-                new DataType(null, EntityUtil.DataType.INTEGER, null),
+        Setting setting2 = new Setting(null, SettingConstant.TERM,
+                new DataType(null, DataTypeConstant.INTEGER, null),
                 false, null, null);
         ProductTypeSetting productTypeSetting2 = new ProductTypeSetting(null, TERM_SETTING, null,
                 setting2);
@@ -82,18 +83,18 @@ public class ProductSettingServiceTest extends AbstractTest {
                 productTypeSettingsMock.size(), productSettings.size());
 
         Assert.assertTrue("productSetting should contain element wiht name equal to 'amount'.",
-                productSettings.stream().anyMatch(x -> EntityUtil.Setting.AMOUNT.equals(x.getSetting().getName())));
+                productSettings.stream().anyMatch(x -> SettingConstant.AMOUNT.equals(x.getSetting().getName())));
 
         Assert.assertTrue("productSetting should contain element wiht name equal to 'term'.",
-                productSettings.stream().anyMatch(x -> EntityUtil.Setting.TERM.equals(x.getSetting().getName())));
+                productSettings.stream().anyMatch(x -> SettingConstant.TERM.equals(x.getSetting().getName())));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to true " +
                         "should have value based on productRequestDTO.",
-                CLIENT_DATA_WRAPPER_AMOUNT.toString(), getValueByName(productSettings, EntityUtil.Setting.AMOUNT));
+                CLIENT_DATA_WRAPPER_AMOUNT.toString(), getValueByName(productSettings, SettingConstant.AMOUNT));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to false " +
                         "should have value base don ProductTypeSetting.",
-                TERM_SETTING, getValueByName(productSettings, EntityUtil.Setting.TERM));
+                TERM_SETTING, getValueByName(productSettings, SettingConstant.TERM));
     }
 
     @Test
@@ -104,22 +105,22 @@ public class ProductSettingServiceTest extends AbstractTest {
         String foobarName = "foobar";
 
         LocalDateTime localDateTime = (LocalDateTime) FilterUtil.convertStringToJava(
-                localDateString, EntityUtil.DataType.LOCAL_DATE_TIME);
+                localDateString, DataTypeConstant.LOCAL_DATE_TIME);
         Integer term = (Integer) FilterUtil.convertStringToJava(
-                termString, EntityUtil.DataType.INTEGER);
+                termString, DataTypeConstant.INTEGER);
         Set<ProductSetting> productSettingsMock = new HashSet<>();
-        productSettingsMock.add(getProductSetting(EntityUtil.DataType.LOCAL_DATE_TIME, EntityUtil.Setting.DUE_DATE,
+        productSettingsMock.add(getProductSetting(DataTypeConstant.LOCAL_DATE_TIME, SettingConstant.DUE_DATE,
                 localDateString));
-        productSettingsMock.add(getProductSetting(EntityUtil.DataType.INTEGER, EntityUtil.Setting.EXTENSION_TERM,
+        productSettingsMock.add(getProductSetting(DataTypeConstant.INTEGER, SettingConstant.EXTENSION_TERM,
                 termString));
-        productSettingsMock.add(getProductSetting(EntityUtil.DataType.INTEGER, foobarName, foobarString));
+        productSettingsMock.add(getProductSetting(DataTypeConstant.INTEGER, foobarName, foobarString));
 
         Set<ProductSetting> productSettings = productSettingService.addExtensionTermToDueDate(productSettingsMock);
 
         Optional<ProductSetting> dueDateOpt = getProductSettingBySettingName(productSettings,
-                EntityUtil.Setting.DUE_DATE);
+                SettingConstant.DUE_DATE);
         Optional<ProductSetting> termOpt = getProductSettingBySettingName(productSettings,
-                EntityUtil.Setting.EXTENSION_TERM);
+                SettingConstant.EXTENSION_TERM);
         Optional<ProductSetting> foobarOpt = getProductSettingBySettingName(productSettings, foobarName);
         Assert.assertTrue("ProductSettings should contain ProductSetting with name 'due date'",
                 dueDateOpt.isPresent());
@@ -129,7 +130,7 @@ public class ProductSettingServiceTest extends AbstractTest {
                 foobarOpt.isPresent());
 
         Assert.assertEquals("ProductSetting with name 'due date' should have been extended by term",
-                FilterUtil.convertJavaToString(localDateTime.plusDays(term), EntityUtil.DataType.LOCAL_DATE_TIME),
+                FilterUtil.convertJavaToString(localDateTime.plusDays(term), DataTypeConstant.LOCAL_DATE_TIME),
                 dueDateOpt.get().getValue());
         Assert.assertEquals("ProductSetting with name 'term' should not change",
                 termString, termOpt.get().getValue());

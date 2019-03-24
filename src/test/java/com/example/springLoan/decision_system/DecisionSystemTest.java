@@ -7,7 +7,8 @@ import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.service.ProductTypeSettingService;
 import com.example.springLoan.service.ProductTypeSettingServiceImpl;
 import com.example.springLoan.util.TestingUtil;
-import com.example.springLoan.util.constant.EntityUtil;
+import com.example.springLoan.util.constant.DataTypeConstant;
+import com.example.springLoan.util.constant.SettingConstant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -109,20 +110,20 @@ public class DecisionSystemTest extends AbstractTest {
     private List<ProductTypeSetting> getProductTypeSettingListForMock(){
         List<ProductTypeSetting> productTypeSettings = new ArrayList<>();
 
-        productTypeSettings.add(getProductTypeSetting(EntityUtil.Setting.MIN_AMOUNT, EntityUtil.DataType.INTEGER,
+        productTypeSettings.add(getProductTypeSetting(SettingConstant.MIN_AMOUNT, DataTypeConstant.INTEGER,
                 MIN_AMOUNT));
-        productTypeSettings.add(getProductTypeSetting(EntityUtil.Setting.MAX_AMOUNT, EntityUtil.DataType.INTEGER,
+        productTypeSettings.add(getProductTypeSetting(SettingConstant.MAX_AMOUNT, DataTypeConstant.INTEGER,
                 MAX_AMOUNT));
 
-        productTypeSettings.add(getProductTypeSetting(EntityUtil.Setting.MIN_TERM, EntityUtil.DataType.INTEGER,
+        productTypeSettings.add(getProductTypeSetting(SettingConstant.MIN_TERM, DataTypeConstant.INTEGER,
                 MIN_TERM));
-        productTypeSettings.add(getProductTypeSetting(EntityUtil.Setting.MAX_TERM, EntityUtil.DataType.INTEGER,
+        productTypeSettings.add(getProductTypeSetting(SettingConstant.MAX_TERM, DataTypeConstant.INTEGER,
                 MAX_TERM));
 
-        productTypeSettings.add(getProductTypeSetting(EntityUtil.Setting.MIN_REJECTION_TIME,
-                EntityUtil.DataType.LOCAL_TIME, MIN_REJECTION_TIME));
-        productTypeSettings.add(getProductTypeSetting(EntityUtil.Setting.MAX_REJECTION_TIME,
-                EntityUtil.DataType.LOCAL_TIME, MAX_REJECTION_TIME));
+        productTypeSettings.add(getProductTypeSetting(SettingConstant.MIN_REJECTION_TIME,
+                DataTypeConstant.LOCAL_TIME, MIN_REJECTION_TIME));
+        productTypeSettings.add(getProductTypeSetting(SettingConstant.MAX_REJECTION_TIME,
+                DataTypeConstant.LOCAL_TIME, MAX_REJECTION_TIME));
 
         return productTypeSettings;
     }

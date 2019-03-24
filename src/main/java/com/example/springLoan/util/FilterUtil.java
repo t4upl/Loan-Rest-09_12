@@ -1,7 +1,7 @@
 package com.example.springLoan.util;
 
 import com.example.springLoan.util.constant.ApplicationConstant;
-import com.example.springLoan.util.constant.EntityUtil;
+import com.example.springLoan.util.constant.DataTypeConstant;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,11 +10,11 @@ public class FilterUtil {
 
     public static String convertJavaToString(Object javaObject, String dataTypeName){
         switch (dataTypeName) {
-            case (EntityUtil.DataType.LOCAL_DATE_TIME):
+            case (DataTypeConstant.LOCAL_DATE_TIME):
                 return localDateTimeToString((LocalDateTime)javaObject);
-            case (EntityUtil.DataType.INTEGER):
+            case (DataTypeConstant.INTEGER):
                 return integerToString((Integer)javaObject);
-            case (EntityUtil.DataType.DOUBLE):
+            case (DataTypeConstant.DOUBLE):
                 return doubleToString((Double) javaObject);
         }
         throw new RuntimeException(String.format("convertJavaToString Exception: %s DataType unknown", dataTypeName));
@@ -22,10 +22,10 @@ public class FilterUtil {
 
     public static Object convertStringToJava(String objectString, String dataTypeName){
         switch (dataTypeName) {
-            case (EntityUtil.DataType.LOCAL_DATE_TIME):
+            case (DataTypeConstant.LOCAL_DATE_TIME):
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT);
                 return LocalDateTime.parse(objectString, formatter);
-            case (EntityUtil.DataType.INTEGER):
+            case (DataTypeConstant.INTEGER):
                 return Integer.valueOf(objectString);
         }
         throw new RuntimeException(String.format("convertStringToJava Exception: Data type %s not supported. " +

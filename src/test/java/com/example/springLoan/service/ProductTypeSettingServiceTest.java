@@ -2,15 +2,11 @@ package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.model.ProductTypeSetting;
-import com.example.springLoan.util.constant.EntityUtil;
+import com.example.springLoan.util.constant.DataTypeConstant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +26,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         this.productTypeSettings = new ArrayList<>();
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
         when(productTypeSetting.getSetting().getName()).thenReturn("min amount");
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(EntityUtil.DataType.INTEGER);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeConstant.INTEGER);
         when(productTypeSetting.getValue()).thenReturn("-1");
         this.productTypeSettings.add(productTypeSetting);
     }
@@ -42,7 +38,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
 
         //given
         when(productTypeSetting.getSetting().getName()).thenReturn(name);
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(EntityUtil.DataType.INTEGER);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeConstant.INTEGER);
         when(productTypeSetting.getValue()).thenReturn("999");
         productTypeSettings.add(productTypeSetting);
 
@@ -60,7 +56,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
 
         //given
         when(productTypeSetting.getSetting().getName()).thenReturn(name);
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(EntityUtil.DataType.DOUBLE);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeConstant.DOUBLE);
         when(productTypeSetting.getValue()).thenReturn("999");
         productTypeSettings.add(productTypeSetting);
 
