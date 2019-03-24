@@ -1,5 +1,6 @@
 package com.example.springLoan.service;
 
+import com.example.springLoan.AbstractTest;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.util.constant.EntityUtil;
 import org.junit.Assert;
@@ -17,23 +18,21 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class ProductTypeSettingServiceTest {
 
-    @Autowired
+public class ProductTypeSettingServiceTest extends AbstractTest {
+
     ProductTypeSettingService productTypeSettingService;
-
     List<ProductTypeSetting> productTypeSettings;
 
     @Before
     public void setUp() {
-        productTypeSettings = new ArrayList<>();
+        this.productTypeSettingService = new ProductTypeSettingServiceImpl(null);
+        this.productTypeSettings = new ArrayList<>();
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
         when(productTypeSetting.getSetting().getName()).thenReturn("min amount");
         when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(EntityUtil.DataType.INTEGER);
         when(productTypeSetting.getValue()).thenReturn("-1");
-        productTypeSettings.add(productTypeSetting);
+        this.productTypeSettings.add(productTypeSetting);
     }
 
     @Test
@@ -70,7 +69,7 @@ public class ProductTypeSettingServiceTest {
     }
 
     @Test (expected = RuntimeException.class)
-    public void throwExceptionWhenNoRroductTypeSettingWithName(){
+    public void throwExceptionWhenNoProductTypeSettingWithName(){
         productTypeSettingService.findAndGetAsInteger(productTypeSettings, "no such name in list");
     }
 }
