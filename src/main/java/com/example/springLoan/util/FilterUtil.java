@@ -20,7 +20,7 @@ public class FilterUtil {
         throw new RuntimeException(String.format("convertJavaToString Exception: %s DataType unknown", dataTypeName));
     }
 
-    public static Object convertStringToJava(String dataTypeName, String objectString){
+    public static Object convertStringToJava(String objectString, String dataTypeName){
         switch (dataTypeName) {
             case (EntityUtil.DataType.LOCAL_DATE_TIME):
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT);

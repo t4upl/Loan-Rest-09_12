@@ -3,21 +3,22 @@ package com.example.springLoan.service;
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.factory.AbstractFactory;
-import com.example.springLoan.model.Customer;
-import com.example.springLoan.model.Product;
-import com.example.springLoan.model.ProductSetting;
-import com.example.springLoan.model.ProductType;
+import com.example.springLoan.model.*;
 import com.example.springLoan.decision_system.DecisionSystem;
 import com.example.springLoan.repository.ProductRepository;
+import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.TestingUtil;
+import com.example.springLoan.util.constant.EntityUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -33,8 +34,6 @@ public class ProductServiceTest extends AbstractTest {
     DecisionSystem decisionSystem;
     ProductTypeService productTypeService;
     AbstractFactory abstractFactory;
-
-    ProductRequestDTO productRequestDTO;
 
     @Before
     public void setUp(){
@@ -54,19 +53,21 @@ public class ProductServiceTest extends AbstractTest {
         this.productService = new ProductServiceImpl(productRepository, customerService, productTypeService,
                 productSettingService, productTypeSettingService, decisionSystem, abstractFactory);
 
-        this.productRequestDTO = TestingUtil.getProductRequestDTO(null, "1986-04-08 12:30", 15);
     }
 
     @Test
     public void whenClientDataNotValidReturnOptionalEmpty(){
         doReturn(false).when(decisionSystem).isLoanGiven(any());
-        Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
+        Optional<Product> optionalProduct = productService.getLoan(null);
         Assert.assertFalse(optionalProduct.isPresent());
     }
 
     @Test
     public void whenClientDataValidReturnProduct(){
         //given
+        ProductRequestDTO productRequestDTO = TestingUtil.getProductRequestDTO(null,
+                "1986-04-08 12:30:00", 15);
+
         doReturn(true).when(decisionSystem).isLoanGiven(any());
         doReturn(Optional.of(new Customer())).when(customerService).findById(any());
         doReturn(Optional.of(new ProductType())).when(productTypeService).findById(any());
@@ -98,4 +99,39 @@ public class ProductServiceTest extends AbstractTest {
         Assert.assertEquals("There should be 1 element in productSettings list",1,
                 productSettings.size());
         }
+
+        @Test
+        public void whenExtendLoanAndLoanNotInDBReturnOptionalEmpty(){
+            //given
+            doReturn(Optional.empty()).when(productRepository).findById(any());
+
+            //when
+            Optional<Product> optionalProduct = productService.extendLoan(1L);
+
+            //then
+            Assert.assertEquals("If Product with Id not found productService should return optionalEmpty",
+                    Optional.empty(), optionalProduct);
+        }
+
+    @Test
+    public void whenExtendLoanAndLoanInDBReturnProduct(){
+        //given
+        doReturn(Optional.of(new Product(null, null, null, new HashSet<>())))
+                .when(productRepository).findById(any());
+
+        HashSet<ProductSetting> productSettings = new HashSet<>();
+        productSettings.add(new ProductSetting());
+        doReturn(productSettings).when(productSettingService).addTermToDueDate(any());
+        doAnswer(invocationOnMock -> invocationOnMock.getArgument(0)).when(productRepository).save(any());
+
+        //when
+        Optional<Product> optionalProduct = productService.extendLoan(null);
+
+        //then
+        Assert.assertTrue("optionalProduct should not be empty", optionalProduct.isPresent());
+        Assert.assertEquals("Product should have productSettings set by external srvice: " +
+                "'addTermToDueDate' method", productSettings.size(), optionalProduct.get().getProductSettings().size());
+    }
+
+
 }

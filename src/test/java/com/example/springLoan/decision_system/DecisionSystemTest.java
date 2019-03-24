@@ -24,6 +24,7 @@ import static org.mockito.Mockito.*;
 @RunWith(SpringRunner.class)
 public class DecisionSystemTest extends AbstractTest {
 
+    public static final String APPLICATION_DATE = "1986-04-08 12:30:00";
     DecisionSystem decisionSystem;
     DecisionRuleFactory decisionRuleFactory;
     ProductTypeSettingService productTypeSettingService;
@@ -54,43 +55,43 @@ public class DecisionSystemTest extends AbstractTest {
     @Test
     public void whenProperClientDataReturnTrue() {
         Assert.assertTrue(decisionSystem.isLoanGiven(getProductRequestDTO(2000,
-                "1986-04-08 12:30", 15)));
+                APPLICATION_DATE, 15)));
     }
 
     @Test
     public void whenAmountEqualsMaxAmountReturnTrue() {
         Assert.assertTrue(decisionSystem.isLoanGiven(getProductRequestDTO(5000,
-                "1986-04-08 12:30", 15)));
+                APPLICATION_DATE, 15)));
     }
 
     @Test
     public void whenAmountBiggerThanMaxAmountReturnFalse() {
         Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(20000000,
-                "1986-04-08 12:30", 15)));
+                APPLICATION_DATE, 15)));
     }
 
     @Test
     public void whenAmountSamllerThanMinAmountReturnFalse() {
         Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(-1,
-                "1986-04-08 12:30", 15)));
+                APPLICATION_DATE, 15)));
     }
 
     @Test
     public void whenTermBiggerThanMaxTermReturnFalse() {
         Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(2000,
-                "1986-04-08 12:30", 15000)));
+                APPLICATION_DATE, 15000)));
     }
 
     @Test
     public void whenAmountEqualsMaxAndApplicationHourBetweenMinAndMaxAmountReturnFalse() {
         Assert.assertFalse(decisionSystem.isLoanGiven(getProductRequestDTO(5000,
-                "1986-04-08 05:30", 15)));
+                "1986-04-08 05:30:00", 15)));
     }
 
     @Test
     public void whenAmountSmallerThanMaxAndApplicationHourBetweenMinAndMaxAmountReturnTrue() {
         Assert.assertTrue(decisionSystem.isLoanGiven(getProductRequestDTO(4900,
-                "1986-04-08 05:30", 15)));
+                "1986-04-08 05:30:00", 15)));
     }
 
     private ProductRequestDTO getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
