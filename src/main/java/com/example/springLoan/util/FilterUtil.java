@@ -1,24 +1,12 @@
 package com.example.springLoan.util;
 
-import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.util.constant.ApplicationConstant;
 import com.example.springLoan.util.constant.EntityUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class FilterUtil {
-
-    public static ProductTypeSetting findProductTypeSettingByValue(List<ProductTypeSetting> productSettings,
-                                                                   String value) {
-        return productSettings
-                .stream()
-                .filter(productTypeSetting ->
-                        productTypeSetting.getSetting().getName().equals(value))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("findProductTypeSettingByValue: " + value));
-    }
 
     public static String convertJavaToString(Object javaObject, String dataTypeName){
         switch (dataTypeName) {
@@ -28,9 +16,20 @@ public class FilterUtil {
                 return integerToString((Integer)javaObject);
             case (EntityUtil.DataType.DOUBLE):
                 return doubleToString((Double) javaObject);
-
         }
-        throw new RuntimeException(String.format("convertJavaToString Error: %s DataType unknown", dataTypeName));
+        throw new RuntimeException(String.format("convertJavaToString Exception: %s DataType unknown", dataTypeName));
+    }
+
+    public static Object convertStringToJava(String dataTypeName, String objectString){
+        switch (dataTypeName) {
+            case (EntityUtil.DataType.LOCAL_DATE_TIME):
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT);
+                return LocalDateTime.parse(objectString, formatter);
+            case (EntityUtil.DataType.INTEGER):
+                return Integer.valueOf(objectString);
+        }
+        throw new RuntimeException(String.format("convertStringToJava Exception: Data type %s not supported. " +
+                "Can't convert %s to desired type", dataTypeName, objectString));
     }
 
     private static String localDateTimeToString(LocalDateTime localDateTime){

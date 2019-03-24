@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface ProductService {
     Optional<Product> getLoan(ProductRequestDTO productRequestDTO);
-
-    Optional<Product> findById(Long productId);
+    Optional<Product> extendLoan(Long productId);
 }

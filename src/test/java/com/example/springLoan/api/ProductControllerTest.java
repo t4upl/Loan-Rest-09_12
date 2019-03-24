@@ -21,17 +21,16 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductControllerTest {
 
-    @Mock
-    ProductService productService;
-
     @InjectMocks
     ProductController productController;
+
+    @Mock
+    ProductService productService;
 
     private MockMvc mockMvc;
 
@@ -54,10 +53,10 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void whenApplyForLoanSuccessReturnOk() throws Exception {
+    public void whenApplyForLoanSuccessReturnCreated() throws Exception {
         //given
         Integer productId = -1;
-        Optional<Product> optionalProduct = Optional.of(new Product(-1, null, null, null));
+        Optional<Product> optionalProduct = Optional.of(new Product());
         when(productService.getLoan(any())).thenReturn(optionalProduct);
 
 
@@ -65,7 +64,7 @@ public class ProductControllerTest {
                 "test/json/product_request_dto.json");
 
         //when
-        MvcResult mvcResult = mockMvc.perform(post(ProductControllerConstant.APPLY_FOR_LOAN_PATH)
+        MvcResult mvcResult = mockMvc.perform(post(ProductControllerConstant.GET_PRODUCT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(productRequest)
                 .accept(MediaType.TEXT_PLAIN)).andReturn();
@@ -86,7 +85,7 @@ public class ProductControllerTest {
                 "test/json/product_request_dto.json");
 
         //when
-        MvcResult mvcResult = mockMvc.perform(post(ProductControllerConstant.APPLY_FOR_LOAN_PATH)
+        MvcResult mvcResult = mockMvc.perform(post(ProductControllerConstant.GET_PRODUCT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(productRequestDTO)
                 .accept(MediaType.TEXT_PLAIN)).andReturn();
@@ -97,6 +96,75 @@ public class ProductControllerTest {
         Assert.assertTrue(content.contains(ProductControllerConstant.APPLY_FOR_LOAN_FAIL_RESPONSE));
         Assert.assertTrue(content.contains(ProductControllerConstant.TIME_METADATA));
         Assert.assertTrue(!content.contains(ProductControllerConstant.LOAN_ID_METADATA));
+    }
+
+    @Test
+    public void whenExtendLoanAndProductNotPresentReturnBadRequest() throws Exception {
+        //given
+        when(productService.extendLoan(any())).thenReturn(Optional.empty());
+        String path = getExtendLoanPathForTesting();
+
+        //when
+        MvcResult mvcResult = mockMvc.perform(patch(path)
+                .param(ProductControllerConstant.ACTION, ProductControllerConstant.EXTEND_LOAN_ACTION)
+                .accept(MediaType.TEXT_PLAIN)).andReturn();
+
+        //then
+        Assert.assertEquals(HttpStatus.BAD_REQUEST.value(),  mvcResult.getResponse().getStatus());
+        Assert.assertTrue(mvcResult.getResponse().getContentAsString().contains(
+                ProductControllerConstant.EXTEND_LOAN_FAIL_RESPONSE));
+    }
+
+
+    @Test
+    public void whenExtendLoanAndProductPresentReturnOk() throws Exception {
+        //given
+        when(productService.extendLoan(any())).thenReturn(Optional.of(new Product()));
+        String path = getExtendLoanPathForTesting();
+
+        //when
+        MvcResult mvcResult = mockMvc.perform(patch(path)
+                .param(ProductControllerConstant.ACTION, ProductControllerConstant.EXTEND_LOAN_ACTION)
+                .accept(MediaType.TEXT_PLAIN)).andReturn();
+
+        //then
+        Assert.assertEquals(HttpStatus.OK.value(),  mvcResult.getResponse().getStatus());
+        Assert.assertTrue(mvcResult.getResponse().getContentAsString().contains(
+                ProductControllerConstant.EXTEND_LOAN_SUCCESS_RESPONSE));
+    }
+
+    @Test
+    public void whenPatchLoanAndNoActionProvidedReturnBadRequest() throws Exception {
+        //given
+        String path = getExtendLoanPathForTesting();
+
+        //when
+        MvcResult mvcResult = mockMvc.perform(patch(path)
+                .accept(MediaType.TEXT_PLAIN)).andReturn();
+
+        //then
+        Assert.assertEquals(HttpStatus.BAD_REQUEST.value(),  mvcResult.getResponse().getStatus());
+    }
+
+    @Test
+    public void whenPatchLoanAndActionNotRecognizedReturnBadRequest() throws Exception {
+        //given
+        String path = getExtendLoanPathForTesting();
+
+        //when
+        MvcResult mvcResult = mockMvc.perform(patch(path)
+                .param(ProductControllerConstant.ACTION, "foobar")
+                .accept(MediaType.TEXT_PLAIN)).andReturn();
+
+        //then
+        Assert.assertEquals(HttpStatus.BAD_REQUEST.value(),  mvcResult.getResponse().getStatus());
+        Assert.assertTrue(mvcResult.getResponse().getContentAsString().contains(
+                ProductControllerConstant.PATCH_PRODUCT_ACTION_UNKNOWN_RESPONSE));
+
+    }
+
+    private String getExtendLoanPathForTesting(){
+        return ProductControllerConstant.PATCH_PRODUCT_PATH.replace("{id}", "1");
     }
 
 

@@ -10,6 +10,7 @@ import com.example.springLoan.util.constant.EntityUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -24,11 +25,6 @@ public class ProductSettingServiceImpl implements ProductSettingService {
     AbstractFactory abstractFactory;
 
     @Override
-    public List<ProductSetting> saveAll(Iterable<ProductSetting> productSettings) {
-        return productSettingRepository.saveAll(productSettings);
-    }
-
-    @Override
     public Set<ProductSetting> getProductSettings(ProductRequestDTO productRequestDTO) {
         List<ProductTypeSetting> productTypeSettings = productTypeSettingService.findByProductType_Id(
                 productRequestDTO.getProductTypeId());
@@ -38,6 +34,31 @@ public class ProductSettingServiceImpl implements ProductSettingService {
                 .map(pts -> mapProductTypeSettingToProductSetting(pts, productRequestDTO, productTypeSettings))
                 .collect(Collectors.toSet());
     }
+
+    @Override
+    public Set<ProductSetting> addTermToDueDate(Set<ProductSetting> productSettingSet) {
+        ProductSetting termProductSetting = findProductSettingBySettingName(productSettingSet, EntityUtil.Setting.TERM);
+        ProductSetting dueDateProductSetting = findProductSettingBySettingName(productSettingSet,
+                EntityUtil.Setting.DUE_DATE);
+        LocalDateTime dueDate = (LocalDateTime) FilterUtil.convertStringToJava(dueDateProductSetting.getValue(),
+                EntityUtil.DataType.LOCAL_DATE_TIME);
+
+        Integer term = (Integer) FilterUtil.convertStringToJava(termProductSetting.getValue(),
+                EntityUtil.DataType.INTEGER);
+
+        dueDateProductSetting.setValue(FilterUtil.convertJavaToString(dueDate.plusDays(term),
+                EntityUtil.DataType.LOCAL_DATE_TIME));
+        return productSettingSet;
+    }
+
+    private ProductSetting findProductSettingBySettingName(Set<ProductSetting> productSettingSet, String name){
+        return productSettingSet.stream()
+                .filter(x -> name.equals(x.getSetting().getName()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException(String.format("findProductSettingBySettingName exception: " +
+                        "no ProductSetting with name: %s", name)));
+    }
+
 
     private ProductSetting mapProductTypeSettingToProductSetting(ProductTypeSetting productTypeSetting,
                                                                  ProductRequestDTO productRequestDTO,

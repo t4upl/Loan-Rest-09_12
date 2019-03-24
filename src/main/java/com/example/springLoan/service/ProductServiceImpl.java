@@ -48,8 +48,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findById(Long productId){
-        return productRepository.findById(productId);
+    public Optional<Product> extendLoan(Long productId){
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (!productOptional.isPresent()) {
+            return productOptional;
+        }
+        Product product = productOptional.get();
+        product.setProductSettings(productSettingService.addTermToDueDate(product.getProductSettings()));
+        return Optional.of(productRepository.save(product));
     }
 
     @Transactional

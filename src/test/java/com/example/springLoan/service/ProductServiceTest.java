@@ -87,10 +87,6 @@ public class ProductServiceTest extends AbstractTest {
 
         doReturn(productSettingsMock).when(productSettingService).getProductSettings(any());
 
-        doAnswer((Answer<List<ProductSetting>>) invocationOnMock ->
-                new ArrayList<>((Set<ProductSetting>)invocationOnMock.getArguments()[0]))
-                .when(productSettingService).saveAll(any());
-
         //when
         Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
 
