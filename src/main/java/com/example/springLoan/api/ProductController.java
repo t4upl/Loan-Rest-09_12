@@ -36,9 +36,15 @@ public class ProductController {
         Optional<Product> optionalProduct = productService.getLoan(clientDataWrapper);
         if (optionalProduct.isPresent()) {
             return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_SUCCESS_RESPONSE,
-                    optionalProduct.get().getId()), HttpStatus.OK);
+                    optionalProduct.get().getId()), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_FAIL_RESPONSE), HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = EXTEND_LOAN_PATH, method = RequestMethod.PATCH)
+    public ResponseEntity<String> extendLoan(){
+        return null;
+
     }
 
     private String addMetaData(String inputMsg){

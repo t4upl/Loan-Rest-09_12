@@ -1,5 +1,5 @@
 # Loan Rest API (In progress)
-Rest API for giving and prolonging loan.
+Rest API for giving and extending loan.
 
 ## Motivation
 This project was created as a job recruitment task. The main goal was to create rest API for system offering loans to customers. The application was supposed to offer two endpoints: one for requesting loans and another for prolonging the loan owned by customer.  
@@ -7,11 +7,11 @@ This project was created as a job recruitment task. The main goal was to create 
 ### Request for loan
 Part of the created system was a decision system. Based on defined rules a request for loan could be refused if loan was not within time or amount range. In case of this task there was a special rule as well that says that if loan is being asked in specified hour range and maximum allowed amount is asked then request should be refused.
 
-### Prolonging the loan
-Each loan has a prespecified prolonging term. Upon customer's request a payday is prolong by term.
+### Extending the loan
+Each loan has a prespecified extension term. Upon customer's request a payday is extended by term.
 
 ### Additional notes
-As a general rule upon granting the loan its properties with relation to the customer should not change. Bank should not be able to change loan's properties owned by customer at will. Exception to this rule is prolonging the payday but this action is done at the request of the customer. Security issues, such as authentication, are outside of the scope of this task. All dates/time are in the same timezone. 
+As a general rule upon granting the loan its properties with relation to the customer should not change. Bank should not be able to change loan's properties owned by customer at will. Exception to this rule is extending the payday but this action is done at the request of the customer. Security issues, such as authentication, are outside of the scope of this task. All dates/time are in the same timezone. 
 
 
 
@@ -31,7 +31,7 @@ Loan properties are modelled as generic table. Name of properties are stored in 
 
 ## To Do
 - <del>Endpoint for applying the loan<del>
-- Endpoint for prolonging the loan
+- Endpoint for extending the loan
 - Liquibase integration
 - Google checkstyle
 
