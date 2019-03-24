@@ -57,14 +57,12 @@ public class ProductServiceImpl implements ProductService {
         ProductType productType = productTypeService.findById(clientDataWrapper.getProductTypeId())
                 .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
-        Product product = productRepository.save(abstractFactory.getProductFactory()
-                .getProduct(-1, customer, productType, null));
+        Product product = abstractFactory.getProductFactory()
+                .getProduct(-1, customer, productType, null);
 
         Set<ProductSetting> productSettings = productSettingService.getProductSettings(clientDataWrapper);
         productSettings.forEach(x -> x.setProduct(product));
-        productSettingService.saveAll(productSettings);
-
-        return product;
+        return productRepository.save(product);
     }
 
 

@@ -27,6 +27,6 @@ public class Product {
     @JoinColumn(name="product_type_id")
     private ProductType productType;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     Set<ProductSetting> productSettings;
 }

@@ -71,7 +71,7 @@ public class ProductControllerTest {
                 .accept(MediaType.TEXT_PLAIN)).andReturn();
 
         //then
-        Assert.assertEquals(HttpStatus.OK.value(),  mvcResult.getResponse().getStatus());
+        Assert.assertEquals(HttpStatus.CREATED .value(),  mvcResult.getResponse().getStatus());
         String content = mvcResult.getResponse().getContentAsString();
         Assert.assertTrue(content.contains(ProductControllerConstant.APPLY_FOR_LOAN_SUCCESS_RESPONSE));
         Assert.assertTrue(content.contains(ProductControllerConstant.TIME_METADATA));
