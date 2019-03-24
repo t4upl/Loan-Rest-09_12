@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class ProductRequestDTO {
-    private Integer customerId;
-    private Integer productTypeId;
+    private Long customerId;
+    private Long productTypeId;
     private Integer amount;
     private Integer term;
     private LocalDateTime applicationDate;

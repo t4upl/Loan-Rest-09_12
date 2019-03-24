@@ -12,15 +12,17 @@ public class DecisionSystemImpl implements DecisionSystem {
 
     @Override
     public boolean isLoanGiven(ProductRequestDTO productRequestDTO) {
-        DecisionRule decisionRule;
-        switch (productRequestDTO.getProductTypeId()) {
-            case 1:
-                decisionRule = decisionRuleFactory.rulesForTestProductType(productRequestDTO);
-                break;
-            default:
-                throw new RuntimeException(String.format("No loan application rule set for loan with " +
-                    "productType: %d", productRequestDTO.getProductTypeId()));
+        DecisionRule decisionRule = null;
+        Long productTypeId = productRequestDTO.getProductTypeId();
+        if (productTypeId.equals(1L)) {
+            decisionRule = decisionRuleFactory.rulesForTestProductType(productRequestDTO);
         }
-        return decisionRule.checkRule();
+
+        if (decisionRule != null) {
+            return decisionRule.checkRule();
+        }
+
+        throw new RuntimeException(String.format("No loan application rule set for loan with " +
+            "productType: %d", productRequestDTO.getProductTypeId()));
     }
 }

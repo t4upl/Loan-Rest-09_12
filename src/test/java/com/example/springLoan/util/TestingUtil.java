@@ -30,8 +30,8 @@ public class TestingUtil {
                 .amount(amount)
                 .applicationDate(LocalDateTime.parse(applicationDate,
                         DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT)))
-                .customerId(1)
-                .productTypeId(1)
+                .customerId(1L)
+                .productTypeId(1L)
                 .term(term)
                 .build();
     }

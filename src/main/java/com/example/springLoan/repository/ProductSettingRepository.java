@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Set;
 
 @Repository
-public interface ProductSettingRepository extends JpaRepository<ProductSetting, Integer> {
-
-//    Set<ProductSetting> saveAll(Set<ProductSetting> productSettings);
+public interface ProductSettingRepository extends JpaRepository<ProductSetting, Long> {
 }

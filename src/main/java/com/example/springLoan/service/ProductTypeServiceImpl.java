@@ -14,7 +14,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     ProductTypeRepository productTypeRepository;
 
     @Override
-    public Optional<ProductType> findById(Integer id){
+    public Optional<ProductType> findById(Long id){
         return productTypeRepository.findById(id);
     }
 }

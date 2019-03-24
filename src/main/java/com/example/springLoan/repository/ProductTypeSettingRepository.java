@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ProductTypeSettingRepository extends JpaRepository<ProductTypeSetting, Integer> {
 
-    List<ProductTypeSetting> findByProductType_Id(Integer productTypeId);
+    List<ProductTypeSetting> findByProductType_Id(Long productTypeId);
 }

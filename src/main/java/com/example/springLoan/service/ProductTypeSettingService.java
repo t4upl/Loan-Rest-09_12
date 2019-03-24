@@ -13,5 +13,5 @@ public interface ProductTypeSettingService {
 
     Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, String key);
 
-    List<ProductTypeSetting> findByProductType_Id(Integer productTypeId);
+    List<ProductTypeSetting> findByProductType_Id(Long productTypeId);
 }

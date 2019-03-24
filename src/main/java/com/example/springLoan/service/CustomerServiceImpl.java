@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository;
 
     @Override
-    public Optional<Customer> findById(Integer id) {
+    public Optional<Customer> findById(Long id) {
         return customerRepository.findById(id);
     }
 }

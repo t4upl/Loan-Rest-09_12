@@ -7,31 +7,31 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
 
         -- table contains customers/users of application
         CREATE TABLE customer (
-          id serial,
+          id bigserial,
           name text,
           PRIMARY KEY (id)
         );
 
         -- loan(s) attached to customer
         CREATE TABLE product (
-          id serial,
-          customer_id integer NOT NULL,
-          product_type_id integer NOT NULL,
+          id bigserial,
+          customer_id BIGINT NOT NULL,
+          product_type_id BIGINT NOT NULL,
           PRIMARY KEY (id)
         );
 
         --types of loan that customer can buy
         CREATE TABLE product_type (
-          id serial,
+          id bigserial,
           name text NOT NULL,
           PRIMARY KEY (id)
         );
 
         --setting of loans that customer can buy
         CREATE TABLE product_type_setting (
-          id serial,
-          product_type_id integer NOT NULL,
-          setting_id integer NOT NULL,
+          id bigserial,
+          product_type_id BIGINT NOT NULL,
+          setting_id BIGINT NOT NULL,
           value text,
           PRIMARY KEY (id),
           UNIQUE (product_type_id, setting_id)
@@ -39,9 +39,9 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
 
          --variables that can describe a loan
         CREATE TABLE IF NOT EXISTS setting (
-          id serial,
+          id bigserial,
           name text NOT NULL,
-          data_type_id integer,
+          data_type_id BIGINT,
           is_runtime_input boolean,
           PRIMARY KEY (id),
           UNIQUE(name)
@@ -49,7 +49,7 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
 
 	-- dictionary describing data types
         CREATE TABLE IF NOT EXISTS data_type (
-          id serial,
+          id bigserial,
           name text NOT NULL,
           PRIMARY KEY (id),
           UNIQUE(name)
@@ -57,9 +57,9 @@ CREATE OR REPLACE FUNCTION createDB() RETURNS void AS $$
 
          -- details of product owned by customer
         CREATE TABLE IF NOT EXISTS product_setting (
-          id serial,
-          product_id integer NOT NULL,
-          setting_id integer NOT NULL,
+          id bigserial,
+          product_id BIGINT NOT NULL,
+          setting_id BIGINT NOT NULL,
           value text,
           PRIMARY KEY (id),
           UNIQUE (product_id, setting_id)

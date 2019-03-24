@@ -19,7 +19,7 @@ public class Setting {
     @Id
     @Column(columnDefinition = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(columnDefinition = "name")
     private String name;

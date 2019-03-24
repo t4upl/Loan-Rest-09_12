@@ -5,5 +5,5 @@ import com.example.springLoan.model.ProductSetting;
 import com.example.springLoan.model.Setting;
 
 public interface ProductSettingFactory {
-    ProductSetting getProductSetting(Integer id, String value, Product product, Setting setting);
+    ProductSetting getProductSetting(Long id, String value, Product product, Setting setting);
 }

@@ -8,5 +8,5 @@ import com.example.springLoan.model.ProductType;
 import java.util.Set;
 
 public interface ProductFactory {
-    Product getProduct(Integer id, Customer customer, ProductType productType, Set<ProductSetting> productSettings);
+    Product getProduct(Long id, Customer customer, ProductType productType, Set<ProductSetting> productSettings);
 }

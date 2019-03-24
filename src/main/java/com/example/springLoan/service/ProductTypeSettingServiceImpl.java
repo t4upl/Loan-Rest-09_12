@@ -4,7 +4,6 @@ import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.util.constant.EntityUtil;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -32,7 +31,7 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
     }
 
     @Override
-    public List<ProductTypeSetting> findByProductType_Id(Integer productTypeId) {
+    public List<ProductTypeSetting> findByProductType_Id(Long productTypeId) {
         return productTypeSettingRepository.findByProductType_Id(productTypeId);
     }
 

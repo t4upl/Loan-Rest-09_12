@@ -52,7 +52,7 @@ public class ProductSettingServiceImpl implements ProductSettingService {
 
     private ProductSetting getProductSetting(ProductTypeSetting productTypeSetting, String value) {
         return abstractFactory.getProductSettingFactory()
-                .getProductSetting(-1, value, null, productTypeSetting.getSetting());
+                .getProductSetting(null, value, null, productTypeSetting.getSetting());
     }
 
     private String getValueForProductSetting(ProductTypeSetting productTypeSetting,

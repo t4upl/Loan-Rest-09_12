@@ -6,6 +6,7 @@ import com.example.springLoan.model.Product;
 import java.util.Optional;
 
 public interface ProductService {
-
     Optional<Product> getLoan(ProductRequestDTO productRequestDTO);
+
+    Optional<Product> findById(Long productId);
 }

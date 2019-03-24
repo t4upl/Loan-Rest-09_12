@@ -5,7 +5,6 @@ import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.decision_system.DecisionSystem;
 import com.example.springLoan.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +22,6 @@ public class ProductServiceImpl implements ProductService {
     DecisionSystem decisionSystem;
     AbstractFactory abstractFactory;
 
-    @Autowired
     public ProductServiceImpl(ProductRepository productRepository,
                               CustomerService customerService,
                               ProductTypeService productTypeService,
@@ -49,6 +47,11 @@ public class ProductServiceImpl implements ProductService {
         return Optional.empty();
     }
 
+    @Override
+    public Optional<Product> findById(Long productId){
+        return productRepository.findById(productId);
+    }
+
     @Transactional
     private Product insertProduct(ProductRequestDTO productRequestDTO) {
         Customer customer = customerService.findById(productRequestDTO.getCustomerId())
@@ -58,12 +61,10 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
         Product product = abstractFactory.getProductFactory()
-                .getProduct(-1, customer, productType, null);
+                .getProduct(null, customer, productType, null);
 
         Set<ProductSetting> productSettings = productSettingService.getProductSettings(productRequestDTO);
         productSettings.forEach(x -> x.setProduct(product));
         return productRepository.save(product);
     }
-
-
 }

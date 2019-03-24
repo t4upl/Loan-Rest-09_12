@@ -13,7 +13,7 @@ import java.util.Set;
 public class ProductFactoryImpl implements ProductFactory {
 
     @Override
-    public Product getProduct(Integer id, Customer customer, ProductType productType,
+    public Product getProduct(Long id, Customer customer, ProductType productType,
                               Set<ProductSetting> productSettings){
         return new Product(id, customer, productType, productSettings);
     }
