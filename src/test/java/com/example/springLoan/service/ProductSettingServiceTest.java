@@ -5,6 +5,7 @@ import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.repository.ProductSettingRepository;
+import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.TestingUtil;
 import com.example.springLoan.util.constant.EntityUtil;
 import org.junit.Assert;
@@ -13,9 +14,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 public class ProductSettingServiceTest extends AbstractTest {
 
-    public static final String APPLICATION_DATE = "1986-04-08 12:30";
+    public static final String APPLICATION_DATE = "1986-04-08 12:30:00";
     private final static Integer CLIENT_DATA_WRAPPER_AMOUNT = 5000;
     public static final int TERM = 15;
 
@@ -94,6 +94,59 @@ public class ProductSettingServiceTest extends AbstractTest {
         Assert.assertEquals("productSetting with isRuntimeInput set to false " +
                         "should have value base don ProductTypeSetting.",
                 TERM_SETTING, getValueByName(productSettings, EntityUtil.Setting.TERM));
+    }
+
+    @Test
+    public void whenExtendLoanReturnChangeProductSettingWithNameDueDate(){
+        String localDateString = "2018-11-07 15:12:54";
+        String termString = "3";
+        String foobarString = "5";
+        String foobarName = "foobar";
+
+        LocalDateTime localDateTime = (LocalDateTime) FilterUtil.convertStringToJava(
+                localDateString, EntityUtil.DataType.LOCAL_DATE_TIME);
+        Integer term = (Integer) FilterUtil.convertStringToJava(
+                termString, EntityUtil.DataType.INTEGER);
+        Set<ProductSetting> productSettingsMock = new HashSet<>();
+        productSettingsMock.add(getProductSetting(EntityUtil.DataType.LOCAL_DATE_TIME, EntityUtil.Setting.DUE_DATE,
+                localDateString));
+        productSettingsMock.add(getProductSetting(EntityUtil.DataType.INTEGER, EntityUtil.Setting.EXTENSION_TERM,
+                termString));
+        productSettingsMock.add(getProductSetting(EntityUtil.DataType.INTEGER, foobarName, foobarString));
+
+        Set<ProductSetting> productSettings = productSettingService.addExtensionTermToDueDate(productSettingsMock);
+
+        Optional<ProductSetting> dueDateOpt = getProductSettingBySettingName(productSettings,
+                EntityUtil.Setting.DUE_DATE);
+        Optional<ProductSetting> termOpt = getProductSettingBySettingName(productSettings,
+                EntityUtil.Setting.EXTENSION_TERM);
+        Optional<ProductSetting> foobarOpt = getProductSettingBySettingName(productSettings, foobarName);
+        Assert.assertTrue("ProductSettings should contain ProductSetting with name 'due date'",
+                dueDateOpt.isPresent());
+        Assert.assertTrue("ProductSettings should contain ProductSetting with name 'term'",
+                termOpt.isPresent());
+        Assert.assertTrue("ProductSettings should contain ProductSetting with name 'foobar'",
+                foobarOpt.isPresent());
+
+        Assert.assertEquals("ProductSetting with name 'due date' should have been extended by term",
+                FilterUtil.convertJavaToString(localDateTime.plusDays(term), EntityUtil.DataType.LOCAL_DATE_TIME),
+                dueDateOpt.get().getValue());
+        Assert.assertEquals("ProductSetting with name 'term' should not change",
+                termString, termOpt.get().getValue());
+        Assert.assertEquals("ProductSetting with name 'foobar' should not change",
+                foobarString, foobarOpt.get().getValue());
+    }
+
+    private Optional<ProductSetting> getProductSettingBySettingName (Set<ProductSetting> productSettings,
+                                                                     String setingName){
+        return productSettings.stream().filter(x-> setingName.equals(x.getSetting().getName())).findFirst();
+    }
+
+    private ProductSetting getProductSetting(String dataTypeName, String settingName, String productSettingValue){
+        DataType dataType = new DataType(null, dataTypeName, null);
+        Setting setting = new Setting(null, settingName, dataType , null,
+                null, null);
+        return new ProductSetting(1L, productSettingValue, null, setting);
     }
 
     private String getValueByName(Set<ProductSetting> productSettings, String name){

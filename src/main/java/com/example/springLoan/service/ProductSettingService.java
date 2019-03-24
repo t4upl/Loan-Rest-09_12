@@ -7,6 +7,6 @@ import java.util.Set;
 
 public interface ProductSettingService {
     Set<ProductSetting> getProductSettings(ProductRequestDTO productRequestDTO);
-    Set<ProductSetting> addTermToDueDate(Set<ProductSetting> productSettingSet);
+    Set<ProductSetting> addExtensionTermToDueDate(Set<ProductSetting> productSettingSet);
 
 }

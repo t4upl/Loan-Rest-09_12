@@ -36,17 +36,18 @@ public class ProductSettingServiceImpl implements ProductSettingService {
     }
 
     @Override
-    public Set<ProductSetting> addTermToDueDate(Set<ProductSetting> productSettingSet) {
-        ProductSetting termProductSetting = findProductSettingBySettingName(productSettingSet, EntityUtil.Setting.TERM);
+    public Set<ProductSetting> addExtensionTermToDueDate(Set<ProductSetting> productSettingSet) {
+        ProductSetting termProductSetting = findProductSettingBySettingName(productSettingSet,
+                EntityUtil.Setting.EXTENSION_TERM);
         ProductSetting dueDateProductSetting = findProductSettingBySettingName(productSettingSet,
                 EntityUtil.Setting.DUE_DATE);
         LocalDateTime dueDate = (LocalDateTime) FilterUtil.convertStringToJava(dueDateProductSetting.getValue(),
                 EntityUtil.DataType.LOCAL_DATE_TIME);
 
-        Integer term = (Integer) FilterUtil.convertStringToJava(termProductSetting.getValue(),
+        Integer extensionTerm = (Integer) FilterUtil.convertStringToJava(termProductSetting.getValue(),
                 EntityUtil.DataType.INTEGER);
 
-        dueDateProductSetting.setValue(FilterUtil.convertJavaToString(dueDate.plusDays(term),
+        dueDateProductSetting.setValue(FilterUtil.convertJavaToString(dueDate.plusDays(extensionTerm),
                 EntityUtil.DataType.LOCAL_DATE_TIME));
         return productSettingSet;
     }

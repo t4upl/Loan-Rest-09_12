@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
             return productOptional;
         }
         Product product = productOptional.get();
-        product.setProductSettings(productSettingService.addTermToDueDate(product.getProductSettings()));
+        product.setProductSettings(productSettingService.addExtensionTermToDueDate(product.getProductSettings()));
         return Optional.of(productRepository.save(product));
     }
 
