@@ -3,7 +3,6 @@ package com.example.springLoan.decision_system;
 import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.service.ProductTypeSettingService;
-import com.example.springLoan.util.constant.DataTypeConstant;
 import com.example.springLoan.util.constant.SettingConstant;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

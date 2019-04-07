@@ -1,31 +1,34 @@
 package com.example.springLoan.util;
 
+import com.example.springLoan.enums.DataTypeEnum;
 import com.example.springLoan.util.constant.ApplicationConstant;
-import com.example.springLoan.util.constant.DataTypeConstant;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static com.example.springLoan.enums.DataTypeEnum.LOCAL_DATE_TIME;
+
 public class FilterUtil {
 
     public static String convertJavaToString(Object javaObject, String dataTypeName){
-        switch (dataTypeName) {
-            case (DataTypeConstant.LOCAL_DATE_TIME):
+        switch (DataTypeEnum.valueOf(dataTypeName)) {
+            case LOCAL_DATE_TIME:
                 return localDateTimeToString((LocalDateTime)javaObject);
-            case (DataTypeConstant.INTEGER):
+            case INTEGER:
                 return integerToString((Integer)javaObject);
-            case (DataTypeConstant.DOUBLE):
+            case DOUBLE:
                 return doubleToString((Double) javaObject);
+            default:
+                throw new RuntimeException(String.format("convertJavaToString Exception: %s DataType unknown", dataTypeName));
         }
-        throw new RuntimeException(String.format("convertJavaToString Exception: %s DataType unknown", dataTypeName));
     }
 
     public static Object convertStringToJava(String objectString, String dataTypeName){
-        switch (dataTypeName) {
-            case (DataTypeConstant.LOCAL_DATE_TIME):
+        switch (DataTypeEnum.valueOf(dataTypeName)) {
+            case LOCAL_DATE_TIME:
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT);
                 return LocalDateTime.parse(objectString, formatter);
-            case (DataTypeConstant.INTEGER):
+            case INTEGER:
                 return Integer.valueOf(objectString);
         }
         throw new RuntimeException(String.format("convertStringToJava Exception: Data type %s not supported. " +

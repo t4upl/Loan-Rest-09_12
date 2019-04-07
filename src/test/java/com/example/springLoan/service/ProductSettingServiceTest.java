@@ -4,11 +4,13 @@ import com.example.springLoan.AbstractTest;
 import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.enums.DataTypeEnum;
 import com.example.springLoan.factory.AbstractFactory;
-import com.example.springLoan.model.*;
+import com.example.springLoan.model.DataType;
+import com.example.springLoan.model.ProductSetting;
+import com.example.springLoan.model.ProductTypeSetting;
+import com.example.springLoan.model.Setting;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.TestingUtil;
-import com.example.springLoan.util.constant.DataTypeConstant;
 import com.example.springLoan.util.constant.SettingConstant;
 import org.junit.Assert;
 import org.junit.Before;
@@ -106,15 +108,15 @@ public class ProductSettingServiceTest extends AbstractTest {
         String foobarName = "foobar";
 
         LocalDateTime localDateTime = (LocalDateTime) FilterUtil.convertStringToJava(
-                localDateString, DataTypeConstant.LOCAL_DATE_TIME);
+                localDateString, DataTypeEnum.LOCAL_DATE_TIME.toString());
         Integer term = (Integer) FilterUtil.convertStringToJava(
-                termString, DataTypeConstant.INTEGER);
+                termString, DataTypeEnum.INTEGER.toString());
         Set<ProductSetting> productSettingsMock = new HashSet<>();
-        productSettingsMock.add(getProductSetting(DataTypeConstant.LOCAL_DATE_TIME, SettingConstant.DUE_DATE,
+        productSettingsMock.add(getProductSetting(DataTypeEnum.LOCAL_DATE_TIME.toString(), SettingConstant.DUE_DATE,
                 localDateString));
-        productSettingsMock.add(getProductSetting(DataTypeConstant.INTEGER, SettingConstant.EXTENSION_TERM,
+        productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), SettingConstant.EXTENSION_TERM,
                 termString));
-        productSettingsMock.add(getProductSetting(DataTypeConstant.INTEGER, foobarName, foobarString));
+        productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), foobarName, foobarString));
 
         Set<ProductSetting> productSettings = productSettingService.addExtensionTermToDueDate(productSettingsMock);
 
@@ -131,7 +133,7 @@ public class ProductSettingServiceTest extends AbstractTest {
                 foobarOpt.isPresent());
 
         Assert.assertEquals("ProductSetting with name 'due date' should have been extended by term",
-                FilterUtil.convertJavaToString(localDateTime.plusDays(term), DataTypeConstant.LOCAL_DATE_TIME),
+                FilterUtil.convertJavaToString(localDateTime.plusDays(term), DataTypeEnum.LOCAL_DATE_TIME.toString()),
                 dueDateOpt.get().getValue());
         Assert.assertEquals("ProductSetting with name 'term' should not change",
                 termString, termOpt.get().getValue());

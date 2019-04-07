@@ -1,5 +1,5 @@
 package com.example.springLoan.enums;
 
 public enum DataTypeEnum {
-    INTEGER, LOCALDATETIME, LOCALTIME, STRING, DOUBLE
+    INTEGER, LOCAL_DATE_TIME, LOCAL_TIME, STRING, DOUBLE
 }

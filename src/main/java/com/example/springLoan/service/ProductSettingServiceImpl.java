@@ -1,12 +1,12 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.dto.ProductRequestDTO;
+import com.example.springLoan.enums.DataTypeEnum;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.ProductSetting;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
-import com.example.springLoan.util.constant.DataTypeConstant;
 import com.example.springLoan.util.constant.SettingConstant;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,13 +43,13 @@ public class ProductSettingServiceImpl implements ProductSettingService {
         ProductSetting dueDateProductSetting = findProductSettingBySettingName(productSettingSet,
                 SettingConstant.DUE_DATE);
         LocalDateTime dueDate = (LocalDateTime) FilterUtil.convertStringToJava(dueDateProductSetting.getValue(),
-                DataTypeConstant.LOCAL_DATE_TIME);
+                DataTypeEnum.LOCAL_DATE_TIME.toString());
 
         Integer extensionTerm = (Integer) FilterUtil.convertStringToJava(termProductSetting.getValue(),
-                DataTypeConstant.INTEGER);
+                DataTypeEnum.INTEGER.toString());
 
         dueDateProductSetting.setValue(FilterUtil.convertJavaToString(dueDate.plusDays(extensionTerm),
-                DataTypeConstant.LOCAL_DATE_TIME));
+                DataTypeEnum.LOCAL_DATE_TIME.toString()));
         return productSettingSet;
     }
 

@@ -3,7 +3,6 @@ package com.example.springLoan.service;
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.enums.DataTypeEnum;
 import com.example.springLoan.model.ProductTypeSetting;
-import com.example.springLoan.util.constant.DataTypeConstant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
