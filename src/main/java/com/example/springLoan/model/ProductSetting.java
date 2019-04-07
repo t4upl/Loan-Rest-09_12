@@ -8,24 +8,26 @@ import java.io.Serializable;
 @Entity
 @Table(name = "product_setting", schema = "public")
 @Getter @Setter
-@ToString (exclude = {"product", "setting"})
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString (exclude = {"product", "setting"})
 public class ProductSetting implements Serializable {
 
+    private static final long serialVersionUID = 1209700235249323129L;
+
     @Id
-    @Column(columnDefinition = "id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "value")
+    @Column(name = "value")
     private String value;
 
     @ManyToOne
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name="setting_id")
+    @JoinColumn(name = "setting_id")
     private Setting setting;
 }

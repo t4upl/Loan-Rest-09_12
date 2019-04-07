@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -14,13 +15,16 @@ import java.util.Set;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class ProductType {
+public class ProductType implements Serializable {
+
+    private static final long serialVersionUID = -2538214832373421471L;
+
     @Id
-    @Column(columnDefinition = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "productType")

@@ -1,6 +1,7 @@
 package com.example.springLoan.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -10,16 +11,20 @@ import java.util.Set;
 
 @Entity
 @Table(name = "customer", schema = "public")
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
 @ToString (exclude = {"products"})
 public class Customer implements Serializable {
 
+    private static final long serialVersionUID = -5027056122837499602L;
+
     @Id
-    @Column(columnDefinition = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "customer")

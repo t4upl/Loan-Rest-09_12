@@ -14,20 +14,22 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ProductTypeSetting implements Serializable {
 
+    private static final long serialVersionUID = 2524934507480166707L;
+
     @Id
-    @Column(columnDefinition = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "value")
+    @Column(name = "value")
     private String value;
 
     @ManyToOne
-    @JoinColumn(name="product_type_id")
+    @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
     @ManyToOne
-    @JoinColumn(name="setting_id")
+    @JoinColumn(name = "setting_id")
     private Setting setting;
 
 }
