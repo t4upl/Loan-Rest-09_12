@@ -3,12 +3,12 @@ package com.example.springLoan.decision_system;
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.enums.DataTypeEnum;
+import com.example.springLoan.enums.SettingName;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
 import com.example.springLoan.service.ProductTypeSettingService;
 import com.example.springLoan.service.ProductTypeSettingServiceImpl;
 import com.example.springLoan.util.TestingUtil;
-import com.example.springLoan.util.constant.SettingConstant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -101,7 +101,7 @@ public class DecisionSystemTest extends AbstractTest {
 
     private ProductTypeSetting getProductTypeSetting(String settingName, String dataTypeName, String value) {
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
-        when(productTypeSetting.getSetting().getName()).thenReturn(settingName);
+        when(productTypeSetting.getSetting().getName()).thenReturn(SettingName.valueOf(settingName));
         when(productTypeSetting.getSetting().getDataType().getName().toString()).thenReturn(dataTypeName);
         when(productTypeSetting.getValue()).thenReturn(value);
         return productTypeSetting;
@@ -110,19 +110,19 @@ public class DecisionSystemTest extends AbstractTest {
     private List<ProductTypeSetting> getProductTypeSettingListForMock(){
         List<ProductTypeSetting> productTypeSettings = new ArrayList<>();
 
-        productTypeSettings.add(getProductTypeSetting(SettingConstant.MIN_AMOUNT, DataTypeEnum.INTEGER.toString(),
+        productTypeSettings.add(getProductTypeSetting(SettingName.MIN_AMOUNT.toString(), DataTypeEnum.INTEGER.toString(),
                 MIN_AMOUNT));
-        productTypeSettings.add(getProductTypeSetting(SettingConstant.MAX_AMOUNT, DataTypeEnum.INTEGER.toString(),
+        productTypeSettings.add(getProductTypeSetting(SettingName.MAX_AMOUNT.toString(), DataTypeEnum.INTEGER.toString(),
                 MAX_AMOUNT));
 
-        productTypeSettings.add(getProductTypeSetting(SettingConstant.MIN_TERM, DataTypeEnum.INTEGER.toString(),
+        productTypeSettings.add(getProductTypeSetting(SettingName.MIN_TERM.toString(), DataTypeEnum.INTEGER.toString(),
                 MIN_TERM));
-        productTypeSettings.add(getProductTypeSetting(SettingConstant.MAX_TERM, DataTypeEnum.INTEGER.toString(),
+        productTypeSettings.add(getProductTypeSetting(SettingName.MAX_TERM.toString(), DataTypeEnum.INTEGER.toString(),
                 MAX_TERM));
 
-        productTypeSettings.add(getProductTypeSetting(SettingConstant.MIN_REJECTION_TIME,
+        productTypeSettings.add(getProductTypeSetting(SettingName.MIN_REJECTION_TIME.toString(),
                 DataTypeEnum.LOCAL_TIME.toString(), MIN_REJECTION_TIME));
-        productTypeSettings.add(getProductTypeSetting(SettingConstant.MAX_REJECTION_TIME,
+        productTypeSettings.add(getProductTypeSetting(SettingName.MAX_REJECTION_TIME.toString(),
                 DataTypeEnum.LOCAL_TIME.toString(), MAX_REJECTION_TIME));
 
         return productTypeSettings;

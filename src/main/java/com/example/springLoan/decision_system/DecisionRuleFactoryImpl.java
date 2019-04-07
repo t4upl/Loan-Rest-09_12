@@ -1,9 +1,9 @@
 package com.example.springLoan.decision_system;
 
 import com.example.springLoan.dto.ProductRequestDTO;
+import com.example.springLoan.enums.SettingName;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.service.ProductTypeSettingService;
-import com.example.springLoan.util.constant.SettingConstant;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,19 +22,21 @@ public class DecisionRuleFactoryImpl implements DecisionRuleFactory {
                 .findByProductType_Id(productRequestDTO.getProductTypeId());
 
         Integer minAmount = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
-                SettingConstant.MIN_AMOUNT);
+                SettingName.MIN_AMOUNT.toString());
         Integer maxAmount = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
-                SettingConstant.MAX_AMOUNT);
+                SettingName.MAX_AMOUNT.toString());
         Integer loanAmount = productRequestDTO.getAmount();
 
-        Integer minTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings, SettingConstant.MIN_TERM);
-        Integer maxTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings, SettingConstant.MAX_TERM);
+        Integer minTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
+                SettingName.MIN_TERM.toString());
+        Integer maxTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
+                SettingName.MAX_TERM.toString());
         Integer loanTerm = productRequestDTO.getTerm();
 
         LocalTime minRejectionTime = productTypeSettingService.findAndGetAsLocalTime(productTypeSettings,
-                SettingConstant.MIN_REJECTION_TIME);
+                SettingName.MIN_REJECTION_TIME.toString());
         LocalTime maxRejectionTime = productTypeSettingService.findAndGetAsLocalTime(productTypeSettings,
-                SettingConstant.MAX_REJECTION_TIME);
+                SettingName.MAX_REJECTION_TIME.toString());
         LocalTime loanApplicationTime = productRequestDTO.getApplicationDate().toLocalTime();
 
         return DecisionRule.DecisionRuleBuilder

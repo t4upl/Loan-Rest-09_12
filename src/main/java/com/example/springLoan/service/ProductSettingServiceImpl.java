@@ -2,12 +2,12 @@ package com.example.springLoan.service;
 
 import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.enums.DataTypeEnum;
+import com.example.springLoan.enums.SettingName;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.ProductSetting;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
-import com.example.springLoan.util.constant.SettingConstant;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +39,9 @@ public class ProductSettingServiceImpl implements ProductSettingService {
     @Override
     public Set<ProductSetting> addExtensionTermToDueDate(Set<ProductSetting> productSettingSet) {
         ProductSetting termProductSetting = findProductSettingBySettingName(productSettingSet,
-                SettingConstant.EXTENSION_TERM);
+                SettingName.EXTENSION_TERM.toString());
         ProductSetting dueDateProductSetting = findProductSettingBySettingName(productSettingSet,
-                SettingConstant.DUE_DATE);
+                SettingName.DUE_DATE.toString());
         LocalDateTime dueDate = (LocalDateTime) FilterUtil.convertStringToJava(dueDateProductSetting.getValue(),
                 DataTypeEnum.LOCAL_DATE_TIME.toString());
 
@@ -86,23 +86,23 @@ public class ProductSettingServiceImpl implements ProductSettingService {
         Optional<Object> javaObjectOpt = Optional.empty();
 
         switch (productTypeSetting.getSetting().getName()) {
-            case (SettingConstant.APPLICATION_DATE):
+            case APPLICATION_DATE:
                 javaObjectOpt = Optional.of(productRequestDTO.getApplicationDate());
                 break;
-            case (SettingConstant.AMOUNT):
+            case AMOUNT:
                 javaObjectOpt = Optional.of(productRequestDTO.getAmount());
                 break;
-            case (SettingConstant.DUE_DATE):
+            case DUE_DATE:
                 javaObjectOpt = Optional.of(productRequestDTO.getApplicationDate().plusDays(
                         productRequestDTO.getTerm()));
                 break;
-            case (SettingConstant.AMOUNT_TO_PAY):
+            case AMOUNT_TO_PAY:
                 double rateOfIntrest = productTypeSettingService.findAndGetAsDouble(productTypeSettings,
-                        SettingConstant.RATE_OF_INTEREST);
+                        SettingName.RATE_OF_INTEREST.toString());
                 javaObjectOpt = Optional.of(Double.valueOf(productRequestDTO.getAmount())
                         * (1 + rateOfIntrest / 100));
                 break;
-            case (SettingConstant.TERM):
+            case TERM:
                 javaObjectOpt = Optional.of(productRequestDTO.getTerm());
                 break;
         }
@@ -110,7 +110,7 @@ public class ProductSettingServiceImpl implements ProductSettingService {
         if (javaObjectOpt.isPresent()) {
             return FilterUtil.convertJavaToString(javaObjectOpt.get(), dataTypeName);
         }
-        throw new RuntimeException(String.format("getValueForProductSetting - case not found for SettingConstant with name %s",
+        throw new RuntimeException(String.format("getValueForProductSetting - case not found for SettingName with name %s",
                 productTypeSetting.getSetting().getName()));
     }
 }

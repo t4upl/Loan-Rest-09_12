@@ -2,6 +2,7 @@ package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.enums.DataTypeEnum;
+import com.example.springLoan.enums.SettingName;
 import com.example.springLoan.model.ProductTypeSetting;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +26,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         this.productTypeSettingService = new ProductTypeSettingServiceImpl(null);
         this.productTypeSettings = new ArrayList<>();
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
-        when(productTypeSetting.getSetting().getName()).thenReturn("min amount");
+        when(productTypeSetting.getSetting().getName()).thenReturn(SettingName.MIN_AMOUNT);
         when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeEnum.INTEGER);
         when(productTypeSetting.getValue()).thenReturn("-1");
         this.productTypeSettings.add(productTypeSetting);
@@ -33,7 +34,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
 
     @Test
     public void returnProductTypeSettingOnfindAndGetAsInteger(){
-        String name = "name";
+        SettingName name = SettingName.AMOUNT;
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
 
         //given
@@ -43,7 +44,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         productTypeSettings.add(productTypeSetting);
 
         //when
-        Integer integer = productTypeSettingService.findAndGetAsInteger(productTypeSettings, name);
+        Integer integer = productTypeSettingService.findAndGetAsInteger(productTypeSettings, name.toString());
 
         //then
         Assert.assertEquals(999, integer.longValue());
@@ -51,7 +52,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
 
     @Test (expected = RuntimeException.class)
     public void throwExceptionWhenBadDataTypeName(){
-        String name = "name";
+        SettingName name = SettingName.AMOUNT;
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
 
         //given
@@ -61,7 +62,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         productTypeSettings.add(productTypeSetting);
 
         //when
-        productTypeSettingService.findAndGetAsInteger(productTypeSettings, name);
+        productTypeSettingService.findAndGetAsInteger(productTypeSettings, name.toString());
     }
 
     @Test (expected = RuntimeException.class)

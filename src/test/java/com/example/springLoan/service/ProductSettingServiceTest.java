@@ -3,6 +3,7 @@ package com.example.springLoan.service;
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.dto.ProductRequestDTO;
 import com.example.springLoan.enums.DataTypeEnum;
+import com.example.springLoan.enums.SettingName;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.DataType;
 import com.example.springLoan.model.ProductSetting;
@@ -11,7 +12,6 @@ import com.example.springLoan.model.Setting;
 import com.example.springLoan.repository.ProductSettingRepository;
 import com.example.springLoan.util.FilterUtil;
 import com.example.springLoan.util.TestingUtil;
-import com.example.springLoan.util.constant.SettingConstant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,12 +32,12 @@ public class ProductSettingServiceTest extends AbstractTest {
     private final static Integer CLIENT_DATA_WRAPPER_AMOUNT = 5000;
     public static final int TERM = 15;
 
-    ProductSettingService productSettingService;
-    ProductSettingRepository productSettingRepository;
-    ProductTypeSettingService productTypeSettingService;
-    AbstractFactory abstractFactory;
+    private ProductSettingService productSettingService;
+    private ProductSettingRepository productSettingRepository;
+    private ProductTypeSettingService productTypeSettingService;
+    private AbstractFactory abstractFactory;
 
-    ProductRequestDTO productRequestDTO;
+    private ProductRequestDTO productRequestDTO;
 
     @Before
     public void setUp(){
@@ -60,13 +60,13 @@ public class ProductSettingServiceTest extends AbstractTest {
         final String PRODUCT_TYPE_SETTING_VALUE = "1000";
         final String TERM_SETTING = "30";
 
-        Setting setting1 = new Setting(null, SettingConstant.AMOUNT,
+        Setting setting1 = new Setting(null, SettingName.AMOUNT,
                 new DataType(null, DataTypeEnum.INTEGER, null),
                 true, null, null);
         ProductTypeSetting productTypeSetting1 = new ProductTypeSetting(null, PRODUCT_TYPE_SETTING_VALUE,
                 null, setting1);
 
-        Setting setting2 = new Setting(null, SettingConstant.TERM,
+        Setting setting2 = new Setting(null, SettingName.TERM,
                 new DataType(null, DataTypeEnum.INTEGER, null),
                 false, null, null);
         ProductTypeSetting productTypeSetting2 = new ProductTypeSetting(null, TERM_SETTING, null,
@@ -86,18 +86,18 @@ public class ProductSettingServiceTest extends AbstractTest {
                 productTypeSettingsMock.size(), productSettings.size());
 
         Assert.assertTrue("productSetting should contain element wiht name equal to 'amount'.",
-                productSettings.stream().anyMatch(x -> SettingConstant.AMOUNT.equals(x.getSetting().getName())));
+                productSettings.stream().anyMatch(x -> SettingName.AMOUNT.equals(x.getSetting().getName())));
 
         Assert.assertTrue("productSetting should contain element wiht name equal to 'term'.",
-                productSettings.stream().anyMatch(x -> SettingConstant.TERM.equals(x.getSetting().getName())));
+                productSettings.stream().anyMatch(x -> SettingName.TERM.equals(x.getSetting().getName())));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to true " +
                         "should have value based on productRequestDTO.",
-                CLIENT_DATA_WRAPPER_AMOUNT.toString(), getValueByName(productSettings, SettingConstant.AMOUNT));
+                CLIENT_DATA_WRAPPER_AMOUNT.toString(), getValueByName(productSettings, SettingName.AMOUNT.toString()));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to false " +
                         "should have value base don ProductTypeSetting.",
-                TERM_SETTING, getValueByName(productSettings, SettingConstant.TERM));
+                TERM_SETTING, getValueByName(productSettings, SettingName.TERM.toString()));
     }
 
     @Test
@@ -112,18 +112,18 @@ public class ProductSettingServiceTest extends AbstractTest {
         Integer term = (Integer) FilterUtil.convertStringToJava(
                 termString, DataTypeEnum.INTEGER.toString());
         Set<ProductSetting> productSettingsMock = new HashSet<>();
-        productSettingsMock.add(getProductSetting(DataTypeEnum.LOCAL_DATE_TIME.toString(), SettingConstant.DUE_DATE,
+        productSettingsMock.add(getProductSetting(DataTypeEnum.LOCAL_DATE_TIME.toString(), SettingName.DUE_DATE.toString(),
                 localDateString));
-        productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), SettingConstant.EXTENSION_TERM,
+        productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), SettingName.EXTENSION_TERM.toString(),
                 termString));
         productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), foobarName, foobarString));
 
         Set<ProductSetting> productSettings = productSettingService.addExtensionTermToDueDate(productSettingsMock);
 
         Optional<ProductSetting> dueDateOpt = getProductSettingBySettingName(productSettings,
-                SettingConstant.DUE_DATE);
+                SettingName.DUE_DATE.toString());
         Optional<ProductSetting> termOpt = getProductSettingBySettingName(productSettings,
-                SettingConstant.EXTENSION_TERM);
+                SettingName.EXTENSION_TERM.toString());
         Optional<ProductSetting> foobarOpt = getProductSettingBySettingName(productSettings, foobarName);
         Assert.assertTrue("ProductSettings should contain ProductSetting with name 'due date'",
                 dueDateOpt.isPresent());
@@ -143,12 +143,12 @@ public class ProductSettingServiceTest extends AbstractTest {
 
     private Optional<ProductSetting> getProductSettingBySettingName (Set<ProductSetting> productSettings,
                                                                      String setingName){
-        return productSettings.stream().filter(x-> setingName.equals(x.getSetting().getName())).findFirst();
+        return productSettings.stream().filter(x-> setingName.equals(x.getSetting().getName().toString())).findFirst();
     }
 
     private ProductSetting getProductSetting(String dataTypeName, String settingName, String productSettingValue){
         DataType dataType = new DataType(null, DataTypeEnum.valueOf(dataTypeName), null);
-        Setting setting = new Setting(null, settingName, dataType , null,
+        Setting setting = new Setting(null, SettingName.valueOf(settingName), dataType , null,
                 null, null);
         return new ProductSetting(1L, productSettingValue, null, setting);
     }
@@ -156,7 +156,7 @@ public class ProductSettingServiceTest extends AbstractTest {
     private String getValueByName(Set<ProductSetting> productSettings, String name){
         return productSettings
                 .stream()
-                .filter(x -> name.equals(x.getSetting().getName()))
+                .filter(x -> name.equals(x.getSetting().getName().toString()))
                 .findFirst()
                 .get()
                 .getValue();

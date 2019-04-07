@@ -1,6 +1,7 @@
 package com.example.springLoan.model;
 
 import com.example.springLoan.enums.DataTypeEnum;
+import com.example.springLoan.enums.SettingName;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Setting implements Serializable {
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    private SettingName name;
 
     @ManyToOne
     @JoinColumn(name="data_type_id")
