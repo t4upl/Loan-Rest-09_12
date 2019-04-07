@@ -82,7 +82,7 @@ public class ProductSettingServiceImpl implements ProductSettingService {
                                              ProductRequestDTO productRequestDTO,
                                              List<ProductTypeSetting> productTypeSettings) {
 
-        String dataTypeName = productTypeSetting.getSetting().getDataType().getName();
+        String dataTypeName = productTypeSetting.getSetting().getDataType().getName().toString();
         Optional<Object> javaObjectOpt = Optional.empty();
 
         switch (productTypeSetting.getSetting().getName()) {

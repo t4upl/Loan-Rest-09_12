@@ -1,6 +1,7 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
+import com.example.springLoan.enums.DataTypeEnum;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.util.constant.DataTypeConstant;
 import org.junit.Assert;
@@ -26,7 +27,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         this.productTypeSettings = new ArrayList<>();
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
         when(productTypeSetting.getSetting().getName()).thenReturn("min amount");
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeConstant.INTEGER);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeEnum.INTEGER);
         when(productTypeSetting.getValue()).thenReturn("-1");
         this.productTypeSettings.add(productTypeSetting);
     }
@@ -38,7 +39,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
 
         //given
         when(productTypeSetting.getSetting().getName()).thenReturn(name);
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeConstant.INTEGER);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeEnum.INTEGER);
         when(productTypeSetting.getValue()).thenReturn("999");
         productTypeSettings.add(productTypeSetting);
 
@@ -56,7 +57,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
 
         //given
         when(productTypeSetting.getSetting().getName()).thenReturn(name);
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeConstant.DOUBLE);
+        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(DataTypeEnum.DOUBLE);
         when(productTypeSetting.getValue()).thenReturn("999");
         productTypeSettings.add(productTypeSetting);
 

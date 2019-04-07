@@ -25,10 +25,11 @@ public class Product implements Serializable {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    Set<ProductSetting> productSettings;
-
     @ManyToOne
     @JoinColumn(name="product_type_id")
     private ProductType productType;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<ProductSetting> productSettings;
+
 }

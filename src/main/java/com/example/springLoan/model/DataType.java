@@ -1,6 +1,7 @@
 package com.example.springLoan.model;
 
 import com.example.springLoan.enums.DataTypeEnum;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class DataType implements Serializable {
 
     private static final long serialVersionUID = 2073516673766418828L;

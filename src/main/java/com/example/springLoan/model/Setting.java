@@ -27,16 +27,19 @@ public class Setting implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name="data_type_id")
+    private DataType dataType;
+
     @Column(name = "is_runtime_input")
     private Boolean isRuntimeInput;
 
     @OneToMany(mappedBy = "setting")
     private Set<ProductTypeSetting> productTypeSettings;
 
+
     @OneToMany(mappedBy = "setting")
     private Set<ProductSetting> productSettings;
 
-    @ManyToOne
-    @JoinColumn(name="data_type_id")
-    private DataType dataType;
+
 }

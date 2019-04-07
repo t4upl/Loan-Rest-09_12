@@ -39,7 +39,7 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
                                        String dataTypeKey) {
         ProductTypeSetting productTypeSetting = findProductTypeSettingByName(productTypeSettings, propertyKey);
 
-        String ptsDataType = productTypeSetting.getSetting().getDataType().getName();
+        String ptsDataType = productTypeSetting.getSetting().getDataType().getName().toString();
         if (!ptsDataType.equals(dataTypeKey)) {
             throw new RuntimeException(String.format("Error casting productTypeSetting with key: %s of type: %s " +
                     "to type: %s.", propertyKey, ptsDataType, dataTypeKey));

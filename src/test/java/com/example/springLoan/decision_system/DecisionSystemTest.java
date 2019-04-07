@@ -102,7 +102,7 @@ public class DecisionSystemTest extends AbstractTest {
     private ProductTypeSetting getProductTypeSetting(String settingName, String dataTypeName, String value) {
         ProductTypeSetting productTypeSetting = mock(ProductTypeSetting.class, Mockito.RETURNS_DEEP_STUBS);
         when(productTypeSetting.getSetting().getName()).thenReturn(settingName);
-        when(productTypeSetting.getSetting().getDataType().getName()).thenReturn(dataTypeName);
+        when(productTypeSetting.getSetting().getDataType().getName().toString()).thenReturn(dataTypeName);
         when(productTypeSetting.getValue()).thenReturn(value);
         return productTypeSetting;
     }

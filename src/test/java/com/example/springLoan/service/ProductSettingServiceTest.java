@@ -2,6 +2,7 @@ package com.example.springLoan.service;
 
 import com.example.springLoan.AbstractTest;
 import com.example.springLoan.dto.ProductRequestDTO;
+import com.example.springLoan.enums.DataTypeEnum;
 import com.example.springLoan.factory.AbstractFactory;
 import com.example.springLoan.model.*;
 import com.example.springLoan.repository.ProductSettingRepository;
@@ -58,13 +59,13 @@ public class ProductSettingServiceTest extends AbstractTest {
         final String TERM_SETTING = "30";
 
         Setting setting1 = new Setting(null, SettingConstant.AMOUNT,
-                new DataType(null, DataTypeConstant.INTEGER, null),
+                new DataType(null, DataTypeEnum.INTEGER, null),
                 true, null, null);
         ProductTypeSetting productTypeSetting1 = new ProductTypeSetting(null, PRODUCT_TYPE_SETTING_VALUE,
                 null, setting1);
 
         Setting setting2 = new Setting(null, SettingConstant.TERM,
-                new DataType(null, DataTypeConstant.INTEGER, null),
+                new DataType(null, DataTypeEnum.INTEGER, null),
                 false, null, null);
         ProductTypeSetting productTypeSetting2 = new ProductTypeSetting(null, TERM_SETTING, null,
                 setting2);
@@ -144,7 +145,7 @@ public class ProductSettingServiceTest extends AbstractTest {
     }
 
     private ProductSetting getProductSetting(String dataTypeName, String settingName, String productSettingValue){
-        DataType dataType = new DataType(null, dataTypeName, null);
+        DataType dataType = new DataType(null, DataTypeEnum.valueOf(dataTypeName), null);
         Setting setting = new Setting(null, settingName, dataType , null,
                 null, null);
         return new ProductSetting(1L, productSettingValue, null, setting);
