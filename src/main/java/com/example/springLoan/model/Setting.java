@@ -26,6 +26,7 @@ public class Setting implements Serializable {
     private Long id;
 
     @Column(name = "name")
+    @Enumerated(EnumType.STRING)
     private SettingName name;
 
     @ManyToOne
