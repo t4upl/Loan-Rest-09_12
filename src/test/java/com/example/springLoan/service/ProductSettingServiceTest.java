@@ -105,25 +105,25 @@ public class ProductSettingServiceTest extends AbstractTest {
         String localDateString = "2018-11-07 15:12:54";
         String termString = "3";
         String foobarString = "5";
-        String foobarName = "foobar";
+        SettingName foobarName = SettingName.MAX_REJECTION_TIME;
 
         LocalDateTime localDateTime = (LocalDateTime) FilterUtil.convertStringToJava(
                 localDateString, DataTypeEnum.LOCAL_DATE_TIME.toString());
         Integer term = (Integer) FilterUtil.convertStringToJava(
                 termString, DataTypeEnum.INTEGER.toString());
         Set<ProductSetting> productSettingsMock = new HashSet<>();
-        productSettingsMock.add(getProductSetting(DataTypeEnum.LOCAL_DATE_TIME.toString(), SettingName.DUE_DATE.toString(),
+        productSettingsMock.add(getProductSetting(DataTypeEnum.LOCAL_DATE_TIME.toString(), SettingName.DUE_DATE,
                 localDateString));
-        productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), SettingName.EXTENSION_TERM.toString(),
+        productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), SettingName.EXTENSION_TERM,
                 termString));
         productSettingsMock.add(getProductSetting(DataTypeEnum.INTEGER.toString(), foobarName, foobarString));
 
         Set<ProductSetting> productSettings = productSettingService.addExtensionTermToDueDate(productSettingsMock);
 
         Optional<ProductSetting> dueDateOpt = getProductSettingBySettingName(productSettings,
-                SettingName.DUE_DATE.toString());
+                SettingName.DUE_DATE);
         Optional<ProductSetting> termOpt = getProductSettingBySettingName(productSettings,
-                SettingName.EXTENSION_TERM.toString());
+                SettingName.EXTENSION_TERM);
         Optional<ProductSetting> foobarOpt = getProductSettingBySettingName(productSettings, foobarName);
         Assert.assertTrue("ProductSettings should contain ProductSetting with name 'due date'",
                 dueDateOpt.isPresent());
@@ -142,13 +142,13 @@ public class ProductSettingServiceTest extends AbstractTest {
     }
 
     private Optional<ProductSetting> getProductSettingBySettingName (Set<ProductSetting> productSettings,
-                                                                     String setingName){
-        return productSettings.stream().filter(x-> setingName.equals(x.getSetting().getName().toString())).findFirst();
+                                                                     SettingName setingName){
+        return productSettings.stream().filter(x-> setingName.equals(x.getSetting().getName())).findFirst();
     }
 
-    private ProductSetting getProductSetting(String dataTypeName, String settingName, String productSettingValue){
+    private ProductSetting getProductSetting(String dataTypeName, SettingName settingName, String productSettingValue){
         DataType dataType = new DataType(null, DataTypeEnum.valueOf(dataTypeName), null);
-        Setting setting = new Setting(null, SettingName.valueOf(settingName), dataType , null,
+        Setting setting = new Setting(null, settingName, dataType , null,
                 null, null);
         return new ProductSetting(1L, productSettingValue, null, setting);
     }

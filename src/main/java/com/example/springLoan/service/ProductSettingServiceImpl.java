@@ -39,9 +39,9 @@ public class ProductSettingServiceImpl implements ProductSettingService {
     @Override
     public Set<ProductSetting> addExtensionTermToDueDate(Set<ProductSetting> productSettingSet) {
         ProductSetting termProductSetting = findProductSettingBySettingName(productSettingSet,
-                SettingName.EXTENSION_TERM.toString());
+                SettingName.EXTENSION_TERM);
         ProductSetting dueDateProductSetting = findProductSettingBySettingName(productSettingSet,
-                SettingName.DUE_DATE.toString());
+                SettingName.DUE_DATE);
         LocalDateTime dueDate = (LocalDateTime) FilterUtil.convertStringToJava(dueDateProductSetting.getValue(),
                 DataTypeEnum.LOCAL_DATE_TIME.toString());
 
@@ -53,7 +53,7 @@ public class ProductSettingServiceImpl implements ProductSettingService {
         return productSettingSet;
     }
 
-    private ProductSetting findProductSettingBySettingName(Set<ProductSetting> productSettingSet, String name){
+    private ProductSetting findProductSettingBySettingName(Set<ProductSetting> productSettingSet, SettingName name){
         return productSettingSet.stream()
                 .filter(x -> name.equals(x.getSetting().getName()))
                 .findFirst()
