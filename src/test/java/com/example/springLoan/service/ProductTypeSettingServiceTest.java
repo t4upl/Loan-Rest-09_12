@@ -44,7 +44,7 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         productTypeSettings.add(productTypeSetting);
 
         //when
-        Integer integer = productTypeSettingService.findAndGetAsInteger(productTypeSettings, name.toString());
+        Integer integer = productTypeSettingService.findAndGetAsInteger(productTypeSettings, name);
 
         //then
         Assert.assertEquals(999, integer.longValue());
@@ -62,11 +62,11 @@ public class ProductTypeSettingServiceTest extends AbstractTest {
         productTypeSettings.add(productTypeSetting);
 
         //when
-        productTypeSettingService.findAndGetAsInteger(productTypeSettings, name.toString());
+        productTypeSettingService.findAndGetAsInteger(productTypeSettings, name);
     }
 
     @Test (expected = RuntimeException.class)
     public void throwExceptionWhenNoProductTypeSettingWithName(){
-        productTypeSettingService.findAndGetAsInteger(productTypeSettings, "no such name in list");
+        productTypeSettingService.findAndGetAsInteger(productTypeSettings, null);
     }
 }

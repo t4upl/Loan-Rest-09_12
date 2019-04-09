@@ -98,7 +98,7 @@ public class ProductSettingServiceImpl implements ProductSettingService {
                 break;
             case AMOUNT_TO_PAY:
                 double rateOfIntrest = productTypeSettingService.findAndGetAsDouble(productTypeSettings,
-                        SettingName.RATE_OF_INTEREST.toString());
+                        SettingName.RATE_OF_INTEREST);
                 javaObjectOpt = Optional.of(Double.valueOf(productRequestDTO.getAmount())
                         * (1 + rateOfIntrest / 100));
                 break;

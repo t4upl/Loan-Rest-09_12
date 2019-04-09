@@ -22,21 +22,21 @@ public class DecisionRuleFactoryImpl implements DecisionRuleFactory {
                 .findByProductType_Id(productRequestDTO.getProductTypeId());
 
         Integer minAmount = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
-                SettingName.MIN_AMOUNT.toString());
+                SettingName.MIN_AMOUNT);
         Integer maxAmount = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
-                SettingName.MAX_AMOUNT.toString());
+                SettingName.MAX_AMOUNT);
         Integer loanAmount = productRequestDTO.getAmount();
 
         Integer minTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
-                SettingName.MIN_TERM.toString());
+                SettingName.MIN_TERM);
         Integer maxTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
-                SettingName.MAX_TERM.toString());
+                SettingName.MAX_TERM);
         Integer loanTerm = productRequestDTO.getTerm();
 
         LocalTime minRejectionTime = productTypeSettingService.findAndGetAsLocalTime(productTypeSettings,
-                SettingName.MIN_REJECTION_TIME.toString());
+                SettingName.MIN_REJECTION_TIME);
         LocalTime maxRejectionTime = productTypeSettingService.findAndGetAsLocalTime(productTypeSettings,
-                SettingName.MAX_REJECTION_TIME.toString());
+                SettingName.MAX_REJECTION_TIME);
         LocalTime loanApplicationTime = productRequestDTO.getApplicationDate().toLocalTime();
 
         return DecisionRule.DecisionRuleBuilder

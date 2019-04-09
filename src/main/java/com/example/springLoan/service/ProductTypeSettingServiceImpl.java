@@ -1,6 +1,7 @@
 package com.example.springLoan.service;
 
 import com.example.springLoan.enums.DataTypeEnum;
+import com.example.springLoan.enums.SettingName;
 import com.example.springLoan.model.ProductTypeSetting;
 import com.example.springLoan.repository.ProductTypeSettingRepository;
 import lombok.AllArgsConstructor;
@@ -16,17 +17,17 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
     ProductTypeSettingRepository productTypeSettingRepository;
 
     @Override
-    public Integer findAndGetAsInteger(List<ProductTypeSetting> productTypeSettings, String key) {
+    public Integer findAndGetAsInteger(List<ProductTypeSetting> productTypeSettings, SettingName key) {
         return Integer.parseInt(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.INTEGER.toString()));
     }
 
     @Override
-    public LocalTime findAndGetAsLocalTime(List<ProductTypeSetting> productTypeSettings, String key) {
+    public LocalTime findAndGetAsLocalTime(List<ProductTypeSetting> productTypeSettings, SettingName key) {
         return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.LOCAL_TIME.toString()));
     }
 
     @Override
-    public Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, String key) {
+    public Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, SettingName key) {
         return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.DOUBLE.toString()));
     }
 
@@ -35,7 +36,7 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
         return productTypeSettingRepository.findByProductType_Id(productTypeId);
     }
 
-    private String findAndGetAsObject (List<ProductTypeSetting> productTypeSettings, String propertyKey,
+    private String findAndGetAsObject (List<ProductTypeSetting> productTypeSettings, SettingName propertyKey,
                                        String dataTypeKey) {
         ProductTypeSetting productTypeSetting = findProductTypeSettingByName(productTypeSettings, propertyKey);
 
@@ -49,7 +50,7 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
     }
 
     private ProductTypeSetting findProductTypeSettingByName(List<ProductTypeSetting> productSettings,
-                                                            String key) {
+                                                            SettingName key) {
         return productSettings
                 .stream()
                 .filter(productTypeSetting ->
