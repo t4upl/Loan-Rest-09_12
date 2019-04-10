@@ -18,17 +18,17 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
 
     @Override
     public Integer findAndGetAsInteger(List<ProductTypeSetting> productTypeSettings, SettingName key) {
-        return Integer.parseInt(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.INTEGER.toString()));
+        return Integer.parseInt(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.INTEGER));
     }
 
     @Override
     public LocalTime findAndGetAsLocalTime(List<ProductTypeSetting> productTypeSettings, SettingName key) {
-        return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.LOCAL_TIME.toString()));
+        return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.LOCAL_TIME));
     }
 
     @Override
     public Double findAndGetAsDouble(List<ProductTypeSetting> productTypeSettings, SettingName key) {
-        return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.DOUBLE.toString()));
+        return Double.parseDouble(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.DOUBLE));
     }
 
     @Override
@@ -37,10 +37,10 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
     }
 
     private String findAndGetAsObject (List<ProductTypeSetting> productTypeSettings, SettingName propertyKey,
-                                       String dataTypeKey) {
+                                       DataTypeEnum dataTypeKey) {
         ProductTypeSetting productTypeSetting = findProductTypeSettingByName(productTypeSettings, propertyKey);
 
-        String ptsDataType = productTypeSetting.getSetting().getDataType().getName().toString();
+        DataTypeEnum ptsDataType = productTypeSetting.getSetting().getDataType().getName();
         if (!ptsDataType.equals(dataTypeKey)) {
             throw new RuntimeException(String.format("Error casting productTypeSetting with key: %s of type: %s " +
                     "to type: %s.", propertyKey, ptsDataType, dataTypeKey));

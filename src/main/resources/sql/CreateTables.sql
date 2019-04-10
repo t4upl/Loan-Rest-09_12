@@ -99,27 +99,27 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
         INSERT INTO product_type (id, name) VALUES (nextval('product_type_id_seq'), 'test product type');
 
         --insert data_type
-        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'Integer');
-        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'LocalDateTime');
-        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'LocalTime');
-        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'String');
-        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'Double');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'INTEGER');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'LOCAL_DATE_TIME');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'LOCAL_TIME');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'STRING');
+        INSERT INTO data_type (id, name) VALUES (nextval('data_type_id_seq'), 'DOUBLE');
 
         --insert settings describing a product
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'min amount', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'max amount', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'min term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'max term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'min rejection time', 3, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'max rejection time', 3, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'loan type', 4, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'rate of interest', 5, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'due date', 2, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'extension term', 1, '0');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount', 1, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'application date', 2, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'amount to pay', 5, '1');
-        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'term', 1, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'MIN_AMOUNT', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'MAX_AMOUNT', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'MIN_TERM', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'MAX_TERM', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'MIN_REJECTION_TIME', 3, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'MAX_REJECTION_TIME', 3, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'LOAN_TYPE', 4, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'RATE_OF_INTEREST', 5, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'DUE_DATE', 2, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'EXTENSION_TERM', 1, '0');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'AMOUNT', 1, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'APPLICATION_DATE', 2, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'AMOUNT_TO_PAY', 5, '1');
+        INSERT INTO setting (id, name, data_type_id, is_runtime_input) VALUES (nextval('setting_id_seq'), 'TERM', 1, '1');
 
         --insert settings describing a debt with product_type_id = 1
         INSERT INTO product_type_setting (id, product_type_id, setting_id, value) VALUES (nextval('product_type_setting_id_seq'), 1, 1, '1000');
@@ -149,25 +149,25 @@ CREATE OR REPLACE FUNCTION insertTestData() RETURNS void AS $$
 
         update product_setting
         set value = '2018-11-02 15:12:54'
-        where setting_id = (select id from setting where name = 'application date');
+        where setting_id = (select id from setting where name = 'APPLICATION_DATE');
 
         update product_setting
         set value = '5'
-        where setting_id = (select id from setting where name = 'term');
+        where setting_id = (select id from setting where name = 'TERM');
 
         update product_setting
         set value = '2018-11-07 15:12:54'
-        where setting_id = (select id from setting where name = 'due date');
+        where setting_id = (select id from setting where name = 'DUE_DATE');
 
 
         update product_setting
         set value = '5500'
-        where setting_id = (select id from setting where name = 'amount to pay');
+        where setting_id = (select id from setting where name = 'AMOUNT_TO_PAY');
 
 
         update product_setting
         set value = '5000'
-        where setting_id = (select id from setting where name = 'amount');
+        where setting_id = (select id from setting where name = 'AMOUNT');
 
         RAISE NOTICE 'insertTestData - end';
     END;
