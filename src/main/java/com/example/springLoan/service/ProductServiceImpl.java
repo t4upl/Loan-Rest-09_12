@@ -8,6 +8,7 @@ import com.example.springLoan.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -67,10 +68,10 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
         Product product = abstractFactory.getProductFactory()
-                .getProduct(null, customer, productType, null);
+                .getProduct(null, customer, productType, new HashSet<>());
 
         Set<ProductSetting> productSettings = productSettingService.getProductSettings(productRequestDTO);
-        productSettings.forEach(x -> x.setProduct(product));
+        productSettings.forEach(product::addProductSetting);
         return productRepository.save(product);
     }
 }

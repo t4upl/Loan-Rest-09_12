@@ -32,4 +32,9 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<ProductSetting> productSettings;
 
+    public void addProductSetting(ProductSetting productSetting) {
+        productSetting.setProduct(this);
+        productSettings.add(productSetting);
+    }
+
 }
