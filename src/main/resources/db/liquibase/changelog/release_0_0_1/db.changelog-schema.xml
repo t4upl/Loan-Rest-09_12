@@ -1,0 +1,126 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Administrator (generated)" id="1554927584828-1">
+        <createSequence sequenceName="answer_sequence"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-2">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-3">
+        <createSequence sequenceName="question_sequence"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-4">
+        <createTable tableName="customer">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="customer_pkey"/>
+            </column>
+            <column name="name" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-5">
+        <createTable tableName="data_type">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="data_type_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-6">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_type_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-7">
+        <createTable tableName="product_setting">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="product_setting_pkey"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="setting_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-8">
+        <createTable tableName="product_type">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="product_type_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-9">
+        <createTable tableName="product_type_setting">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="product_type_setting_pkey"/>
+            </column>
+            <column name="product_type_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="setting_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-10">
+        <createTable tableName="setting">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="setting_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_type_id" type="BIGINT"/>
+            <column name="is_runtime_input" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-11">
+        <addUniqueConstraint columnNames="name" constraintName="data_type_name_key" tableName="data_type"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-12">
+        <addUniqueConstraint columnNames="product_id, setting_id" constraintName="product_setting_product_id_setting_id_key" tableName="product_setting"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-13">
+        <addUniqueConstraint columnNames="product_type_id, setting_id" constraintName="product_type_setting_product_type_id_setting_id_key" tableName="product_type_setting"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-14">
+        <addUniqueConstraint columnNames="name" constraintName="setting_name_key" tableName="setting"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-15">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="product" constraintName="fk_product_customer_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-16">
+        <addForeignKeyConstraint baseColumnNames="product_type_id" baseTableName="product" constraintName="fk_product_product_type_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_type" validate="true"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-17">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_setting" constraintName="fk_product_setting_product_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-18">
+        <addForeignKeyConstraint baseColumnNames="setting_id" baseTableName="product_setting" constraintName="fk_product_setting_setting_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="setting" validate="true"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-19">
+        <addForeignKeyConstraint baseColumnNames="product_type_id" baseTableName="product_type_setting" constraintName="fk_product_type_setting_product_type_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_type" validate="true"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-20">
+        <addForeignKeyConstraint baseColumnNames="setting_id" baseTableName="product_type_setting" constraintName="fk_product_type_setting_setting_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="setting" validate="true"/>
+    </changeSet>
+    <changeSet author="Administrator (generated)" id="1554927584828-21">
+        <addForeignKeyConstraint baseColumnNames="data_type_id" baseTableName="setting" constraintName="fk_setting_datat_type_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="data_type" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
