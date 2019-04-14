@@ -8,22 +8,23 @@ import org.mockito.stubbing.Answer;
 
 public abstract class AbstractTest {
 
-    @Test
-    public void smokeTest(){
-        System.out.println("smokeTest passed.");
-    }
+  @Test
+  public void smokeTest() {
+    System.out.println("smokeTest passed.");
+  }
 
-    //stric mocking class
-    @AllArgsConstructor
-    @NoArgsConstructor
-    protected static class NullPointerExceptionAnswer<T> implements Answer<T> {
-        private static final String STRICT_MOCKING_ERROR = "Strict mocking error: ";
-        private String message = "no message provided.";
+  //strict mocking class
+  @AllArgsConstructor
+  @NoArgsConstructor
+  protected static class NullPointerExceptionAnswer<T> implements Answer<T> {
 
-        @Override
-        public T answer(InvocationOnMock invocation) throws Throwable {
-            throw new NullPointerException(STRICT_MOCKING_ERROR + this.message);
-        }
+    private static final String STRICT_MOCKING_ERROR = "Strict mocking error: ";
+    private String message = "no message provided.";
+
+    @Override
+    public T answer(InvocationOnMock invocation) throws Throwable {
+      throw new NullPointerException(STRICT_MOCKING_ERROR + this.message);
     }
+  }
 
 }

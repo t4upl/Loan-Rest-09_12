@@ -33,7 +33,7 @@ Loan properties are modelled as generic table. Name of properties are stored in 
 - <del>Endpoint for applying the loan<del>
 - <del>Endpoint for extending the loan<del>
 - <del>Liquibase integration<del>
-- Google checkstyle + clean-up
+- <del>Google checkstyle + clean-up<del>
 - H2 branch
 
 ## Installation
@@ -56,7 +56,7 @@ Additional features that could have been but will not be implemented as part of 
 2. Authentication
 
 **Loan versioning**
-Current data model does not allow a loan versioning. If bank officer would like to update any of the properties describing the existing loan it would mean that new loan with different properties should be added to the database. Loan with new properties would then become available for sell and loan with outdated properties would be out of offer. The old loan would be still available as read-only for customer who already own the the loan with outdated properties. The project in current state does not implement decommissioning of loans.
+Current data model does not allow a loan versioning. If bank officer would like to update any of the properties describing the existing loan it would mean that new loan with different properties should be added to the database. Loan with new properties would then become available for sell and loan with outdated properties would be out of offer. The old loan would be still available as read-only for customers who already own the the loan with outdated properties. The project in current state does not implement decommissioning of loans.
 
 In real life scenario it would be much better idea to have a loan versioning. Upon switching some properties of the existing loan a new version of the loan would be added to the database. Only the newest version of the loan could be requested by customer. Customer upon getting a loan would receive a type of loan along with its version. This way customer could find out the loan properties at the moment they requested it. Versioning would solve a problem of decommissioning outdated loans since only the loan in highest version  would be available for sell.
 
