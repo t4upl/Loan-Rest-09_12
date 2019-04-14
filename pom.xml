@@ -34,11 +34,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.postgresql</groupId>-->
+			<!--<artifactId>postgresql</artifactId>-->
+			<!--<scope>runtime</scope>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -78,6 +78,20 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.198</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
@@ -86,23 +100,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-				<configuration>
-					<propertyFile>db/liquibase/liquibase.properties</propertyFile>
-					<changeLogFile>db/liquibase/changelog/db.changelog-master.xml</changeLogFile>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>dropAll</goal>
-							<goal>update</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.liquibase</groupId>-->
+				<!--<artifactId>liquibase-maven-plugin</artifactId>-->
+				<!--<configuration>-->
+					<!--<propertyFile>db/liquibase/liquibase.properties</propertyFile>-->
+					<!--<changeLogFile>db/liquibase/changelog/db.changelog-master.xml</changeLogFile>-->
+				<!--</configuration>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<phase>process-resources</phase>-->
+						<!--<goals>-->
+							<!--<goal>dropAll</goal>-->
+							<!--<goal>update</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 
