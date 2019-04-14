@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class SpringLoanRestAPI {
+public class SpringLoanRestApi {
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringLoanRestAPI.class, args);
+    SpringApplication.run(SpringLoanRestApi.class, args);
   }
 }

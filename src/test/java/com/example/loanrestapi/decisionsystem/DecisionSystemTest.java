@@ -1,7 +1,12 @@
 package com.example.loanrestapi.decisionsystem;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.example.loanrestapi.AbstractTest;
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import com.example.loanrestapi.enums.DataTypeEnum;
 import com.example.loanrestapi.enums.SettingName;
 import com.example.loanrestapi.model.ProductTypeSetting;
@@ -9,18 +14,14 @@ import com.example.loanrestapi.repository.ProductTypeSettingRepository;
 import com.example.loanrestapi.service.ProductTypeSettingService;
 import com.example.loanrestapi.service.ProductTypeSettingServiceImpl;
 import com.example.loanrestapi.util.TestingUtil;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 public class DecisionSystemTest extends AbstractTest {
@@ -95,7 +96,7 @@ public class DecisionSystemTest extends AbstractTest {
                 "1986-04-08 05:30:00", 15)));
     }
 
-    private ProductRequestDTO getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
+    private ProductRequestDto getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
         return TestingUtil.getProductRequestDTO(amount, applicationDate, term);
     }
 

@@ -17,13 +17,13 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
 
   @Override
   public Integer findAndGetAsInteger(List<ProductTypeSetting> productTypeSettings,
-    SettingName key) {
+      SettingName key) {
     return Integer.parseInt(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.INTEGER));
   }
 
   @Override
   public LocalTime findAndGetAsLocalTime(List<ProductTypeSetting> productTypeSettings,
-    SettingName key) {
+      SettingName key) {
     return LocalTime.parse(findAndGetAsObject(productTypeSettings, key, DataTypeEnum.LOCAL_TIME));
   }
 
@@ -38,23 +38,22 @@ public class ProductTypeSettingServiceImpl implements ProductTypeSettingService 
   }
 
   private String findAndGetAsObject(List<ProductTypeSetting> productTypeSettings,
-    SettingName propertyKey,
-    DataTypeEnum dataTypeKey) {
+      SettingName propertyKey, DataTypeEnum dataTypeKey) {
     ProductTypeSetting productTypeSetting = findProductTypeSettingByName(productTypeSettings,
-      propertyKey);
+        propertyKey);
 
     DataTypeEnum ptsDataType = productTypeSetting.getSetting().getDataType().getName();
     if (!ptsDataType.equals(dataTypeKey)) {
       throw new RuntimeException(
-        String.format("Error casting productTypeSetting with key: %s of type: %s " +
-          "to type: %s.", propertyKey, ptsDataType, dataTypeKey));
+        String.format("Error casting productTypeSetting with key: %s of type: %s"
+          + " to type: %s.", propertyKey, ptsDataType, dataTypeKey));
     }
 
     return productTypeSetting.getValue();
   }
 
   private ProductTypeSetting findProductTypeSettingByName(List<ProductTypeSetting> productSettings,
-    SettingName key) {
+      SettingName key) {
     return productSettings
       .stream()
       .filter(productTypeSetting ->

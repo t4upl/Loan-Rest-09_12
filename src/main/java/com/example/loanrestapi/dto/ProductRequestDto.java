@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @AllArgsConstructor
-public class ProductRequestDTO {
+public class ProductRequestDto {
 
   private Long customerId;
   private Long productTypeId;

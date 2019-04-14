@@ -1,6 +1,6 @@
 package com.example.loanrestapi.util;
 
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import com.example.loanrestapi.util.constant.ApplicationConstant;
 
 import java.io.File;
@@ -25,8 +25,8 @@ public class TestingUtil {
         return strings.stream().collect(Collectors.joining("\n"));
     }
 
-    public static ProductRequestDTO getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
-        return ProductRequestDTO.builder()
+    public static ProductRequestDto getProductRequestDTO(Integer amount, String applicationDate, Integer term) {
+        return ProductRequestDto.builder()
                 .amount(amount)
                 .applicationDate(LocalDateTime.parse(applicationDate,
                         DateTimeFormatter.ofPattern(ApplicationConstant.DATE_FORMAT)))

@@ -1,7 +1,7 @@
 package com.example.loanrestapi.decisionsystem;
 
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 
 public interface DecisionSystem {
-  boolean isLoanGiven(ProductRequestDTO productRequestDTO);
+  boolean isLoanGiven(ProductRequestDto productRequestDto);
 }

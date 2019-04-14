@@ -1,6 +1,6 @@
 package com.example.loanrestapi.decisionsystem;
 
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import com.example.loanrestapi.enums.SettingName;
 import com.example.loanrestapi.model.ProductTypeSetting;
 import com.example.loanrestapi.service.ProductTypeSettingService;
@@ -16,28 +16,28 @@ public class DecisionRuleFactoryImpl implements DecisionRuleFactory {
   ProductTypeSettingService productTypeSettingService;
 
   @Override
-  public DecisionRule rulesForTestProductType(ProductRequestDTO productRequestDTO) {
+  public DecisionRule rulesForTestProductType(ProductRequestDto productRequestDto) {
     List<ProductTypeSetting> productTypeSettings = productTypeSettingService.findByProductType_Id(
-        productRequestDTO.getProductTypeId());
+        productRequestDto.getProductTypeId());
 
     Integer minAmount = productTypeSettingService.findAndGetAsInteger(
         productTypeSettings, SettingName.MIN_AMOUNT);
     Integer maxAmount = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
         SettingName.MAX_AMOUNT);
-    Integer loanAmount = productRequestDTO.getAmount();
+    Integer loanAmount = productRequestDto.getAmount();
 
     Integer minTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
         SettingName.MIN_TERM);
     Integer maxTerm = productTypeSettingService.findAndGetAsInteger(productTypeSettings,
         SettingName.MAX_TERM);
-    Integer loanTerm = productRequestDTO.getTerm();
+    Integer loanTerm = productRequestDto.getTerm();
 
     LocalTime minRejectionTime = productTypeSettingService
         .findAndGetAsLocalTime(productTypeSettings,
         SettingName.MIN_REJECTION_TIME);
     LocalTime maxRejectionTime = productTypeSettingService
         .findAndGetAsLocalTime(productTypeSettings, SettingName.MAX_REJECTION_TIME);
-    LocalTime loanApplicationTime = productRequestDTO.getApplicationDate().toLocalTime();
+    LocalTime loanApplicationTime = productRequestDto.getApplicationDate().toLocalTime();
 
     return DecisionRule.DecisionRuleBuilder
       .builder()

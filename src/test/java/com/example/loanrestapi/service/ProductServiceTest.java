@@ -1,12 +1,23 @@
 package com.example.loanrestapi.service;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
+
 import com.example.loanrestapi.AbstractTest;
-import com.example.loanrestapi.dto.ProductRequestDTO;
-import com.example.loanrestapi.factory.AbstractFactory;
-import com.example.loanrestapi.model.*;
 import com.example.loanrestapi.decisionsystem.DecisionSystem;
+import com.example.loanrestapi.dto.ProductRequestDto;
+import com.example.loanrestapi.factory.AbstractFactory;
+import com.example.loanrestapi.model.Customer;
+import com.example.loanrestapi.model.Product;
+import com.example.loanrestapi.model.ProductSetting;
+import com.example.loanrestapi.model.ProductType;
 import com.example.loanrestapi.repository.ProductRepository;
 import com.example.loanrestapi.util.TestingUtil;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,11 +25,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.*;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 public class ProductServiceTest extends AbstractTest {
@@ -46,8 +52,8 @@ public class ProductServiceTest extends AbstractTest {
         this.abstractFactory = Mockito.mock(AbstractFactory.class, Mockito.RETURNS_DEEP_STUBS);
 
 
-        this.productService = new ProductServiceImpl(productRepository, customerService, productTypeService,
-                productSettingService, productTypeSettingService, decisionSystem, abstractFactory);
+        this.productService = new ProductServiceImpl(productRepository, customerService,
+            productTypeService, productSettingService, decisionSystem, abstractFactory);
 
     }
 
@@ -61,7 +67,7 @@ public class ProductServiceTest extends AbstractTest {
     @Test
     public void whenClientDataValidReturnProduct(){
         //given
-        ProductRequestDTO productRequestDTO = TestingUtil.getProductRequestDTO(null,
+        ProductRequestDto productRequestDto = TestingUtil.getProductRequestDTO(null,
                 "1986-04-08 12:30:00", 15);
 
         doReturn(true).when(decisionSystem).isLoanGiven(any());
@@ -85,7 +91,7 @@ public class ProductServiceTest extends AbstractTest {
         doReturn(productSettingsMock).when(productSettingService).getProductSettings(any());
 
         //when
-        Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
+        Optional<Product> optionalProduct = productService.getLoan(productRequestDto);
 
         //then
         Assert.assertTrue(optionalProduct.isPresent());

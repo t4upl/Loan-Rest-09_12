@@ -37,7 +37,7 @@ Loan properties are modelled as generic table. Name of properties are stored in 
 - H2 branch
 
 ## Installation
-For running application requires a PostgreSQL database with role *username2*. Script for creating the role can be found in project under path: *\resources\sql\CreateUserAndDatabase.sql*. Liquibase takes care of running additional scripts which handles creating database schema and populating it with test data. After preparing the database application should be started as typical Spring boot project from *SpringLoanRestAPI* class.
+For running application requires a PostgreSQL database with role *username2*. Script for creating the role can be found in project under path: *\resources\sql\CreateUserAndDatabase.sql*. Liquibase takes care of running additional scripts which handles creating database schema and populating it with test data. After preparing the database application should be started as typical Spring boot project from *SpringLoanRestApi* class.
 
 ## Technologies
 

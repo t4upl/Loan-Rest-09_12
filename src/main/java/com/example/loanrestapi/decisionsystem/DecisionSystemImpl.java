@@ -1,6 +1,6 @@
 package com.example.loanrestapi.decisionsystem;
 
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +11,11 @@ public class DecisionSystemImpl implements DecisionSystem {
   DecisionRuleFactory decisionRuleFactory;
 
   @Override
-  public boolean isLoanGiven(ProductRequestDTO productRequestDTO) {
+  public boolean isLoanGiven(ProductRequestDto productRequestDto) {
     DecisionRule decisionRule = null;
-    Long productTypeId = productRequestDTO.getProductTypeId();
+    Long productTypeId = productRequestDto.getProductTypeId();
     if (productTypeId.equals(1L)) {
-      decisionRule = decisionRuleFactory.rulesForTestProductType(productRequestDTO);
+      decisionRule = decisionRuleFactory.rulesForTestProductType(productRequestDto);
     }
 
     if (decisionRule != null) {
@@ -23,6 +23,6 @@ public class DecisionSystemImpl implements DecisionSystem {
     }
 
     throw new RuntimeException(String.format("No loan application rule set for loan with"
-      + " productType: %d", productRequestDTO.getProductTypeId()));
+      + " productType: %d", productRequestDto.getProductTypeId()));
   }
 }

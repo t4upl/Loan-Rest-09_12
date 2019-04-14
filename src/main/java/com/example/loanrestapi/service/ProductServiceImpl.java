@@ -1,7 +1,7 @@
 package com.example.loanrestapi.service;
 
 import com.example.loanrestapi.decisionsystem.DecisionSystem;
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import com.example.loanrestapi.factory.AbstractFactory;
 import com.example.loanrestapi.model.Customer;
 import com.example.loanrestapi.model.Product;
@@ -11,40 +11,25 @@ import com.example.loanrestapi.repository.ProductRepository;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-  ProductRepository productRepository;
-  CustomerService customerService;
-  ProductTypeService productTypeService;
-  ProductSettingService productSettingService;
-  ProductTypeSettingService productTypeSettingService;
-  DecisionSystem decisionSystem;
-  AbstractFactory abstractFactory;
-
-  public ProductServiceImpl(ProductRepository productRepository,
-      CustomerService customerService,
-      ProductTypeService productTypeService,
-      ProductSettingService productSettingService,
-      ProductTypeSettingService productTypeSettingService,
-      DecisionSystem decisionSystem,
-      AbstractFactory abstractFactory) {
-    this.productRepository = productRepository;
-    this.customerService = customerService;
-    this.productTypeService = productTypeService;
-    this.productSettingService = productSettingService;
-    this.productTypeSettingService = productTypeSettingService;
-    this.decisionSystem = decisionSystem;
-    this.abstractFactory = abstractFactory;
-  }
+  private final ProductRepository productRepository;
+  private final CustomerService customerService;
+  private final ProductTypeService productTypeService;
+  private final ProductSettingService productSettingService;
+  private final DecisionSystem decisionSystem;
+  private final AbstractFactory abstractFactory;
 
   @Override
-  public Optional<Product> getLoan(ProductRequestDTO productRequestDTO) {
-    if (decisionSystem.isLoanGiven(productRequestDTO)) {
-      return Optional.of(insertProduct(productRequestDTO));
+  public Optional<Product> getLoan(ProductRequestDto productRequestDto) {
+    if (decisionSystem.isLoanGiven(productRequestDto)) {
+      return Optional.of(insertProduct(productRequestDto));
     }
 
     return Optional.empty();
@@ -63,18 +48,18 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Transactional
-  private Product insertProduct(ProductRequestDTO productRequestDTO) {
-    Customer customer = customerService.findById(productRequestDTO.getCustomerId())
+  private Product insertProduct(ProductRequestDto productRequestDto) {
+    Customer customer = customerService.findById(productRequestDto.getCustomerId())
         .orElseThrow(() -> new RuntimeException("customerRepository.findById"));
 
-    ProductType productType = productTypeService.findById(productRequestDTO.getProductTypeId())
+    ProductType productType = productTypeService.findById(productRequestDto.getProductTypeId())
         .orElseThrow(() -> new RuntimeException("productTypeRepository.findById"));
 
     Product product = abstractFactory.getProductFactory()
         .getProduct(null, customer, productType, new HashSet<>());
 
     Set<ProductSetting> productSettings = productSettingService
-        .getProductSettings(productRequestDTO);
+        .getProductSettings(productRequestDto);
     productSettings.forEach(product::addProductSetting);
     return productRepository.save(product);
   }

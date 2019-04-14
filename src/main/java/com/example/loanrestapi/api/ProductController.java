@@ -14,7 +14,7 @@ import static com.example.loanrestapi.util.constant.ProductControllerConstant.SA
 import static com.example.loanrestapi.util.constant.ProductControllerConstant.SANITY_TEST_RESPONSE;
 import static com.example.loanrestapi.util.constant.ProductControllerConstant.TIME_METADATA;
 
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import com.example.loanrestapi.model.Product;
 import com.example.loanrestapi.service.ProductService;
 import java.time.LocalDateTime;
@@ -30,9 +30,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@SuppressWarnings("CheckStyle")
+@SuppressWarnings({"CheckStyle", "OptionalIsPresent"})
 @RestController
 public class ProductController {
+
 
   @Autowired
   private ProductService productService;
@@ -45,8 +46,8 @@ public class ProductController {
 
   /** Endpoint for posting new products (loans). */
   @RequestMapping(value = GET_PRODUCT_PATH, method = RequestMethod.POST)
-  public ResponseEntity<String> postProduct(@RequestBody ProductRequestDTO productRequestDTO) {
-    Optional<Product> optionalProduct = productService.getLoan(productRequestDTO);
+  public ResponseEntity<String> postProduct(@RequestBody ProductRequestDto productRequestDto) {
+    Optional<Product> optionalProduct = productService.getLoan(productRequestDto);
     if (optionalProduct.isPresent()) {
       return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_SUCCESS_RESPONSE,
                    optionalProduct.get().getId()), HttpStatus.CREATED);
@@ -54,6 +55,9 @@ public class ProductController {
     return new ResponseEntity<>(addMetaData(APPLY_FOR_LOAN_FAIL_RESPONSE), HttpStatus.BAD_REQUEST);
   }
 
+  /**
+   * Update existing product.
+   */
   @RequestMapping(value = PATCH_PRODUCT_PATH, method = RequestMethod.PATCH)
   public ResponseEntity<String> patchProduct(@PathVariable("id") Long productId,
                                                @RequestParam(ACTION) String action) {

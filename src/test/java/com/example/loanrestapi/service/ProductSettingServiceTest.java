@@ -1,7 +1,7 @@
 package com.example.loanrestapi.service;
 
 import com.example.loanrestapi.AbstractTest;
-import com.example.loanrestapi.dto.ProductRequestDTO;
+import com.example.loanrestapi.dto.ProductRequestDto;
 import com.example.loanrestapi.enums.DataTypeEnum;
 import com.example.loanrestapi.enums.SettingName;
 import com.example.loanrestapi.factory.AbstractFactory;
@@ -33,16 +33,16 @@ public class ProductSettingServiceTest extends AbstractTest {
     public static final int TERM = 15;
 
     private ProductSettingService productSettingService;
-    private ProductSettingRepository productSettingRepository;
     private ProductTypeSettingService productTypeSettingService;
     private AbstractFactory abstractFactory;
 
-    private ProductRequestDTO productRequestDTO;
+    private ProductRequestDto productRequestDto;
 
     @Before
     public void setUp(){
-        this.productSettingRepository = Mockito.mock(ProductSettingRepository.class,
-                new NullPointerExceptionAnswer("productSettingRepository"));
+        ProductSettingRepository productSettingRepository = Mockito
+          .mock(ProductSettingRepository.class,
+            new NullPointerExceptionAnswer("productSettingRepository"));
         this.productTypeSettingService = Mockito.mock(ProductTypeSettingService.class,
                 new NullPointerExceptionAnswer("productTypeSettingService"));
         this.abstractFactory = Mockito.mock(AbstractFactory.class, Mockito.RETURNS_DEEP_STUBS);
@@ -50,7 +50,7 @@ public class ProductSettingServiceTest extends AbstractTest {
         this.productSettingService = new ProductSettingServiceImpl(productSettingRepository, productTypeSettingService,
                 abstractFactory);
 
-        this.productRequestDTO = TestingUtil.getProductRequestDTO(CLIENT_DATA_WRAPPER_AMOUNT,
+        this.productRequestDto = TestingUtil.getProductRequestDTO(CLIENT_DATA_WRAPPER_AMOUNT,
                 APPLICATION_DATE, TERM);
     }
 
@@ -79,7 +79,8 @@ public class ProductSettingServiceTest extends AbstractTest {
                         new ProductSetting(null, inv.getArgument(1), null, inv.getArgument(3)));
 
         //when
-        Set<ProductSetting> productSettings = productSettingService.getProductSettings(productRequestDTO);
+        Set<ProductSetting> productSettings = productSettingService.getProductSettings(
+          productRequestDto);
 
         //then
         Assert.assertEquals("productSetting size should be the same as productTypeSettingsMock size",
@@ -92,7 +93,7 @@ public class ProductSettingServiceTest extends AbstractTest {
                 productSettings.stream().anyMatch(x -> SettingName.TERM.equals(x.getSetting().getName())));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to true " +
-                        "should have value based on productRequestDTO.",
+                        "should have value based on productRequestDto.",
                 CLIENT_DATA_WRAPPER_AMOUNT.toString(), getValueByName(productSettings, SettingName.AMOUNT.toString()));
 
         Assert.assertEquals("productSetting with isRuntimeInput set to false " +

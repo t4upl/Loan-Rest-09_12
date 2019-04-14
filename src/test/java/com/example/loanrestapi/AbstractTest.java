@@ -16,7 +16,7 @@ public abstract class AbstractTest {
     //stric mocking class
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class NullPointerExceptionAnswer<T> implements Answer<T> {
+    protected static class NullPointerExceptionAnswer<T> implements Answer<T> {
         private static final String STRICT_MOCKING_ERROR = "Strict mocking error: ";
         private String message = "no message provided.";
 

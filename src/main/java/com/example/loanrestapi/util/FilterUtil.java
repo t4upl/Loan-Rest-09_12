@@ -8,6 +8,9 @@ import java.time.format.DateTimeFormatter;
 
 public class FilterUtil {
 
+  /**
+   * Converts object to its String representation in order to make it saveable to databse.
+   */
   public static String convertJavaToString(Object javaObject, String dataTypeName) {
     switch (DataTypeEnum.valueOf(dataTypeName)) {
       case LOCAL_DATE_TIME:
@@ -22,6 +25,9 @@ public class FilterUtil {
     }
   }
 
+  /**
+   * Converts value from String representation, stored in database, to JavaObject.
+   */
   public static Object convertStringToJava(String objectString, String dataTypeName) {
     switch (DataTypeEnum.valueOf(dataTypeName)) {
       case LOCAL_DATE_TIME:
