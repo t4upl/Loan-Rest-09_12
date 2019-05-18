@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="initial_data" author="Rocky_Balboa">
+
+    <sql>
+    -- create sequence
+    create sequence customer_id_seq;
+    create sequence product_id_seq;
+    create sequence product_type_id_seq;
+    create sequence product_type_setting_id_seq;
+    create sequence setting_id_seq;
+    create sequence data_type_id_seq;
+    create sequence product_setting_id_seq;
+
+
+
+    -- table contains customers/users of application
+    CREATE TABLE customer (
+    id bigserial default customer_id_seq.nextval,
+    name text,
+    PRIMARY KEY (id)
+    );
+
+    -- loan(s) attached to customer
+    CREATE TABLE product (
+    id bigserial default product_id_seq.nextval,
+    customer_id BIGINT NOT NULL,
+    product_type_id BIGINT NOT NULL,
+    PRIMARY KEY (id)
+    );
+
+    --types of loan that customer can buy
+    CREATE TABLE product_type (
+    id bigserial default product_type_id_seq.nextval,
+    name varchar(250) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE(name)
+    );
+
+    --setting of loans that customer can buy
+    CREATE TABLE product_type_setting (
+    id bigserial default product_type_setting_id_seq.nextval,
+    product_type_id BIGINT NOT NULL,
+    setting_id BIGINT NOT NULL,
+    value text,
+    PRIMARY KEY (id),
+    UNIQUE (product_type_id, setting_id)
+    );
+
+    --variables that can describe a loan
+    CREATE TABLE IF NOT EXISTS setting (
+    id bigserial default setting_id_seq.nextval,
+    name text NOT NULL,
+    data_type_id BIGINT,
+    is_runtime_input boolean,
+    PRIMARY KEY (id));
+
+    -- dictionary describing data types
+    CREATE TABLE IF NOT EXISTS data_type (
+    id bigserial default data_type_id_seq.nextval,
+    name varchar(250) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE(name)
+    );
+
+    -- details of product owned by customer
+    CREATE TABLE IF NOT EXISTS product_setting (
+    id bigserial default product_setting_id_seq.nextval,
+    product_id BIGINT NOT NULL,
+    setting_id BIGINT NOT NULL,
+    value text,
+    PRIMARY KEY (id),
+    );
+
+    -- CREATE FOREIGN KEYS
+
+    --product
+    ALTER TABLE product ADD CONSTRAINT fk_product_customer_id FOREIGN KEY(customer_id) REFERENCES customer(id);
+    ALTER TABLE product ADD CONSTRAINT fk_product_product_type_id FOREIGN KEY (product_type_id) REFERENCES product_type(id);
+
+    --product type setting
+    ALTER TABLE product_type_setting ADD CONSTRAINT fk_product_type_setting_product_type_id FOREIGN KEY (product_type_id) REFERENCES product_type(id);
+    ALTER TABLE product_type_setting ADD CONSTRAINT fk_product_type_setting_setting_id FOREIGN KEY (setting_id) REFERENCES setting(id);
+
+    --prorduct_setting
+    ALTER TABLE product_setting ADD CONSTRAINT fk_product_setting_product_id FOREIGN KEY (product_id) REFERENCES product(id);
+    ALTER TABLE product_setting ADD CONSTRAINT fk_product_setting_setting_id FOREIGN KEY (setting_id) REFERENCES setting(id);
+
+    --setting
+    ALTER TABLE setting ADD CONSTRAINT fk_setting_datat_type_id FOREIGN KEY (data_type_id) REFERENCES data_type(id);
+    </sql>
+        <rollback>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
